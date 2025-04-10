@@ -1,6 +1,7 @@
 import pdfplumber, csv, os, shutil
 
 def run(pdf_file, output):
+    """Extract tables from PDF and convert into csv file for each table"""
     os.makedirs(output, exist_ok=True)
 
     # Step 1: Extract tables into CSVs

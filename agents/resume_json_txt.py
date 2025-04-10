@@ -6,7 +6,15 @@ from langchain_ibm import ChatWatsonx
 from constants import *
 
 def run(file_path):
+    """
+    Functionality:
+        Convert an json file into resume.txt file
+    Input:
+        - file_path : path of the json file
+    Output:
+        retruns an resume response
 
+    """
     with open(file_path,"r") as file:
         input_json = file.read()
     
