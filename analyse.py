@@ -1,112 +1,43 @@
-from constants import *
-from langchain_experimental.agents import create_pandas_dataframe_agent
-from langchain_google_genai import GoogleGenerativeAI
+from langchain_ibm.llms import WatsonxLLM
+from langchain.agents import initialize_agent, AgentType, Tool
+from langchain_experimental.tools.python.tool import PythonREPLTool
+from langchain_experimental.agents.agent_toolkits.pandas.base import create_pandas_dataframe_agent
+from langchain.prompts import PromptTemplate
 import pandas as pd
+from constants import *
 
-# Load the CSV manually
 df = pd.read_csv("input/civil.csv")
 
+prompt = PromptTemplate(
+    input_variables=["input"],
+    template="""
+You are a smart data analyst working with a DataFrame called `df`.
 
-# Define your custom prompt prefix/suffix
-custom_prompt = """You are a helpful AI assistant that can answer questions based on the civil.csv file provided as a pandas dataframe.
-You have access to the following tools:
-{tools}
-
-Use the following format:
-
-Question: the input question you must answer
-Thought: think about what to do
-Action: the action to take, should be one of [{tool_names}]
-Action Input: the input to the action
-Observation: the result of the action
-... (this Thought/Action/Action Input/Observation can repeat N times)
-Thought: I now know the final answer
-Final Answer: the final answer to the original question
-
-Begin!
+You must use Python (Pandas) to answer questions accurately and concisely. 
+Avoid assumptions. Show your reasoning as comments.
 
 Question: {input}
-{agent_scratchpad}"""
-
-facility_prompprefix = """
-You are an AI Facility Manager expert named **FacilityAI**, responsible for overseeing the efficient and safe operation of a commercial building's HVAC system.
-
-Your primary goals are to:
-- Optimize energy consumption while maintaining comfortable and healthy indoor environmental quality.
-- Proactively identify potential equipment failures to minimize downtime and costly repairs.
-- Ensure compliance with operational guidelines and maintenance schedules.
-- Provide actionable insights and recommendations to human facility staff.
-
-You have access to building data in a tabular format (dataframe) representing HVAC performance, equipment status, and environmental metrics. This data may include:
-- Temperature readings (zone, supply, return), humidity, airflow, pressures
-- Energy consumption (total, HVAC-specific)
-- Equipment statuses, error codes, timestamps, zones, etc.
-
-Use this data to:
-1. Analyze current operating conditions and identify any deviations from optimal setpoints.
-2. Predict potential equipment failures using historical patterns or anomalies.
-3. Recommend actions to improve energy efficiency and system performance.
-4. Answer questions related to HVAC operation, troubleshooting, and scheduling.
-5. Generate summaries or reports based on key performance indicators (KPIs).
-
-Respond clearly, use technical insights where helpful, and prioritize recommendations by urgency and impact.
 """
-
-smart_prompt = """
-You are **FacilityAI**, an expert AI Facility Manager responsible for the efficient, reliable, and safe operation of a commercial building's HVAC system.
-
-Your primary responsibilities:
-- Optimize energy consumption while maintaining indoor air quality and comfort.
-- Proactively detect and prevent equipment failures using data analysis.
-- Ensure compliance with maintenance schedules and operational standards.
-- Provide clear, actionable insights and recommendations to facility personnel.
-
-You have access to real-time and historical building data in a CSV-based dataframe, including:
-- Temperature readings (supply, return, zone), humidity, airflow, pressure
-- Energy consumption metrics, equipment status logs, error codes, occupancy data
-- Maintenance history, O&M specifications
-
-You also have access to the following **tools** for analyzing the data:
-{tools}
-
-When answering, always follow this structured format:
-
----
-
-**Question**: the input question you must answer  
-**Thought**: think step-by-step about what needs to be done  
-**Action**: the action to take, must be one of [{tool_names}]  
-**Action Input**: the input to the selected action  
-**Observation**: the result/output of the action  
-(... you may repeat Thought/Action/Action Input/Observation as needed)  
-**Thought**: I now know the final answer  
-**Final Answer**: the final answer to the original question  
-
----
-
-Begin!
-
-**Question**: {input}  
-{agent_scratchpad}
-"""
-
-llm = GoogleGenerativeAI(
-    model="gemini-2.0-flash",
-    api_key=GOOGLE_GEMINI_KEY,
-    temperature=0,
-    max_tokens=500,
-    top_k=10
 )
 
-# Create a custom agent
-csv_agent = create_pandas_dataframe_agent(
-    llm=llm,
-    df=df,
+llm = WatsonxLLM(
+    model_id=MODEL_GRANITE_8B,
+    project_id=WATSONX_PROJECT_ID,
+    apikey=WATSONX_API_KEY,
+    url=SERVER_URL,
+    params=WASTSONX_PARAMS
+)
+
+# Create tools (Python REPL is required for pandas agents)
+tools = [PythonREPLTool()]
+
+agent = initialize_agent(
+    tools,
+    llm,
+    agent=AgentType.ZERO_SHOT_REACT_DESCRIPTION,
     verbose=True,
-    prefix=custom_prompt,
-    allow_dangerous_code=True
+    agent_kwargs={"prefix": prompt.template,'handle_parsing_errors':True},
 )
 
-query = "Analyze energy consumption by space to identify spaces with high energy usage."
-response = csv_agent.invoke(query)
-print(response['output'])
+response = agent.run("How many rows are there in the data?")
+print(response)
