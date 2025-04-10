@@ -31,9 +31,6 @@ def create_retriever(csv_file="input/civil.csv"):
     text_splitter = RecursiveCharacterTextSplitter(chunk_size=2000, chunk_overlap=0)
     texts = text_splitter.split_text(docs)
 
-    print(len(texts))
-    print(texts[0])
-
     embeddings = WatsonxEmbeddings(
         model_id=IBM_SLATE_125M_ENGLISH_RTRVR,
         apikey=WATSONX_API_KEY,

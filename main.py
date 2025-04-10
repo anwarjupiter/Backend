@@ -26,10 +26,12 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
+# checking for server Hello !
 @app.get("/hello")
 def hello():
     return {"message": "Hello, FastAPI!"}
 
+# Aksing question with pdf file
 @app.post("/ask-pdf")
 async def ask_pdf(question: str = Form(...),pdf_file: UploadFile = File(...),vector_db_path:str = Form(...)):
     try:
@@ -45,7 +47,8 @@ async def ask_pdf(question: str = Form(...),pdf_file: UploadFile = File(...),vec
 
     except Exception as e:
         return JSONResponse(status_code=500, content={"error": str(e)})
-    
+
+# Converting json to resume.txt file   
 @app.post("/json-to-resume")
 async def json_to_resume(json_file: UploadFile = File(...)):
     try:
@@ -65,32 +68,8 @@ async def json_to_resume(json_file: UploadFile = File(...)):
         return JSONResponse(status_code=200,content={"file_path":resume_txt_path})
     except Exception as e:
         return JSONResponse(status_code=500, content={"error": str(e)})
-    
-@app.post("/json-to-resume_old")
-async def json_to_resume_old(json_file: UploadFile = File(...)):
-    try:
-        # Save uploaded JSON to temp file
-        with tempfile.NamedTemporaryFile(delete=False, suffix=".json") as tmp_json:
-            tmp_json.write(await json_file.read())
-            temp_json_path = tmp_json.name
 
-        # Process to get resume text
-        resume_text = resume_json_txt.run(file_path=temp_json_path)
-
-        # Save the result to a temp .txt file
-        with tempfile.NamedTemporaryFile(delete=False, suffix=".txt", mode="w") as tmp_txt:
-            tmp_txt.write(resume_text)
-            resume_txt_path = tmp_txt.name
-
-        # Return the .txt file for download
-        return FileResponse(
-            path=resume_txt_path,
-            filename="resume.txt",
-            media_type="text/plain"
-        )
-    except Exception as e:
-        return JSONResponse(status_code=500, content={"error": str(e)})
-    
+# Extracting tables from the pdf and saved into csv    
 @app.post("/pdf-to-table")
 async def pdf_to_table(pdf_file:UploadFile = File(...)):
     try:
@@ -108,7 +87,8 @@ async def pdf_to_table(pdf_file:UploadFile = File(...)):
         )
     except Exception as e:
         return JSONResponse(status_code=500, content={"error": str(e)})
-    
+
+# Asking Question With CSV     
 @app.post("/ask-to-civil")
 @limiter.limit("5/minute")
 async def ask_to_civil(request: Request, question: str = Form(...)):
@@ -119,7 +99,8 @@ async def ask_to_civil(request: Request, question: str = Form(...)):
         return JSONResponse(content={"answer": answer})
     except Exception as e:
         return JSONResponse(status_code=500, content={"error": str(e)})
-    
+
+# For Front End Changes    
 @app.post("/ask-to-dummy")
 async def ask_to_dummy(request: Request, question: str = Form(...)):
     try:
@@ -129,7 +110,8 @@ async def ask_to_dummy(request: Request, question: str = Form(...)):
         return JSONResponse(content={"answer": answer})
     except Exception as e:
         return JSONResponse(status_code=500, content={"error": str(e)})
-    
+
+# Asking Question with Uploaded CSV File    
 @app.post("/ask-to-csv")
 async def ask_to_csv(question: str = Form(...),csv_file: UploadFile = File(...)):
     try:
