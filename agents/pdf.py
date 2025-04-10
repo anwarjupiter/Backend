@@ -21,7 +21,6 @@ def process_pdf(pdf_path,vector_db)->FAISS:
     text_splitter = RecursiveCharacterTextSplitter(chunk_size=500, chunk_overlap=100)
     docs = text_splitter.split_documents(documents)
 
-    print("--- Step 2 --- Generating Embddings for Pages")
     embeddings = WatsonxEmbeddings(
         model_id=IBM_SLATE_125M_ENGLISH_RTRVR,
         apikey=WATSONX_API_KEY,
@@ -30,10 +29,11 @@ def process_pdf(pdf_path,vector_db)->FAISS:
     )
 
     # embeddings = HuggingFaceEmbeddings(model_name=IBM_GRANITE_125M_ENGLISH)
-
     if os.path.exists(vector_db):
+        print("--- Step 2 --- Loading Vector Database")
         vectorstore = FAISS.load_local(vector_db,embeddings,allow_dangerous_deserialization=True)
     else:
+        print("--- Step 2 --- Creating Vector Database")
         vectorstore = FAISS.from_documents([docs[0]],embedding=embeddings)
         for doc in tqdm(docs[1:],desc="Generating Embeddings",unit="Doc"):
             vectorstore.add_documents([doc])

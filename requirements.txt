@@ -9,3 +9,6 @@ langchain_experimental
 fastapi
 pdfplumber
 slowapi
+uvicorn
+python-multipart
+pypdf
