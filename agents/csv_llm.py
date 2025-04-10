@@ -4,7 +4,6 @@ from langchain_community.vectorstores import FAISS
 from langchain_ibm import ChatWatsonx
 from langchain_ibm import WatsonxEmbeddings
 from constants import *
-from langchain_community.document_loaders.csv_loader import CSVLoader
 from langchain.text_splitter import RecursiveCharacterTextSplitter
 from langchain.prompts import PromptTemplate
 from langchain.chains import RetrievalQA
