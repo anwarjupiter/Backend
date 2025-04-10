@@ -22,3 +22,7 @@ IBM_SLATE_125M_ENGLISH_RTRVR ="ibm/slate-125m-english-rtrvr-v2"
 
 #HuggingFace Embedding Model
 IBM_GRANITE_125M_ENGLISH = "ibm-granite/granite-embedding-125m-english"
+
+OPENAI_KEY = "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"
+
+GOOGLE_GEMINI_KEY = "AIzaSyCqgpJTOLeA-BIk2lrHw2YojZA37NRBTJo"

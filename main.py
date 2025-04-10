@@ -10,7 +10,7 @@ from slowapi import Limiter, _rate_limit_exceeded_handler
 from slowapi.util import get_remote_address
 from slowapi.errors import RateLimitExceeded
 from typing import Optional
-from agent_call import react_agent
+from agent_call import react_agent,PDFInput
 
 app = FastAPI()
 
@@ -136,14 +136,13 @@ async def ask_to_agent(agent:str = Form(default="any"),question:str=Form(...),fi
         print(f"Agent : {agent}, Question : {question}, File : {file}")
         
         if file and Path(file.filename).suffix == '.pdf':
-            tool_input = {
-                "question": question,
-                "file_path":f"store/{file.filename.replace('pdf','db')}",
-                "pdf_path":f"input/{file.filename}"
-            }
-
+            tool_input = PDFInput(
+                question=question,
+                database_path=f"store/{file.filename.replace('pdf', 'db')}",
+                file_path=f"input/{file.filename}"
+            )
             result = react_agent.run(input=tool_input)
-        
+
         if not file:
             result = react_agent.run(input=question)
 

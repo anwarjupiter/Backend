@@ -2,19 +2,19 @@ from langchain.agents import initialize_agent
 from langchain.agents.agent_types import AgentType
 from langchain_ibm import WatsonxLLM
 from constants import *
-from langchain.tools import StructuredTool
+from langchain.tools import StructuredTool,Tool
 from pydantic import BaseModel
 import random
 from agents import pdf
 
 class PDFInput(BaseModel):
     question: str
-    pdf_path: str
-    file_path:str
+    file_path: str
+    database_path:str
 
 
 def process_pdf_tool_structured(input: PDFInput) -> str:
-    return pdf.run(question=input.question,pdf_path=input.pdf_path,vector_db=input.file_path)
+    return pdf.run(question=input.question,pdf_path=input.file_path,vector_db=input.database_path)
 
 def random_number(input:str) -> str:
     return random.randint(1,5)
