@@ -5,7 +5,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from fastapi import FastAPI, File, UploadFile, Form
 from fastapi.responses import JSONResponse
 from fastapi.responses import FileResponse
-from agents import pdf,resume_json_txt,pdf_to_csv,csv_llm
+from agents import pdf,resume_json_txt,pdf_to_csv,csv_llm,csv_google
 from slowapi import Limiter, _rate_limit_exceeded_handler
 from slowapi.util import get_remote_address
 from slowapi.errors import RateLimitExceeded
@@ -98,7 +98,7 @@ async def ask_to_civil(request: Request, question: str = Form(...)):
     try:
         if not question:
             return JSONResponse(status_code=400, content={"error": "Question Required"})
-        answer = csv_llm.run(query=question)
+        answer = csv_google.run(query=question)
         return JSONResponse(content={"answer": answer})
     except Exception as e:
         return JSONResponse(status_code=500, content={"error": str(e)})
@@ -142,7 +142,6 @@ async def ask_to_agent(agent:str = Form(default="any"),question:str=Form(...),fi
                 file_path=f"input/{file.filename}"
             )
             result = react_agent.run(input=tool_input)
-
         if not file:
             result = react_agent.run(input=question)
 
