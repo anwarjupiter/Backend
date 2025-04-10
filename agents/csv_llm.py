@@ -7,6 +7,7 @@ from constants import *
 from langchain.text_splitter import RecursiveCharacterTextSplitter
 from langchain.prompts import PromptTemplate
 from langchain.chains import RetrievalQA
+import time
 
 def create_retriever(csv_file="input/civil.csv"):
     """
@@ -27,8 +28,10 @@ def create_retriever(csv_file="input/civil.csv"):
     df = pd.read_csv(csv_file)
 
     docs = "\n".join(df.astype(str).apply(lambda row: ", ".join(row), axis=1)) 
-    text_splitter = RecursiveCharacterTextSplitter(chunk_size=2000, chunk_overlap=0)
+    text_splitter = RecursiveCharacterTextSplitter(chunk_size=2000, chunk_overlap=20,separators=['\n'])
     texts = text_splitter.split_text(docs)
+    # print(f"Number of documents: {len(texts)}")
+    # print(len(texts[3].split("\n")))
 
     embeddings = WatsonxEmbeddings(
         model_id=IBM_SLATE_125M_ENGLISH_RTRVR,
@@ -114,7 +117,7 @@ def run(query,csv_file=""):
     qa_chain = RetrievalQA.from_chain_type(
         llm=model,
         retriever=retriever,
-        chain_type="stuff",  # Most common choice
+        chain_type="stuff",
         chain_type_kwargs={"prompt": prompt2},
         # verbose=True
     )

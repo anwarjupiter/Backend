@@ -42,6 +42,7 @@ def process_pdf(pdf_path,vector_db)->FAISS:
     return vectorstore
 
 def query_vectorstore(vectorstore:FAISS, query):
+    """Retrieve the relevant information from the vectorstore and returns as text context"""
     retriever = vectorstore.as_retriever(search_kwargs={"k": 3})
     retrieved_documents = retriever.invoke(query)
 
@@ -52,6 +53,7 @@ def query_vectorstore(vectorstore:FAISS, query):
     return " ".join([doc.page_content for doc in retrieved_documents])
 
 def run(question,pdf_path,vector_db):
+    """Ask question with agent and returns an response"""
     print("--- Step 3 --- Prompting with instruction")
     with open("input/instruction.txt","r") as file:
         instruction = file.read()
