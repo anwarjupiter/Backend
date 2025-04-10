@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Json2Resume</title>
+</head>
+<body>
+  <h2>Upload File</h2>
+  <input type="file" id="fileInput">
+  <button onclick="upload()">Upload</button>
+  <p id="response"></p>
+
+  <script>
+    async function upload() {
+      const fileInput = document.getElementById("fileInput");
+      const file = fileInput.files[0];
+      const formData = new FormData();
+      formData.append("json_file", file);
+  
+      const response = await fetch("http://127.0.0.1:8000/json-to-resume", {
+        method: "POST",
+        body: formData
+      });
+  
+      if (response.ok) {
+        const blob = await response.blob();
+        const url = window.URL.createObjectURL(blob);
+        const a = document.createElement("a");
+        a.href = url;
+        a.download = "resume.txt";  // set desired file name
+        document.body.appendChild(a);
+        a.click();
+        a.remove();
+        window.URL.revokeObjectURL(url);
+      } else {
+        const error = await response.json();
+        alert("Error: " + error.error);
+      }
+    }
+  </script>
+  
+</body>
+</html>

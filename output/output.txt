@@ -1,0 +1,34 @@
+==========================
+Anwar Mydheen K
+Email: anwarmydheen.k@gmail.com
+Phone: +91 8637413971
+Website: anwarmydheenk.pythonanywhere.com
+
+SUMMARY
+Seeking a challenging position in a reputable organization to expand and utilize my learning, skills, and knowledge as a Full Stack Developer.
+
+SKILLS
+- Python
+- Java Script
+- PHP
+- React
+- Django
+- MySQL
+
+EXPERIENCE
+Full Stack Developer, Company Name
+2023 - Present
+Anywhere in the world
+Describe the work experience.
+
+Data Analyst (Intern), Unob Technologies | Chennai
+2021 - 2022
+Chennai
+Conducted exploratory data analysis to uncover trends and patterns, leading to actionable business insights. Utilized tools like Python, Pandas, and Matplotlib for data cleaning, transformation, and visualization. Presented findings to the team, aiding decision-making processes for marketing and operations.
+
+EDUCATION
+BSc (CS), Madurai Kamaraj University
+2020 - 2023
+CGPA: 8.0
+
+==========================

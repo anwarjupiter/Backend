@@ -1,0 +1,46 @@
+{
+    "name": "Anwar Mydheen K",
+    "contact": "+91 8637413971",
+    "email": "anwarmydheen.k@gmail.com",
+    "website": "anwarmydheenk.pythonanywhere.com",
+    "about": "Seeking a challenging position in a reputable organization to expand and utilize my learning, skills, and knowledge.",
+    "role": "Full Stack Developer",
+    "experience": [
+        {
+            "role": "Role of the company",
+            "company": "Company Name",
+            "duration": "2023 - Present",
+            "location": "Anywhere in the world",
+            "details": "Describe the work experience."
+        },
+        {
+            "role": "Data Analyst (Intern)",
+            "company": "Unob Technologies | Chennai",
+            "duration": "2021 - 2022",
+            "location": "Chennai",
+            "details": "Conducted exploratory data analysis to uncover trends and patterns, leading to actionable business insights. Utilized tools like Python, Pandas, and Matplotlib for data cleaning, transformation, and visualization. Presented findings to the team, aiding decision-making processes for marketing and operations."
+        }
+    ],
+    "education": [
+        {
+            "course": "Course Name",
+            "duration": "Duration",
+            "institution": "Name of the institution/school.college name",
+            "cgpa": "8.4"
+        },
+        {
+            "course": "BSc (CS)",
+            "duration": "2020 - 2023",
+            "institution": "Madurai Kamaraj University",
+            "cgpa": "8.0"
+        }
+    ],
+    "skills": [
+        "Python",
+        "Java Script",
+        "PHP",
+        "React",
+        "Django",
+        "MySQL"
+    ]
+}

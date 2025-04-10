@@ -1,0 +1,4721 @@
+2025-04-09 20:11:43 [INFO] Question: How many AC exists in the ground floor ?
+2025-04-09 20:11:43 [INFO] Running PandasAI with langchain_watsonx-chat LLM...
+2025-04-09 20:11:43 [INFO] Prompt ID: 4d146ad6-23aa-4e80-93e1-1ef9d2948fed
+2025-04-09 20:11:43 [INFO] Executing Pipeline: GenerateChatPipeline
+2025-04-09 20:11:43 [INFO] Executing Step 0: ValidatePipelineInput
+2025-04-09 20:11:43 [INFO] Executing Step 1: CacheLookup
+2025-04-09 20:11:43 [INFO] Executing Step 2: PromptGeneration
+2025-04-09 20:11:44 [INFO] Using prompt: <dataframe>
+dfs[0]:61x7
+Building,Floor,Space,Equipment,Temperature (°C),Energy Consumption (kWh),Date
+Building 1,F3,Bathroom 1,Computer,,5.1,2025-04-08
+Building 1,GF,Library,Light,25.2,4.1,2025-04-08
+Building 1,F2,Terrace,Microwave,23.1,0.6,2025-04-08
+</dataframe>
+
+
+
+
+Update this initial code:
+```python
+# TODO: import the required dependencies
+import pandas as pd
+
+# Write code here
+
+# Declare result var: 
+type (possible values "string", "number", "dataframe", "plot"). Examples: { "type": "string", "value": f"The highest salary is {highest_salary}." } or { "type": "number", "value": 125 } or { "type": "dataframe", "value": pd.DataFrame({...}) } or { "type": "plot", "value": "temp_chart.png" }
+
+```
+
+
+
+### QUERY
+ How many AC exists in the ground floor ?
+
+Variable `dfs: list[pd.DataFrame]` is already declared.
+
+At the end, declare "result" variable as a dictionary of type and value.
+
+If you are asked to plot a chart, use "matplotlib" for charts, save as png.
+
+
+Generate python code and return full updated code:
+2025-04-09 20:11:44 [INFO] Executing Step 3: CodeGenerator
+2025-04-09 20:11:47 [INFO] HTTP Request: POST https://au-syd.ml.cloud.ibm.com/ml/v1/text/chat?version=2025-03-20 "HTTP/1.1 200 OK"
+2025-04-09 20:11:47 [INFO] Successfully finished chat for url: 'https://au-syd.ml.cloud.ibm.com/ml/v1/text/chat?version=2025-03-20'
+2025-04-09 20:11:47 [INFO] Prompt used:
+            
+<dataframe>
+dfs[0]:61x7
+Building,Floor,Space,Equipment,Temperature (°C),Energy Consumption (kWh),Date
+Building 1,F3,Bathroom 1,Computer,,5.1,2025-04-08
+Building 1,GF,Library,Light,25.2,4.1,2025-04-08
+Building 1,F2,Terrace,Microwave,23.1,0.6,2025-04-08
+</dataframe>
+
+
+
+
+Update this initial code:
+```python
+# TODO: import the required dependencies
+import pandas as pd
+
+# Write code here
+
+# Declare result var: 
+type (possible values "string", "number", "dataframe", "plot"). Examples: { "type": "string", "value": f"The highest salary is {highest_salary}." } or { "type": "number", "value": 125 } or { "type": "dataframe", "value": pd.DataFrame({...}) } or { "type": "plot", "value": "temp_chart.png" }
+
+```
+
+
+
+### QUERY
+ How many AC exists in the ground floor ?
+
+Variable `dfs: list[pd.DataFrame]` is already declared.
+
+At the end, declare "result" variable as a dictionary of type and value.
+
+If you are asked to plot a chart, use "matplotlib" for charts, save as png.
+
+
+Generate python code and return full updated code:
+            
+2025-04-09 20:11:47 [INFO] Code generated:
+            ```
+            # TODO: import the required dependencies
+import pandas as pd
+import matplotlib.pyplot as plt
+
+# Assuming dfs is already defined
+dfs = [pd.DataFrame({
+    'Building': ['Building 1'],
+    'Floor': ['GF'],
+    'Space': ['Library'],
+    'Equipment': ['Light'],
+    'Temperature (°C)': [25.2],
+    'Energy Consumption (kWh)': [4.1],
+    'Date': ['2025-04-08']
+})]
+
+# Filter dataframe for AC equipment
+ac_equipment = ['Air Conditioner']
+ac_dfs = [df[df['Equipment'].isin(ac_equipment)] for df in dfs]
+
+# Flatten the list of dataframes
+ac_df = pd.concat(ac_dfs, ignore_index=True)
+
+# Count the number of ACs in the ground floor
+ac_count = ac_df[ac_df['Floor'] == 'GF'].shape[0]
+
+# Prepare the result
+result = {
+    "type": "number",
+    "value": ac_count
+}
+
+# Plot the temperature distribution
+plt.figure(figsize=(10, 6))
+for df in dfs:
+    plt.hist(df['Temperature (°C)'], bins=10, alpha=0.5, label=df['Building'].iloc[0])
+plt.title('Temperature Distribution')
+plt.xlabel('Temperature (°C)')
+plt.ylabel('Frequency')
+plt.legend()
+plt.savefig('temp_distribution.png')
+
+result
+            ```
+            
+2025-04-09 20:11:47 [INFO] Executing Step 4: CachePopulation
+2025-04-09 20:11:47 [INFO] Executing Step 5: CodeCleaning
+2025-04-09 20:11:47 [INFO] Saving charts to D:\Inowell\Backend\exports\charts\temp_chart.png
+2025-04-09 20:11:47 [INFO] 
+Code running:
+```
+ac_equipment = ['Air Conditioner']
+ac_dfs = [df[df['Equipment'].isin(ac_equipment)] for df in dfs]
+ac_df = pd.concat(ac_dfs, ignore_index=True)
+ac_count = ac_df[ac_df['Floor'] == 'GF'].shape[0]
+result = {'type': 'number', 'value': ac_count}
+plt.figure(figsize=(10, 6))
+for df in dfs:
+    plt.hist(df['Temperature (°C)'], bins=10, alpha=0.5, label=df['Building'].iloc[0])
+plt.title('Temperature Distribution')
+plt.xlabel('Temperature (°C)')
+plt.ylabel('Frequency')
+plt.legend()
+plt.savefig('D:/Inowell/Backend/exports/charts/temp_chart.png')
+result
+        ```
+2025-04-09 20:11:47 [INFO] Executing Step 6: CodeExecution
+2025-04-09 20:11:48 [INFO] Executing Step 7: ResultValidation
+2025-04-09 20:11:48 [INFO] Answer: {'type': 'number', 'value': 0}
+2025-04-09 20:11:48 [INFO] Executing Step 8: ResultParsing
+2025-04-09 20:12:47 [INFO] Question: How many AC exists ?
+2025-04-09 20:12:47 [INFO] Running PandasAI with langchain_watsonx-chat LLM...
+2025-04-09 20:12:47 [INFO] Prompt ID: 840fb885-8d9e-42ed-9bed-8393c14f91b5
+2025-04-09 20:12:47 [INFO] Executing Pipeline: GenerateChatPipeline
+2025-04-09 20:12:47 [INFO] Executing Step 0: ValidatePipelineInput
+2025-04-09 20:12:47 [INFO] Executing Step 1: CacheLookup
+2025-04-09 20:12:47 [INFO] Executing Step 2: PromptGeneration
+2025-04-09 20:12:47 [INFO] Using prompt: <dataframe>
+dfs[0]:61x7
+Building,Floor,Space,Equipment,Temperature (°C),Energy Consumption (kWh),Date
+Building 1,F3,Hall 1,Microwave,22.0,0.3,2025-04-08
+Building 1,F1,Hall 2,Fan,,3.7,2025-04-08
+Building 1,GF,Guest Room,Refrigerator,22.2,5.3,2025-04-08
+</dataframe>
+
+
+
+
+Update this initial code:
+```python
+# TODO: import the required dependencies
+import pandas as pd
+
+# Write code here
+
+# Declare result var: 
+type (possible values "string", "number", "dataframe", "plot"). Examples: { "type": "string", "value": f"The highest salary is {highest_salary}." } or { "type": "number", "value": 125 } or { "type": "dataframe", "value": pd.DataFrame({...}) } or { "type": "plot", "value": "temp_chart.png" }
+
+```
+
+
+
+### QUERY
+ How many AC exists ?
+
+Variable `dfs: list[pd.DataFrame]` is already declared.
+
+At the end, declare "result" variable as a dictionary of type and value.
+
+If you are asked to plot a chart, use "matplotlib" for charts, save as png.
+
+
+Generate python code and return full updated code:
+2025-04-09 20:12:47 [INFO] Executing Step 3: CodeGenerator
+2025-04-09 20:12:50 [INFO] HTTP Request: POST https://au-syd.ml.cloud.ibm.com/ml/v1/text/chat?version=2025-03-20 "HTTP/1.1 200 OK"
+2025-04-09 20:12:50 [INFO] Successfully finished chat for url: 'https://au-syd.ml.cloud.ibm.com/ml/v1/text/chat?version=2025-03-20'
+2025-04-09 20:12:50 [INFO] Prompt used:
+            
+<dataframe>
+dfs[0]:61x7
+Building,Floor,Space,Equipment,Temperature (°C),Energy Consumption (kWh),Date
+Building 1,F3,Hall 1,Microwave,22.0,0.3,2025-04-08
+Building 1,F1,Hall 2,Fan,,3.7,2025-04-08
+Building 1,GF,Guest Room,Refrigerator,22.2,5.3,2025-04-08
+</dataframe>
+
+
+
+
+Update this initial code:
+```python
+# TODO: import the required dependencies
+import pandas as pd
+
+# Write code here
+
+# Declare result var: 
+type (possible values "string", "number", "dataframe", "plot"). Examples: { "type": "string", "value": f"The highest salary is {highest_salary}." } or { "type": "number", "value": 125 } or { "type": "dataframe", "value": pd.DataFrame({...}) } or { "type": "plot", "value": "temp_chart.png" }
+
+```
+
+
+
+### QUERY
+ How many AC exists ?
+
+Variable `dfs: list[pd.DataFrame]` is already declared.
+
+At the end, declare "result" variable as a dictionary of type and value.
+
+If you are asked to plot a chart, use "matplotlib" for charts, save as png.
+
+
+Generate python code and return full updated code:
+            
+2025-04-09 20:12:50 [INFO] Code generated:
+            ```
+            # TODO: import the required dependencies
+import pandas as pd
+import matplotlib.pyplot as plt
+
+# Declare result var: 
+result = {
+    "type": "number",
+    "value": 0
+}
+
+# Process the data
+for df in dfs:
+    # Count the number of ACs (assuming AC is represented by 'Air Conditioner' in the 'Equipment' column)
+    result["value"] += len(df[df['Equipment'] == 'Air Conditioner'])
+
+# Print the result
+print(f"The total number of ACs is: {result['value']}")
+
+# Plot a chart (if there are ACs)
+if result['value'] > 0:
+    ac_df = pd.concat([df[df['Equipment'] == 'Air Conditioner'] for df in dfs])
+    ac_df.groupby('Building').mean()['Temperature (°C)'].plot(kind='bar')
+    plt.title('Average Temperature of ACs by Building')
+    plt.xlabel('Building')
+    plt.ylabel('Temperature (°C)')
+    plt.savefig('ac_temp_chart.png')
+    result["type"] = "plot"
+    result["value"] = 'ac_temp_chart.png'
+
+result
+            ```
+            
+2025-04-09 20:12:50 [INFO] Executing Step 4: CachePopulation
+2025-04-09 20:12:50 [INFO] Executing Step 5: CodeCleaning
+2025-04-09 20:12:50 [INFO] Saving charts to D:\Inowell\Backend\exports\charts\temp_chart.png
+2025-04-09 20:12:50 [INFO] 
+Code running:
+```
+result = {'type': 'number', 'value': 0}
+for df in dfs:
+    result['value'] += len(df[df['Equipment'] == 'Air Conditioner'])
+print(f"The total number of ACs is: {result['value']}")
+if result['value'] > 0:
+    ac_df = pd.concat([df[df['Equipment'] == 'Air Conditioner'] for df in dfs])
+    ac_df.groupby('Building').mean()['Temperature (°C)'].plot(kind='bar')
+    plt.title('Average Temperature of ACs by Building')
+    plt.xlabel('Building')
+    plt.ylabel('Temperature (°C)')
+    plt.savefig('D:/Inowell/Backend/exports/charts/temp_chart.png')
+    result['type'] = 'plot'
+    result['value'] = 'D:/Inowell/Backend/exports/charts/temp_chart.png'
+result
+        ```
+2025-04-09 20:12:50 [INFO] Executing Step 6: CodeExecution
+2025-04-09 20:12:50 [INFO] Executing Step 7: ResultValidation
+2025-04-09 20:12:50 [INFO] Answer: {'type': 'number', 'value': 0}
+2025-04-09 20:12:50 [INFO] Executing Step 8: ResultParsing
+2025-04-09 20:13:21 [INFO] Question: How many rows present ?
+2025-04-09 20:13:21 [INFO] Running PandasAI with langchain_watsonx-chat LLM...
+2025-04-09 20:13:21 [INFO] Prompt ID: 6111a1b9-694d-4676-b544-90cebdc713f2
+2025-04-09 20:13:21 [INFO] Executing Pipeline: GenerateChatPipeline
+2025-04-09 20:13:21 [INFO] Executing Step 0: ValidatePipelineInput
+2025-04-09 20:13:21 [INFO] Executing Step 1: CacheLookup
+2025-04-09 20:13:21 [INFO] Executing Step 2: PromptGeneration
+2025-04-09 20:13:21 [INFO] Using prompt: <dataframe>
+dfs[0]:61x7
+Building,Floor,Space,Equipment,Temperature (°C),Energy Consumption (kWh),Date
+Building 1,F1,Kitchen 2,Heater,,0.3,2025-04-08
+Building 1,GF,Kitchen 3,Light,24.2,1.1,2025-04-08
+Building 1,F2,Guest Room,Computer,22.2,5.1,2025-04-08
+</dataframe>
+
+
+
+
+Update this initial code:
+```python
+# TODO: import the required dependencies
+import pandas as pd
+
+# Write code here
+
+# Declare result var: 
+type (possible values "string", "number", "dataframe", "plot"). Examples: { "type": "string", "value": f"The highest salary is {highest_salary}." } or { "type": "number", "value": 125 } or { "type": "dataframe", "value": pd.DataFrame({...}) } or { "type": "plot", "value": "temp_chart.png" }
+
+```
+
+
+
+### QUERY
+ How many rows present ?
+
+Variable `dfs: list[pd.DataFrame]` is already declared.
+
+At the end, declare "result" variable as a dictionary of type and value.
+
+If you are asked to plot a chart, use "matplotlib" for charts, save as png.
+
+
+Generate python code and return full updated code:
+2025-04-09 20:13:21 [INFO] Executing Step 3: CodeGenerator
+2025-04-09 20:13:25 [INFO] HTTP Request: POST https://au-syd.ml.cloud.ibm.com/ml/v1/text/chat?version=2025-03-20 "HTTP/1.1 200 OK"
+2025-04-09 20:13:25 [INFO] Successfully finished chat for url: 'https://au-syd.ml.cloud.ibm.com/ml/v1/text/chat?version=2025-03-20'
+2025-04-09 20:13:25 [INFO] Prompt used:
+            
+<dataframe>
+dfs[0]:61x7
+Building,Floor,Space,Equipment,Temperature (°C),Energy Consumption (kWh),Date
+Building 1,F1,Kitchen 2,Heater,,0.3,2025-04-08
+Building 1,GF,Kitchen 3,Light,24.2,1.1,2025-04-08
+Building 1,F2,Guest Room,Computer,22.2,5.1,2025-04-08
+</dataframe>
+
+
+
+
+Update this initial code:
+```python
+# TODO: import the required dependencies
+import pandas as pd
+
+# Write code here
+
+# Declare result var: 
+type (possible values "string", "number", "dataframe", "plot"). Examples: { "type": "string", "value": f"The highest salary is {highest_salary}." } or { "type": "number", "value": 125 } or { "type": "dataframe", "value": pd.DataFrame({...}) } or { "type": "plot", "value": "temp_chart.png" }
+
+```
+
+
+
+### QUERY
+ How many rows present ?
+
+Variable `dfs: list[pd.DataFrame]` is already declared.
+
+At the end, declare "result" variable as a dictionary of type and value.
+
+If you are asked to plot a chart, use "matplotlib" for charts, save as png.
+
+
+Generate python code and return full updated code:
+            
+2025-04-09 20:13:25 [INFO] Code generated:
+            ```
+            # TODO: import the required dependencies
+import pandas as pd
+import matplotlib.pyplot as plt
+
+# Read the data
+dfs = [pd.DataFrame({
+    'Building': ['Building 1', 'Building 1', 'Building 1'],
+    'Floor': ['F1', 'GF', 'F2'],
+    'Space': ['Kitchen 2', 'Kitchen 3', 'Guest Room'],
+    'Equipment': ['Heater', 'Light', 'Computer'],
+    'Temperature (°C)': [0.3, 24.2, 22.2],
+    'Energy Consumption (kWh)': [0.3, 1.1, 5.1],
+    'Date': ['2025-04-08', '2025-04-08', '2025-04-08']
+})]
+
+# Calculate the number of rows
+num_rows = len(dfs[0])
+
+# Declare result var:
+result = {
+    "type": "number",
+    "value": num_rows
+}
+
+# Plot a chart
+plt.figure(figsize=(10, 6))
+plt.bar(dfs[0]['Space'], dfs[0]['Energy Consumption (kWh)'], color='skyblue')
+plt.xlabel('Space')
+plt.ylabel('Energy Consumption (kWh)')
+plt.title('Energy Consumption by Space')
+plt.savefig('energy_consumption_chart.png')
+
+result
+            ```
+            
+2025-04-09 20:13:25 [INFO] Executing Step 4: CachePopulation
+2025-04-09 20:13:25 [INFO] Executing Step 5: CodeCleaning
+2025-04-09 20:13:25 [INFO] Saving charts to D:\Inowell\Backend\exports\charts\temp_chart.png
+2025-04-09 20:13:25 [INFO] 
+Code running:
+```
+num_rows = len(dfs[0])
+result = {'type': 'number', 'value': num_rows}
+plt.figure(figsize=(10, 6))
+plt.bar(dfs[0]['Space'], dfs[0]['Energy Consumption (kWh)'], color='skyblue')
+plt.xlabel('Space')
+plt.ylabel('Energy Consumption (kWh)')
+plt.title('Energy Consumption by Space')
+plt.savefig('D:/Inowell/Backend/exports/charts/temp_chart.png')
+result
+        ```
+2025-04-09 20:13:25 [INFO] Executing Step 6: CodeExecution
+2025-04-09 20:13:26 [INFO] Executing Step 7: ResultValidation
+2025-04-09 20:13:26 [INFO] Answer: {'type': 'number', 'value': 61}
+2025-04-09 20:13:26 [INFO] Executing Step 8: ResultParsing
+2025-04-09 20:13:50 [INFO] Question: How many rows present ?
+2025-04-09 20:13:50 [INFO] Running PandasAI with langchain_watsonx-chat LLM...
+2025-04-09 20:13:50 [INFO] Prompt ID: cd20e0c9-dd38-4f34-85ee-a8b01154c9a5
+2025-04-09 20:13:50 [INFO] Executing Pipeline: GenerateChatPipeline
+2025-04-09 20:13:50 [INFO] Executing Step 0: ValidatePipelineInput
+2025-04-09 20:13:50 [INFO] Executing Step 1: CacheLookup
+2025-04-09 20:13:50 [INFO] Using cached response
+2025-04-09 20:13:50 [INFO] Executing Step 2: PromptGeneration
+2025-04-09 20:13:50 [INFO] Executing Step 2: Skipping...
+2025-04-09 20:13:50 [INFO] Executing Step 3: CodeGenerator
+2025-04-09 20:13:50 [INFO] Executing Step 3: Skipping...
+2025-04-09 20:13:50 [INFO] Executing Step 4: CachePopulation
+2025-04-09 20:13:50 [INFO] Executing Step 4: Skipping...
+2025-04-09 20:13:50 [INFO] Executing Step 5: CodeCleaning
+2025-04-09 20:13:50 [INFO] Saving charts to D:\Inowell\Backend\exports\charts\temp_chart.png
+2025-04-09 20:13:50 [INFO] 
+Code running:
+```
+num_rows = len(dfs[0])
+result = {'type': 'number', 'value': num_rows}
+plt.figure(figsize=(10, 6))
+plt.bar(dfs[0]['Space'], dfs[0]['Energy Consumption (kWh)'], color='skyblue')
+plt.xlabel('Space')
+plt.ylabel('Energy Consumption (kWh)')
+plt.title('Energy Consumption by Space')
+plt.savefig('D:/Inowell/Backend/exports/charts/temp_chart.png')
+result
+        ```
+2025-04-09 20:13:50 [INFO] Executing Step 6: CodeExecution
+2025-04-09 20:13:51 [INFO] Executing Step 7: ResultValidation
+2025-04-09 20:13:51 [INFO] Answer: {'type': 'number', 'value': 61}
+2025-04-09 20:13:51 [INFO] Executing Step 8: ResultParsing
+2025-04-09 20:14:08 [INFO] Question: How many rows present ?
+2025-04-09 20:14:08 [INFO] Running PandasAI with langchain_watsonx-chat LLM...
+2025-04-09 20:14:08 [INFO] Prompt ID: 512c1be8-d069-4784-98af-a24c1b96b76b
+2025-04-09 20:14:08 [INFO] Executing Pipeline: GenerateChatPipeline
+2025-04-09 20:14:08 [INFO] Executing Step 0: ValidatePipelineInput
+2025-04-09 20:14:08 [INFO] Executing Step 1: CacheLookup
+2025-04-09 20:14:08 [INFO] Using cached response
+2025-04-09 20:14:08 [INFO] Executing Step 2: PromptGeneration
+2025-04-09 20:14:08 [INFO] Executing Step 2: Skipping...
+2025-04-09 20:14:08 [INFO] Executing Step 3: CodeGenerator
+2025-04-09 20:14:08 [INFO] Executing Step 3: Skipping...
+2025-04-09 20:14:08 [INFO] Executing Step 4: CachePopulation
+2025-04-09 20:14:08 [INFO] Executing Step 4: Skipping...
+2025-04-09 20:14:08 [INFO] Executing Step 5: CodeCleaning
+2025-04-09 20:14:08 [INFO] Saving charts to D:\Inowell\Backend\exports\charts\temp_chart.png
+2025-04-09 20:14:08 [INFO] 
+Code running:
+```
+num_rows = len(dfs[0])
+result = {'type': 'number', 'value': num_rows}
+plt.figure(figsize=(10, 6))
+plt.bar(dfs[0]['Space'], dfs[0]['Energy Consumption (kWh)'], color='skyblue')
+plt.xlabel('Space')
+plt.ylabel('Energy Consumption (kWh)')
+plt.title('Energy Consumption by Space')
+plt.savefig('D:/Inowell/Backend/exports/charts/temp_chart.png')
+result
+        ```
+2025-04-09 20:14:08 [INFO] Executing Step 6: CodeExecution
+2025-04-09 20:14:09 [INFO] Executing Step 7: ResultValidation
+2025-04-09 20:14:09 [INFO] Answer: {'type': 'number', 'value': 61}
+2025-04-09 20:14:09 [INFO] Executing Step 8: ResultParsing
+2025-04-09 20:17:25 [INFO] Question: How many AC exists in the GF ?
+2025-04-09 20:17:25 [INFO] Running PandasAI with langchain_watsonx-chat LLM...
+2025-04-09 20:17:25 [INFO] Prompt ID: ac31d577-1fc3-4cfb-ad2b-c1c37cf69c9e
+2025-04-09 20:17:25 [INFO] Executing Pipeline: GenerateChatPipeline
+2025-04-09 20:17:25 [INFO] Executing Step 0: ValidatePipelineInput
+2025-04-09 20:17:25 [INFO] Executing Step 1: CacheLookup
+2025-04-09 20:17:25 [INFO] Executing Step 2: PromptGeneration
+2025-04-09 20:17:25 [INFO] Using prompt: <dataframe>
+dfs[0]:61x7
+Building,Floor,Space,Equipment,Temperature (°C),Energy Consumption (kWh),Date
+Building 1,GF,Bedroom 1,Heater,25.2,4.1,2025-04-08
+Building 1,F3,Waiting Hall,Refrigerator,,4.5,2025-04-08
+Building 1,F2,Kitchen 1,Microwave,22.5,3.5,2025-04-08
+</dataframe>
+
+
+
+
+Update this initial code:
+```python
+# TODO: import the required dependencies
+import pandas as pd
+
+# Write code here
+
+# Declare result var: 
+type (possible values "string", "number", "dataframe", "plot"). Examples: { "type": "string", "value": f"The highest salary is {highest_salary}." } or { "type": "number", "value": 125 } or { "type": "dataframe", "value": pd.DataFrame({...}) } or { "type": "plot", "value": "temp_chart.png" }
+
+```
+
+
+
+### QUERY
+ How many AC exists in the GF ?
+
+Variable `dfs: list[pd.DataFrame]` is already declared.
+
+At the end, declare "result" variable as a dictionary of type and value.
+
+If you are asked to plot a chart, use "matplotlib" for charts, save as png.
+
+
+Generate python code and return full updated code:
+2025-04-09 20:17:25 [INFO] Executing Step 3: CodeGenerator
+2025-04-09 20:17:29 [INFO] HTTP Request: POST https://au-syd.ml.cloud.ibm.com/ml/v1/text/chat?version=2025-03-20 "HTTP/1.1 200 OK"
+2025-04-09 20:17:29 [INFO] Successfully finished chat for url: 'https://au-syd.ml.cloud.ibm.com/ml/v1/text/chat?version=2025-03-20'
+2025-04-09 20:17:29 [INFO] Prompt used:
+            
+<dataframe>
+dfs[0]:61x7
+Building,Floor,Space,Equipment,Temperature (°C),Energy Consumption (kWh),Date
+Building 1,GF,Bedroom 1,Heater,25.2,4.1,2025-04-08
+Building 1,F3,Waiting Hall,Refrigerator,,4.5,2025-04-08
+Building 1,F2,Kitchen 1,Microwave,22.5,3.5,2025-04-08
+</dataframe>
+
+
+
+
+Update this initial code:
+```python
+# TODO: import the required dependencies
+import pandas as pd
+
+# Write code here
+
+# Declare result var: 
+type (possible values "string", "number", "dataframe", "plot"). Examples: { "type": "string", "value": f"The highest salary is {highest_salary}." } or { "type": "number", "value": 125 } or { "type": "dataframe", "value": pd.DataFrame({...}) } or { "type": "plot", "value": "temp_chart.png" }
+
+```
+
+
+
+### QUERY
+ How many AC exists in the GF ?
+
+Variable `dfs: list[pd.DataFrame]` is already declared.
+
+At the end, declare "result" variable as a dictionary of type and value.
+
+If you are asked to plot a chart, use "matplotlib" for charts, save as png.
+
+
+Generate python code and return full updated code:
+            
+2025-04-09 20:17:29 [INFO] Code generated:
+            ```
+            # TODO: import the required dependencies
+import pandas as pd
+import matplotlib.pyplot as plt
+
+# Assuming dfs is already defined
+dfs = [pd.DataFrame({
+    'Building': ['Building 1'],
+    'Floor': ['GF'],
+    'Space': ['Bedroom 1'],
+    'Equipment': ['Heater'],
+    'Temperature (°C)': [25.2],
+    'Energy Consumption (kWh)': [4.1],
+    'Date': ['2025-04-08']
+})]
+
+# Filter data for GF and AC equipment
+ac_in_gf = dfs[0][(dfs[0]['Floor'] == 'GF') & (dfs[0]['Equipment'].str.contains('AC'))]
+
+# Count the number of ACs in GF
+num_ac_gf = len(ac_in_gf)
+
+# Declare result var:
+result = {
+    "type": "number",
+    "value": num_ac_gf
+}
+
+# Print the result
+print(f"Number of ACs in GF: {num_ac_gf}")
+
+# Plot a bar chart if there are ACs in GF
+if num_ac_gf > 0:
+    ac_in_gf.plot(kind='bar', x='Space', y='Energy Consumption (kWh)', legend=None)
+    plt.title('Energy Consumption of ACs in GF')
+    plt.xlabel('Space')
+    plt.ylabel('Energy Consumption (kWh)')
+    plt.savefig('ac_energy_consumption_gf.png')
+
+result
+            ```
+            
+2025-04-09 20:17:29 [INFO] Executing Step 4: CachePopulation
+2025-04-09 20:17:29 [INFO] Executing Step 5: CodeCleaning
+2025-04-09 20:17:29 [INFO] Saving charts to D:\Inowell\Backend\exports\charts\temp_chart.png
+2025-04-09 20:17:29 [INFO] 
+Code running:
+```
+ac_in_gf = dfs[0][(dfs[0]['Floor'] == 'GF') & dfs[0]['Equipment'].str.contains('AC')]
+num_ac_gf = len(ac_in_gf)
+result = {'type': 'number', 'value': num_ac_gf}
+print(f'Number of ACs in GF: {num_ac_gf}')
+if num_ac_gf > 0:
+    ac_in_gf.plot(kind='bar', x='Space', y='Energy Consumption (kWh)', legend=None)
+    plt.title('Energy Consumption of ACs in GF')
+    plt.xlabel('Space')
+    plt.ylabel('Energy Consumption (kWh)')
+    plt.savefig('D:/Inowell/Backend/exports/charts/temp_chart.png')
+result
+        ```
+2025-04-09 20:17:29 [INFO] Executing Step 6: CodeExecution
+2025-04-09 20:17:30 [INFO] Executing Step 7: ResultValidation
+2025-04-09 20:17:30 [INFO] Answer: {'type': 'number', 'value': 5}
+2025-04-09 20:17:30 [INFO] Executing Step 8: ResultParsing
+2025-04-09 20:19:27 [INFO] Question: How many AC exists in the Ground Floor ?
+2025-04-09 20:19:27 [INFO] Running PandasAI with langchain_watsonx-chat LLM...
+2025-04-09 20:19:27 [INFO] Prompt ID: 0ccdc672-9432-48b1-a968-6d84ee0c9a6a
+2025-04-09 20:19:27 [INFO] Executing Pipeline: GenerateChatPipeline
+2025-04-09 20:19:27 [INFO] Executing Step 0: ValidatePipelineInput
+2025-04-09 20:19:27 [INFO] Executing Step 1: CacheLookup
+2025-04-09 20:19:27 [INFO] Executing Step 2: PromptGeneration
+2025-04-09 20:19:27 [INFO] Using prompt: <dataframe>
+dfs[0]:61x7
+Building,Floor,Space,Equipment,Temperature (°C),Energy Consumption (kWh),Date
+Building 1,GF,Garage,AC,25.2,5.3,2025-04-08
+Building 1,F2,Kitchen 2,Refrigerator,23.8,3.9,2025-04-08
+Building 1,F1,Office Room,Computer,,0.9,2025-04-08
+</dataframe>
+
+
+
+
+Update this initial code:
+```python
+# TODO: import the required dependencies
+import pandas as pd
+
+# Write code here
+
+# Declare result var: 
+type (possible values "string", "number", "dataframe", "plot"). Examples: { "type": "string", "value": f"The highest salary is {highest_salary}." } or { "type": "number", "value": 125 } or { "type": "dataframe", "value": pd.DataFrame({...}) } or { "type": "plot", "value": "temp_chart.png" }
+
+```
+
+
+
+### QUERY
+ How many AC exists in the Ground Floor ?
+
+Variable `dfs: list[pd.DataFrame]` is already declared.
+
+At the end, declare "result" variable as a dictionary of type and value.
+
+If you are asked to plot a chart, use "matplotlib" for charts, save as png.
+
+
+Generate python code and return full updated code:
+2025-04-09 20:19:27 [INFO] Executing Step 3: CodeGenerator
+2025-04-09 20:19:31 [INFO] HTTP Request: POST https://au-syd.ml.cloud.ibm.com/ml/v1/text/chat?version=2025-03-20 "HTTP/1.1 200 OK"
+2025-04-09 20:19:31 [INFO] Successfully finished chat for url: 'https://au-syd.ml.cloud.ibm.com/ml/v1/text/chat?version=2025-03-20'
+2025-04-09 20:19:31 [INFO] Prompt used:
+            
+<dataframe>
+dfs[0]:61x7
+Building,Floor,Space,Equipment,Temperature (°C),Energy Consumption (kWh),Date
+Building 1,GF,Garage,AC,25.2,5.3,2025-04-08
+Building 1,F2,Kitchen 2,Refrigerator,23.8,3.9,2025-04-08
+Building 1,F1,Office Room,Computer,,0.9,2025-04-08
+</dataframe>
+
+
+
+
+Update this initial code:
+```python
+# TODO: import the required dependencies
+import pandas as pd
+
+# Write code here
+
+# Declare result var: 
+type (possible values "string", "number", "dataframe", "plot"). Examples: { "type": "string", "value": f"The highest salary is {highest_salary}." } or { "type": "number", "value": 125 } or { "type": "dataframe", "value": pd.DataFrame({...}) } or { "type": "plot", "value": "temp_chart.png" }
+
+```
+
+
+
+### QUERY
+ How many AC exists in the Ground Floor ?
+
+Variable `dfs: list[pd.DataFrame]` is already declared.
+
+At the end, declare "result" variable as a dictionary of type and value.
+
+If you are asked to plot a chart, use "matplotlib" for charts, save as png.
+
+
+Generate python code and return full updated code:
+            
+2025-04-09 20:19:31 [INFO] Code generated:
+            ```
+            # TODO: import the required dependencies
+import pandas as pd
+import matplotlib.pyplot as plt
+
+# Assuming dfs is already defined
+dfs = [pd.DataFrame({
+    'Building': ['Building 1'],
+    'Floor': ['GF'],
+    'Space': ['Garage'],
+    'Equipment': ['AC'],
+    'Temperature (°C)': [25.2],
+    'Energy Consumption (kWh)': [5.3],
+    'Date': ['2025-04-08']
+})]
+
+# Filter data for AC on Ground Floor
+ac_on_gf = dfs[0][(dfs[0]['Equipment'] == 'AC') & (dfs[0]['Floor'] == 'GF')]
+
+# Count the number of ACs on Ground Floor
+num_ac_gf = len(ac_on_gf)
+
+# Declare result var:
+result = {
+    "type": "number",
+    "value": num_ac_gf
+}
+
+# Print the result
+print(f"Number of ACs on Ground Floor: {num_ac_gf}")
+
+# Plot a bar chart (if needed)
+# ac_on_gf.plot(kind='bar', x='Space', y='Energy Consumption (kWh)', legend=None)
+# plt.title('Energy Consumption by Space on Ground Floor')
+# plt.xlabel('Space')
+# plt.ylabel('Energy Consumption (kWh)')
+# plt.savefig('ac_energy_consumption_gf.png')
+            ```
+            
+2025-04-09 20:19:31 [INFO] Executing Step 4: CachePopulation
+2025-04-09 20:19:31 [INFO] Executing Step 5: CodeCleaning
+2025-04-09 20:19:31 [INFO] Saving charts to D:\Inowell\Backend\exports\charts\temp_chart.png
+2025-04-09 20:19:31 [INFO] 
+Code running:
+```
+ac_on_gf = dfs[0][(dfs[0]['Equipment'] == 'AC') & (dfs[0]['Floor'] == 'GF')]
+num_ac_gf = len(ac_on_gf)
+result = {'type': 'number', 'value': num_ac_gf}
+print(f'Number of ACs on Ground Floor: {num_ac_gf}')
+        ```
+2025-04-09 20:19:31 [INFO] Executing Step 6: CodeExecution
+2025-04-09 20:19:31 [INFO] Executing Step 7: ResultValidation
+2025-04-09 20:19:31 [INFO] Answer: {'type': 'number', 'value': 5}
+2025-04-09 20:19:31 [INFO] Executing Step 8: ResultParsing
+2025-04-09 20:25:26 [INFO] Question: How many ac exists in the building 1 ?
+2025-04-09 20:25:26 [INFO] Running PandasAI with langchain_watsonx-chat LLM...
+2025-04-09 20:25:26 [INFO] Prompt ID: c3ae3f92-7d1f-44a9-a415-4c593cc502da
+2025-04-09 20:25:26 [INFO] Executing Pipeline: GenerateChatPipeline
+2025-04-09 20:25:26 [INFO] Executing Step 0: ValidatePipelineInput
+2025-04-09 20:25:26 [INFO] Executing Step 1: CacheLookup
+2025-04-09 20:25:26 [INFO] Executing Step 2: PromptGeneration
+2025-04-09 20:25:26 [INFO] Using prompt: <dataframe>
+dfs[0]:61x7
+Building,Floor,Space,Equipment,Temperature (°C),Energy Consumption (kWh),Date
+Building 1,F3,Bedroom 1,Microwave,28.0,0.5,2025-04-08
+Building 1,F2,Library,AC,24.2,0.9,2025-04-08
+Building 1,GF,Dining Room,Light,,2.4,2025-04-08
+</dataframe>
+
+
+
+
+Update this initial code:
+```python
+# TODO: import the required dependencies
+import pandas as pd
+
+# Write code here
+
+# Declare result var: 
+type (possible values "string", "number", "dataframe", "plot"). Examples: { "type": "string", "value": f"The highest salary is {highest_salary}." } or { "type": "number", "value": 125 } or { "type": "dataframe", "value": pd.DataFrame({...}) } or { "type": "plot", "value": "temp_chart.png" }
+
+```
+
+
+
+### QUERY
+ How many ac exists in the building 1 ?
+
+Variable `dfs: list[pd.DataFrame]` is already declared.
+
+At the end, declare "result" variable as a dictionary of type and value.
+
+If you are asked to plot a chart, use "matplotlib" for charts, save as png.
+
+
+Generate python code and return full updated code:
+2025-04-09 20:25:26 [INFO] Executing Step 3: CodeGenerator
+2025-04-09 20:25:31 [INFO] HTTP Request: POST https://au-syd.ml.cloud.ibm.com/ml/v1/text/chat?version=2025-03-20 "HTTP/1.1 200 OK"
+2025-04-09 20:25:31 [INFO] Successfully finished chat for url: 'https://au-syd.ml.cloud.ibm.com/ml/v1/text/chat?version=2025-03-20'
+2025-04-09 20:25:31 [INFO] Prompt used:
+            
+<dataframe>
+dfs[0]:61x7
+Building,Floor,Space,Equipment,Temperature (°C),Energy Consumption (kWh),Date
+Building 1,F3,Bedroom 1,Microwave,28.0,0.5,2025-04-08
+Building 1,F2,Library,AC,24.2,0.9,2025-04-08
+Building 1,GF,Dining Room,Light,,2.4,2025-04-08
+</dataframe>
+
+
+
+
+Update this initial code:
+```python
+# TODO: import the required dependencies
+import pandas as pd
+
+# Write code here
+
+# Declare result var: 
+type (possible values "string", "number", "dataframe", "plot"). Examples: { "type": "string", "value": f"The highest salary is {highest_salary}." } or { "type": "number", "value": 125 } or { "type": "dataframe", "value": pd.DataFrame({...}) } or { "type": "plot", "value": "temp_chart.png" }
+
+```
+
+
+
+### QUERY
+ How many ac exists in the building 1 ?
+
+Variable `dfs: list[pd.DataFrame]` is already declared.
+
+At the end, declare "result" variable as a dictionary of type and value.
+
+If you are asked to plot a chart, use "matplotlib" for charts, save as png.
+
+
+Generate python code and return full updated code:
+            
+2025-04-09 20:25:31 [INFO] Code generated:
+            ```
+            # TODO: import the required dependencies
+import pandas as pd
+import matplotlib.pyplot as plt
+
+# Assuming dfs is already defined
+dfs = [pd.DataFrame({
+    'Building': ['Building 1', 'Building 1', 'Building 1'],
+    'Floor': ['F3', 'F2', 'GF'],
+    'Space': ['Bedroom 1', 'Library', 'Dining Room'],
+    'Equipment': ['Microwave', 'AC', 'Light'],
+    'Temperature (°C)': [28.0, 24.2, 22.5],
+    'Energy Consumption (kWh)': [0.5, 0.9, 2.4],
+    'Date': ['2025-04-08', '2025-04-08', '2025-04-08']
+})]
+
+# Filter data for Building 1 and Equipment 'AC'
+building1_ac = dfs[0][(dfs[0]['Building'] == 'Building 1') & (dfs[0]['Equipment'] == 'AC')]
+
+# Count the number of ACs in Building 1
+num_ac = len(building1_ac)
+
+# Declare result var:
+result = {
+    "type": "number",
+    "value": num_ac
+}
+
+# Print the result
+print(f"Number of ACs in Building 1: {num_ac}")
+
+# Plot a bar chart for visualization
+plt.bar(['Building 1'], [num_ac], label='ACs')
+plt.xlabel('Building')
+plt.ylabel('Number of ACs')
+plt.title('Number of ACs in Building 1')
+plt.legend()
+plt.savefig('ac_count_chart.png')
+
+result
+            ```
+            
+2025-04-09 20:25:31 [INFO] Executing Step 4: CachePopulation
+2025-04-09 20:25:31 [INFO] Executing Step 5: CodeCleaning
+2025-04-09 20:25:31 [INFO] Saving charts to D:\Inowell\Backend\exports\charts\temp_chart.png
+2025-04-09 20:25:31 [INFO] 
+Code running:
+```
+building1_ac = dfs[0][(dfs[0]['Building'] == 'Building 1') & (dfs[0]['Equipment'] == 'AC')]
+num_ac = len(building1_ac)
+result = {'type': 'number', 'value': num_ac}
+print(f'Number of ACs in Building 1: {num_ac}')
+plt.bar(['Building 1'], [num_ac], label='ACs')
+plt.xlabel('Building')
+plt.ylabel('Number of ACs')
+plt.title('Number of ACs in Building 1')
+plt.legend()
+plt.savefig('D:/Inowell/Backend/exports/charts/temp_chart.png')
+result
+        ```
+2025-04-09 20:25:31 [INFO] Executing Step 6: CodeExecution
+2025-04-09 20:25:31 [INFO] Executing Step 7: ResultValidation
+2025-04-09 20:25:31 [INFO] Answer: {'type': 'number', 'value': 19}
+2025-04-09 20:25:31 [INFO] Executing Step 8: ResultParsing
+2025-04-09 20:27:21 [INFO] Client successfully initialized
+2025-04-09 20:27:24 [INFO] HTTP Request: GET https://au-syd.ml.cloud.ibm.com/ml/v1/foundation_model_specs?version=2025-03-20&project_id=853fb52b-1dec-44f4-a11f-29bf0229f522&filters=function_text_generation%2C%21lifecycle_withdrawn%3Aand&limit=200 "HTTP/1.1 200 OK"
+2025-04-09 20:27:24 [INFO] Successfully finished Get available foundation models for url: 'https://au-syd.ml.cloud.ibm.com/ml/v1/foundation_model_specs?version=2025-03-20&project_id=853fb52b-1dec-44f4-a11f-29bf0229f522&filters=function_text_generation%2C%21lifecycle_withdrawn%3Aand&limit=200'
+2025-04-09 20:27:24 [INFO] Question: How many ac exists in the Floor 1 ?
+2025-04-09 20:27:24 [INFO] Running PandasAI with langchain_watsonx-chat LLM...
+2025-04-09 20:27:24 [INFO] Prompt ID: cb83c843-51a7-4f35-9d00-af8724d8be52
+2025-04-09 20:27:24 [INFO] Executing Pipeline: GenerateChatPipeline
+2025-04-09 20:27:24 [INFO] Executing Step 0: ValidatePipelineInput
+2025-04-09 20:27:24 [INFO] Executing Step 1: CacheLookup
+2025-04-09 20:27:24 [INFO] Executing Step 2: PromptGeneration
+2025-04-09 20:27:24 [INFO] Using prompt: <dataframe>
+dfs[0]:61x7
+Building,Floor,Space,Equipment,Temperature (°C),Energy Consumption (kWh),Date
+Building 1,GF,Terrace,TV,22.0,5.6,2025-04-08
+Building 1,F1,Bedroom 3,Refrigerator,23.8,0.8,2025-04-08
+Building 1,F2,Hall 1,Heater,,0.6,2025-04-08
+</dataframe>
+
+
+
+
+Update this initial code:
+```python
+# TODO: import the required dependencies
+import pandas as pd
+
+# Write code here
+
+# Declare result var: 
+type (possible values "string", "number", "dataframe", "plot"). Examples: { "type": "string", "value": f"The highest salary is {highest_salary}." } or { "type": "number", "value": 125 } or { "type": "dataframe", "value": pd.DataFrame({...}) } or { "type": "plot", "value": "temp_chart.png" }
+
+```
+
+
+
+### QUERY
+ How many ac exists in the Floor 1 ?
+
+Variable `dfs: list[pd.DataFrame]` is already declared.
+
+At the end, declare "result" variable as a dictionary of type and value.
+
+If you are asked to plot a chart, use "matplotlib" for charts, save as png.
+
+
+Generate python code and return full updated code:
+2025-04-09 20:27:24 [INFO] Executing Step 3: CodeGenerator
+2025-04-09 20:27:28 [INFO] HTTP Request: POST https://au-syd.ml.cloud.ibm.com/ml/v1/text/chat?version=2025-03-20 "HTTP/1.1 200 OK"
+2025-04-09 20:27:28 [INFO] Successfully finished chat for url: 'https://au-syd.ml.cloud.ibm.com/ml/v1/text/chat?version=2025-03-20'
+2025-04-09 20:27:28 [INFO] Prompt used:
+            
+<dataframe>
+dfs[0]:61x7
+Building,Floor,Space,Equipment,Temperature (°C),Energy Consumption (kWh),Date
+Building 1,GF,Terrace,TV,22.0,5.6,2025-04-08
+Building 1,F1,Bedroom 3,Refrigerator,23.8,0.8,2025-04-08
+Building 1,F2,Hall 1,Heater,,0.6,2025-04-08
+</dataframe>
+
+
+
+
+Update this initial code:
+```python
+# TODO: import the required dependencies
+import pandas as pd
+
+# Write code here
+
+# Declare result var: 
+type (possible values "string", "number", "dataframe", "plot"). Examples: { "type": "string", "value": f"The highest salary is {highest_salary}." } or { "type": "number", "value": 125 } or { "type": "dataframe", "value": pd.DataFrame({...}) } or { "type": "plot", "value": "temp_chart.png" }
+
+```
+
+
+
+### QUERY
+ How many ac exists in the Floor 1 ?
+
+Variable `dfs: list[pd.DataFrame]` is already declared.
+
+At the end, declare "result" variable as a dictionary of type and value.
+
+If you are asked to plot a chart, use "matplotlib" for charts, save as png.
+
+
+Generate python code and return full updated code:
+            
+2025-04-09 20:27:28 [INFO] Code generated:
+            ```
+            # TODO: import the required dependencies
+import pandas as pd
+import matplotlib.pyplot as plt
+
+# Assuming dfs is already defined
+dfs = [pd.DataFrame({
+    'Building': ['Building 1'],
+    'Floor': ['GF', 'F1', 'F2'],
+    'Space': ['Terrace', 'Bedroom 3', 'Hall 1'],
+    'Equipment': ['TV', 'Refrigerator', 'Heater'],
+    'Temperature (°C)': [22.0, 23.8, 22.0],
+    'Energy Consumption (kWh)': [5.6, 0.8, 0.6],
+    'Date': ['2025-04-08', '2025-04-08', '2025-04-08']
+})]
+
+# Filter data for Floor 1
+floor_1_data = dfs[0][dfs[0]['Floor'] == 'F1']
+
+# Count the number of ACs (assuming 'Equipment' column indicates ACs)
+ac_count = len(floor_1_data[floor_1_data['Equipment'] == 'Refrigerator'])
+
+# Declare result var:
+result = {
+    "type": "number",
+    "value": ac_count
+}
+
+# Plotting the temperature data for Floor 1
+plt.figure(figsize=(10, 5))
+plt.plot(floor_1_data['Temperature (°C)'], marker='o')
+plt.title('Temperature on Floor 1')
+plt.xlabel('Index')
+plt.ylabel('Temperature (°C)')
+plt.grid(True)
+plt.savefig('temp_chart_floor1.png')
+
+result
+            ```
+            
+2025-04-09 20:27:28 [INFO] Executing Step 4: CachePopulation
+2025-04-09 20:27:28 [INFO] Executing Step 5: CodeCleaning
+2025-04-09 20:27:28 [INFO] Saving charts to D:\Inowell\Backend\exports\charts\temp_chart.png
+2025-04-09 20:27:28 [INFO] 
+Code running:
+```
+floor_1_data = dfs[0][dfs[0]['Floor'] == 'F1']
+ac_count = len(floor_1_data[floor_1_data['Equipment'] == 'Refrigerator'])
+result = {'type': 'number', 'value': ac_count}
+plt.figure(figsize=(10, 5))
+plt.plot(floor_1_data['Temperature (°C)'], marker='o')
+plt.title('Temperature on Floor 1')
+plt.xlabel('Index')
+plt.ylabel('Temperature (°C)')
+plt.grid(True)
+plt.savefig('D:/Inowell/Backend/exports/charts/temp_chart.png')
+result
+        ```
+2025-04-09 20:27:28 [INFO] Executing Step 6: CodeExecution
+2025-04-09 20:27:28 [INFO] Executing Step 7: ResultValidation
+2025-04-09 20:27:28 [INFO] Answer: {'type': 'number', 'value': 0}
+2025-04-09 20:27:29 [INFO] Executing Step 8: ResultParsing
+2025-04-09 20:27:46 [INFO] Client successfully initialized
+2025-04-09 20:27:48 [INFO] HTTP Request: GET https://au-syd.ml.cloud.ibm.com/ml/v1/foundation_model_specs?version=2025-03-20&project_id=853fb52b-1dec-44f4-a11f-29bf0229f522&filters=function_text_generation%2C%21lifecycle_withdrawn%3Aand&limit=200 "HTTP/1.1 200 OK"
+2025-04-09 20:27:49 [INFO] Successfully finished Get available foundation models for url: 'https://au-syd.ml.cloud.ibm.com/ml/v1/foundation_model_specs?version=2025-03-20&project_id=853fb52b-1dec-44f4-a11f-29bf0229f522&filters=function_text_generation%2C%21lifecycle_withdrawn%3Aand&limit=200'
+2025-04-09 20:27:49 [INFO] Question: How many AC presents in the F1 ?
+2025-04-09 20:27:49 [INFO] Running PandasAI with langchain_watsonx-chat LLM...
+2025-04-09 20:27:49 [INFO] Prompt ID: 3e7de140-bfe5-4990-86ff-022a702b82dc
+2025-04-09 20:27:49 [INFO] Executing Pipeline: GenerateChatPipeline
+2025-04-09 20:27:49 [INFO] Executing Step 0: ValidatePipelineInput
+2025-04-09 20:27:49 [INFO] Executing Step 1: CacheLookup
+2025-04-09 20:27:49 [INFO] Executing Step 2: PromptGeneration
+2025-04-09 20:27:49 [INFO] Using prompt: <dataframe>
+dfs[0]:61x7
+Building,Floor,Space,Equipment,Temperature (°C),Energy Consumption (kWh),Date
+Building 1,F1,Bathroom 2,Computer,24.2,4.2,2025-04-08
+Building 1,F3,Kitchen 3,Fan,23.8,0.8,2025-04-08
+Building 1,GF,Bedroom 1,Light,,3.8,2025-04-08
+</dataframe>
+
+
+
+
+Update this initial code:
+```python
+# TODO: import the required dependencies
+import pandas as pd
+
+# Write code here
+
+# Declare result var: 
+type (possible values "string", "number", "dataframe", "plot"). Examples: { "type": "string", "value": f"The highest salary is {highest_salary}." } or { "type": "number", "value": 125 } or { "type": "dataframe", "value": pd.DataFrame({...}) } or { "type": "plot", "value": "temp_chart.png" }
+
+```
+
+
+
+### QUERY
+ How many AC presents in the F1 ?
+
+Variable `dfs: list[pd.DataFrame]` is already declared.
+
+At the end, declare "result" variable as a dictionary of type and value.
+
+If you are asked to plot a chart, use "matplotlib" for charts, save as png.
+
+
+Generate python code and return full updated code:
+2025-04-09 20:27:49 [INFO] Executing Step 3: CodeGenerator
+2025-04-09 20:27:52 [INFO] HTTP Request: POST https://au-syd.ml.cloud.ibm.com/ml/v1/text/chat?version=2025-03-20 "HTTP/1.1 200 OK"
+2025-04-09 20:27:52 [INFO] Successfully finished chat for url: 'https://au-syd.ml.cloud.ibm.com/ml/v1/text/chat?version=2025-03-20'
+2025-04-09 20:27:52 [INFO] Prompt used:
+            
+<dataframe>
+dfs[0]:61x7
+Building,Floor,Space,Equipment,Temperature (°C),Energy Consumption (kWh),Date
+Building 1,F1,Bathroom 2,Computer,24.2,4.2,2025-04-08
+Building 1,F3,Kitchen 3,Fan,23.8,0.8,2025-04-08
+Building 1,GF,Bedroom 1,Light,,3.8,2025-04-08
+</dataframe>
+
+
+
+
+Update this initial code:
+```python
+# TODO: import the required dependencies
+import pandas as pd
+
+# Write code here
+
+# Declare result var: 
+type (possible values "string", "number", "dataframe", "plot"). Examples: { "type": "string", "value": f"The highest salary is {highest_salary}." } or { "type": "number", "value": 125 } or { "type": "dataframe", "value": pd.DataFrame({...}) } or { "type": "plot", "value": "temp_chart.png" }
+
+```
+
+
+
+### QUERY
+ How many AC presents in the F1 ?
+
+Variable `dfs: list[pd.DataFrame]` is already declared.
+
+At the end, declare "result" variable as a dictionary of type and value.
+
+If you are asked to plot a chart, use "matplotlib" for charts, save as png.
+
+
+Generate python code and return full updated code:
+            
+2025-04-09 20:27:52 [INFO] Code generated:
+            ```
+            # TODO: import the required dependencies
+import pandas as pd
+import matplotlib.pyplot as plt
+
+# Assuming dfs is already defined
+dfs = [pd.DataFrame({
+    'Building': ['Building 1']*3,
+    'Floor': ['F1', 'F3', 'GF'],
+    'Space': ['Bathroom 2', 'Kitchen 3', 'Bedroom 1'],
+    'Equipment': ['Computer', 'Fan', 'Light'],
+    'Temperature (°C)': [24.2, 23.8, 22.5],
+    'Energy Consumption (kWh)': [4.2, 0.8, 3.8],
+    'Date': ['2025-04-08']*3
+})]
+
+# Filter data for F1 floor
+f1_data = dfs[0][dfs[0]['Floor'] == 'F1']
+
+# Count the number of ACs (Fans) in F1
+ac_count = len(f1_data[f1_data['Equipment'] == 'Fan'])
+
+# Declare result var:
+result = {
+    "type": "number",
+    "value": ac_count
+}
+
+# Plotting the temperature data
+plt.figure(figsize=(10, 5))
+plt.plot(f1_data['Temperature (°C)'], marker='o')
+plt.title('Temperature in F1 over time')
+plt.xlabel('Index')
+plt.ylabel('Temperature (°C)')
+plt.grid(True)
+plt.savefig('temp_chart.png')
+
+result
+            ```
+            
+2025-04-09 20:27:52 [INFO] Executing Step 4: CachePopulation
+2025-04-09 20:27:52 [INFO] Executing Step 5: CodeCleaning
+2025-04-09 20:27:52 [INFO] Saving charts to D:\Inowell\Backend\exports\charts\temp_chart.png
+2025-04-09 20:27:52 [INFO] 
+Code running:
+```
+f1_data = dfs[0][dfs[0]['Floor'] == 'F1']
+ac_count = len(f1_data[f1_data['Equipment'] == 'Fan'])
+result = {'type': 'number', 'value': ac_count}
+plt.figure(figsize=(10, 5))
+plt.plot(f1_data['Temperature (°C)'], marker='o')
+plt.title('Temperature in F1 over time')
+plt.xlabel('Index')
+plt.ylabel('Temperature (°C)')
+plt.grid(True)
+plt.savefig('D:/Inowell/Backend/exports/charts/temp_chart.png')
+result
+        ```
+2025-04-09 20:27:52 [INFO] Executing Step 6: CodeExecution
+2025-04-09 20:27:52 [INFO] Executing Step 7: ResultValidation
+2025-04-09 20:27:52 [INFO] Answer: {'type': 'number', 'value': 5}
+2025-04-09 20:27:52 [INFO] Executing Step 8: ResultParsing
+2025-04-09 20:28:37 [INFO] Client successfully initialized
+2025-04-09 20:28:39 [INFO] HTTP Request: GET https://au-syd.ml.cloud.ibm.com/ml/v1/foundation_model_specs?version=2025-03-20&project_id=853fb52b-1dec-44f4-a11f-29bf0229f522&filters=function_text_generation%2C%21lifecycle_withdrawn%3Aand&limit=200 "HTTP/1.1 200 OK"
+2025-04-09 20:28:39 [INFO] Successfully finished Get available foundation models for url: 'https://au-syd.ml.cloud.ibm.com/ml/v1/foundation_model_specs?version=2025-03-20&project_id=853fb52b-1dec-44f4-a11f-29bf0229f522&filters=function_text_generation%2C%21lifecycle_withdrawn%3Aand&limit=200'
+2025-04-09 20:28:39 [INFO] Question: How many AC presents in the floor F1 and Space in Hall 2 ?
+2025-04-09 20:28:39 [INFO] Running PandasAI with langchain_watsonx-chat LLM...
+2025-04-09 20:28:39 [INFO] Prompt ID: 7ef2a74d-9110-4387-b0ca-4874eac34595
+2025-04-09 20:28:39 [INFO] Executing Pipeline: GenerateChatPipeline
+2025-04-09 20:28:39 [INFO] Executing Step 0: ValidatePipelineInput
+2025-04-09 20:28:39 [INFO] Executing Step 1: CacheLookup
+2025-04-09 20:28:39 [INFO] Executing Step 2: PromptGeneration
+2025-04-09 20:28:39 [INFO] Using prompt: <dataframe>
+dfs[0]:61x7
+Building,Floor,Space,Equipment,Temperature (°C),Energy Consumption (kWh),Date
+Building 1,GF,Dining Room,TV,22.0,0.8,2025-04-08
+Building 1,F3,Kitchen 2,Heater,23.0,4.5,2025-04-08
+Building 1,F2,Garage,Refrigerator,,1.2,2025-04-08
+</dataframe>
+
+
+
+
+Update this initial code:
+```python
+# TODO: import the required dependencies
+import pandas as pd
+
+# Write code here
+
+# Declare result var: 
+type (possible values "string", "number", "dataframe", "plot"). Examples: { "type": "string", "value": f"The highest salary is {highest_salary}." } or { "type": "number", "value": 125 } or { "type": "dataframe", "value": pd.DataFrame({...}) } or { "type": "plot", "value": "temp_chart.png" }
+
+```
+
+
+
+### QUERY
+ How many AC presents in the floor F1 and Space in Hall 2 ?
+
+Variable `dfs: list[pd.DataFrame]` is already declared.
+
+At the end, declare "result" variable as a dictionary of type and value.
+
+If you are asked to plot a chart, use "matplotlib" for charts, save as png.
+
+
+Generate python code and return full updated code:
+2025-04-09 20:28:39 [INFO] Executing Step 3: CodeGenerator
+2025-04-09 20:28:43 [INFO] HTTP Request: POST https://au-syd.ml.cloud.ibm.com/ml/v1/text/chat?version=2025-03-20 "HTTP/1.1 200 OK"
+2025-04-09 20:28:43 [INFO] Successfully finished chat for url: 'https://au-syd.ml.cloud.ibm.com/ml/v1/text/chat?version=2025-03-20'
+2025-04-09 20:28:43 [INFO] Prompt used:
+            
+<dataframe>
+dfs[0]:61x7
+Building,Floor,Space,Equipment,Temperature (°C),Energy Consumption (kWh),Date
+Building 1,GF,Dining Room,TV,22.0,0.8,2025-04-08
+Building 1,F3,Kitchen 2,Heater,23.0,4.5,2025-04-08
+Building 1,F2,Garage,Refrigerator,,1.2,2025-04-08
+</dataframe>
+
+
+
+
+Update this initial code:
+```python
+# TODO: import the required dependencies
+import pandas as pd
+
+# Write code here
+
+# Declare result var: 
+type (possible values "string", "number", "dataframe", "plot"). Examples: { "type": "string", "value": f"The highest salary is {highest_salary}." } or { "type": "number", "value": 125 } or { "type": "dataframe", "value": pd.DataFrame({...}) } or { "type": "plot", "value": "temp_chart.png" }
+
+```
+
+
+
+### QUERY
+ How many AC presents in the floor F1 and Space in Hall 2 ?
+
+Variable `dfs: list[pd.DataFrame]` is already declared.
+
+At the end, declare "result" variable as a dictionary of type and value.
+
+If you are asked to plot a chart, use "matplotlib" for charts, save as png.
+
+
+Generate python code and return full updated code:
+            
+2025-04-09 20:28:43 [INFO] Code generated:
+            ```
+            # TODO: import the required dependencies
+import pandas as pd
+import matplotlib.pyplot as plt
+
+# Assuming dfs is already defined
+dfs = [pd.DataFrame({
+    'Building': ['Building 1'],
+    'Floor': ['GF', 'F3', 'F2'],
+    'Space': ['Dining Room', 'Kitchen 2', 'Garage'],
+    'Equipment': ['TV', 'Heater', 'Refrigerator'],
+    'Temperature (°C)': [22.0, 23.0, 25.0],
+    'Energy Consumption (kWh)': [0.8, 4.5, 1.2],
+    'Date': ['2025-04-08']
+})]
+
+# Filter data for F1 and Hall 2
+filtered_dfs = [df[df['Floor'] == 'F1'] for df in dfs]
+filtered_dfs = [df[df['Space'] == 'Hall 2'] for sublist in filtered_dfs for df in sublist]
+
+# Count ACs
+ac_count = len(filtered_dfs)
+
+# Declare result var:
+result = {
+    "type": "number",
+    "value": ac_count
+}
+
+# Plotting the temperature data
+for df in dfs:
+    plt.plot(df['Date'], df['Temperature (°C)'], label=df['Building'].iloc[0])
+plt.xlabel('Date')
+plt.ylabel('Temperature (°C)')
+plt.title('Temperature over time')
+plt.legend()
+plt.savefig('temp_chart.png')
+
+result
+            ```
+            
+2025-04-09 20:28:43 [INFO] Executing Step 4: CachePopulation
+2025-04-09 20:28:43 [INFO] Executing Step 5: CodeCleaning
+2025-04-09 20:28:43 [INFO] Saving charts to D:\Inowell\Backend\exports\charts\temp_chart.png
+2025-04-09 20:28:43 [INFO] 
+Code running:
+```
+filtered_dfs = [df[df['Floor'] == 'F1'] for df in dfs]
+filtered_dfs = [df[df['Space'] == 'Hall 2'] for sublist in filtered_dfs for df in sublist]
+ac_count = len(filtered_dfs)
+result = {'type': 'number', 'value': ac_count}
+for df in dfs:
+    plt.plot(df['Date'], df['Temperature (°C)'], label=df['Building'].iloc[0])
+plt.xlabel('Date')
+plt.ylabel('Temperature (°C)')
+plt.title('Temperature over time')
+plt.legend()
+plt.savefig('D:/Inowell/Backend/exports/charts/temp_chart.png')
+result
+        ```
+2025-04-09 20:28:43 [INFO] Executing Step 6: CodeExecution
+2025-04-09 20:28:43 [ERROR] Failed with error: Traceback (most recent call last):
+  File "D:\Inowell\Backend\.venv\Lib\site-packages\pandasai\pipelines\chat\code_execution.py", line 85, in execute
+    result = self.execute_code(code_to_run, code_context)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Inowell\Backend\.venv\Lib\site-packages\pandasai\pipelines\chat\code_execution.py", line 174, in execute_code
+    exec(code, environment)
+  File "<string>", line 2, in <module>
+  File "<string>", line 2, in <listcomp>
+TypeError: string indices must be integers, not 'str'
+
+2025-04-09 20:28:43 [WARNING] Failed to execute code retrying with a correction framework [retry number: 1]
+2025-04-09 20:28:43 [INFO] Executing Pipeline: ErrorCorrectionPipeline
+2025-04-09 20:28:43 [INFO] Executing Step 0: ErrorPromptGeneration
+2025-04-09 20:28:43 [INFO] Using prompt: <dataframe>
+dfs[0]:61x7
+Building,Floor,Space,Equipment,Temperature (°C),Energy Consumption (kWh),Date
+Building 1,GF,Dining Room,TV,22.0,0.8,2025-04-08
+Building 1,F3,Kitchen 2,Heater,23.0,4.5,2025-04-08
+Building 1,F2,Garage,Refrigerator,,1.2,2025-04-08
+</dataframe>
+
+
+The user asked the following question:
+### QUERY
+ How many AC presents in the floor F1 and Space in Hall 2 ?
+
+You generated this python code:
+filtered_dfs = [df[df['Floor'] == 'F1'] for df in dfs]
+filtered_dfs = [df[df['Space'] == 'Hall 2'] for sublist in filtered_dfs for df in sublist]
+ac_count = len(filtered_dfs)
+result = {'type': 'number', 'value': ac_count}
+for df in dfs:
+    plt.plot(df['Date'], df['Temperature (°C)'], label=df['Building'].iloc[0])
+plt.xlabel('Date')
+plt.ylabel('Temperature (°C)')
+plt.title('Temperature over time')
+plt.legend()
+plt.savefig('D:/Inowell/Backend/exports/charts/temp_chart.png')
+result
+
+It fails with the following error:
+Traceback (most recent call last):
+  File "D:\Inowell\Backend\.venv\Lib\site-packages\pandasai\pipelines\chat\code_execution.py", line 85, in execute
+    result = self.execute_code(code_to_run, code_context)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Inowell\Backend\.venv\Lib\site-packages\pandasai\pipelines\chat\code_execution.py", line 174, in execute_code
+    exec(code, environment)
+  File "<string>", line 2, in <module>
+  File "<string>", line 2, in <listcomp>
+TypeError: string indices must be integers, not 'str'
+
+
+Fix the python code above and return the new python code:
+2025-04-09 20:28:43 [INFO] Executing Step 1: CodeGenerator
+2025-04-09 20:28:46 [INFO] HTTP Request: POST https://au-syd.ml.cloud.ibm.com/ml/v1/text/chat?version=2025-03-20 "HTTP/1.1 200 OK"
+2025-04-09 20:28:46 [INFO] Successfully finished chat for url: 'https://au-syd.ml.cloud.ibm.com/ml/v1/text/chat?version=2025-03-20'
+2025-04-09 20:28:46 [INFO] Prompt used:
+            
+<dataframe>
+dfs[0]:61x7
+Building,Floor,Space,Equipment,Temperature (°C),Energy Consumption (kWh),Date
+Building 1,GF,Dining Room,TV,22.0,0.8,2025-04-08
+Building 1,F3,Kitchen 2,Heater,23.0,4.5,2025-04-08
+Building 1,F2,Garage,Refrigerator,,1.2,2025-04-08
+</dataframe>
+
+
+The user asked the following question:
+### QUERY
+ How many AC presents in the floor F1 and Space in Hall 2 ?
+
+You generated this python code:
+filtered_dfs = [df[df['Floor'] == 'F1'] for df in dfs]
+filtered_dfs = [df[df['Space'] == 'Hall 2'] for sublist in filtered_dfs for df in sublist]
+ac_count = len(filtered_dfs)
+result = {'type': 'number', 'value': ac_count}
+for df in dfs:
+    plt.plot(df['Date'], df['Temperature (°C)'], label=df['Building'].iloc[0])
+plt.xlabel('Date')
+plt.ylabel('Temperature (°C)')
+plt.title('Temperature over time')
+plt.legend()
+plt.savefig('D:/Inowell/Backend/exports/charts/temp_chart.png')
+result
+
+It fails with the following error:
+Traceback (most recent call last):
+  File "D:\Inowell\Backend\.venv\Lib\site-packages\pandasai\pipelines\chat\code_execution.py", line 85, in execute
+    result = self.execute_code(code_to_run, code_context)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Inowell\Backend\.venv\Lib\site-packages\pandasai\pipelines\chat\code_execution.py", line 174, in execute_code
+    exec(code, environment)
+  File "<string>", line 2, in <module>
+  File "<string>", line 2, in <listcomp>
+TypeError: string indices must be integers, not 'str'
+
+
+Fix the python code above and return the new python code:
+            
+2025-04-09 20:28:46 [INFO] Code generated:
+            ```
+            filtered_dfs = [df for df in dfs if df['Floor'].str.contains('F1') and df['Space'].str.contains('Hall 2')]
+ac_count = len(filtered_dfs)
+result = {'type': 'number', 'value': ac_count}
+
+for df in dfs:
+    plt.plot(df['Date'], df['Temperature (°C)'], label=df['Building'].iloc[0])
+plt.xlabel('Date')
+plt.ylabel('Temperature (°C)')
+plt.title('Temperature over time')
+plt.legend()
+plt.savefig('D:/Inowell/Backend/exports/charts/temp_chart.png')
+
+result
+            ```
+            
+2025-04-09 20:28:46 [INFO] Executing Step 2: CodeCleaning
+2025-04-09 20:28:46 [INFO] Saving charts to D:\Inowell\Backend\exports\charts\temp_chart.png
+2025-04-09 20:28:46 [INFO] 
+Code running:
+```
+filtered_dfs = [df for df in dfs if df['Floor'].str.contains('F1') and df['Space'].str.contains('Hall 2')]
+ac_count = len(filtered_dfs)
+result = {'type': 'number', 'value': ac_count}
+for df in dfs:
+    plt.plot(df['Date'], df['Temperature (°C)'], label=df['Building'].iloc[0])
+plt.xlabel('Date')
+plt.ylabel('Temperature (°C)')
+plt.title('Temperature over time')
+plt.legend()
+plt.savefig('D:/Inowell/Backend/exports/charts/temp_chart.png')
+result
+        ```
+2025-04-09 20:28:46 [ERROR] Failed with error: Traceback (most recent call last):
+  File "D:\Inowell\Backend\.venv\Lib\site-packages\pandasai\pipelines\chat\code_execution.py", line 85, in execute
+    result = self.execute_code(code_to_run, code_context)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Inowell\Backend\.venv\Lib\site-packages\pandasai\pipelines\chat\code_execution.py", line 174, in execute_code
+    exec(code, environment)
+  File "<string>", line 1, in <module>
+  File "<string>", line 1, in <listcomp>
+  File "D:\Inowell\Backend\.venv\Lib\site-packages\pandas\core\generic.py", line 1527, in __nonzero__
+    raise ValueError(
+ValueError: The truth value of a Series is ambiguous. Use a.empty, a.bool(), a.item(), a.any() or a.all().
+
+2025-04-09 20:28:46 [WARNING] Failed to execute code retrying with a correction framework [retry number: 2]
+2025-04-09 20:28:46 [INFO] Executing Pipeline: ErrorCorrectionPipeline
+2025-04-09 20:28:46 [INFO] Executing Step 0: ErrorPromptGeneration
+2025-04-09 20:28:46 [INFO] Using prompt: <dataframe>
+dfs[0]:61x7
+Building,Floor,Space,Equipment,Temperature (°C),Energy Consumption (kWh),Date
+Building 1,GF,Dining Room,TV,22.0,0.8,2025-04-08
+Building 1,F3,Kitchen 2,Heater,23.0,4.5,2025-04-08
+Building 1,F2,Garage,Refrigerator,,1.2,2025-04-08
+</dataframe>
+
+
+The user asked the following question:
+### QUERY
+ How many AC presents in the floor F1 and Space in Hall 2 ?
+
+You generated this python code:
+filtered_dfs = [df for df in dfs if df['Floor'].str.contains('F1') and df['Space'].str.contains('Hall 2')]
+ac_count = len(filtered_dfs)
+result = {'type': 'number', 'value': ac_count}
+for df in dfs:
+    plt.plot(df['Date'], df['Temperature (°C)'], label=df['Building'].iloc[0])
+plt.xlabel('Date')
+plt.ylabel('Temperature (°C)')
+plt.title('Temperature over time')
+plt.legend()
+plt.savefig('D:/Inowell/Backend/exports/charts/temp_chart.png')
+result
+
+It fails with the following error:
+Traceback (most recent call last):
+  File "D:\Inowell\Backend\.venv\Lib\site-packages\pandasai\pipelines\chat\code_execution.py", line 85, in execute
+    result = self.execute_code(code_to_run, code_context)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Inowell\Backend\.venv\Lib\site-packages\pandasai\pipelines\chat\code_execution.py", line 174, in execute_code
+    exec(code, environment)
+  File "<string>", line 1, in <module>
+  File "<string>", line 1, in <listcomp>
+  File "D:\Inowell\Backend\.venv\Lib\site-packages\pandas\core\generic.py", line 1527, in __nonzero__
+    raise ValueError(
+ValueError: The truth value of a Series is ambiguous. Use a.empty, a.bool(), a.item(), a.any() or a.all().
+
+
+Fix the python code above and return the new python code:
+2025-04-09 20:28:46 [INFO] Executing Step 1: CodeGenerator
+2025-04-09 20:28:49 [INFO] HTTP Request: POST https://au-syd.ml.cloud.ibm.com/ml/v1/text/chat?version=2025-03-20 "HTTP/1.1 200 OK"
+2025-04-09 20:28:49 [INFO] Successfully finished chat for url: 'https://au-syd.ml.cloud.ibm.com/ml/v1/text/chat?version=2025-03-20'
+2025-04-09 20:28:49 [INFO] Prompt used:
+            
+<dataframe>
+dfs[0]:61x7
+Building,Floor,Space,Equipment,Temperature (°C),Energy Consumption (kWh),Date
+Building 1,GF,Dining Room,TV,22.0,0.8,2025-04-08
+Building 1,F3,Kitchen 2,Heater,23.0,4.5,2025-04-08
+Building 1,F2,Garage,Refrigerator,,1.2,2025-04-08
+</dataframe>
+
+
+The user asked the following question:
+### QUERY
+ How many AC presents in the floor F1 and Space in Hall 2 ?
+
+You generated this python code:
+filtered_dfs = [df for df in dfs if df['Floor'].str.contains('F1') and df['Space'].str.contains('Hall 2')]
+ac_count = len(filtered_dfs)
+result = {'type': 'number', 'value': ac_count}
+for df in dfs:
+    plt.plot(df['Date'], df['Temperature (°C)'], label=df['Building'].iloc[0])
+plt.xlabel('Date')
+plt.ylabel('Temperature (°C)')
+plt.title('Temperature over time')
+plt.legend()
+plt.savefig('D:/Inowell/Backend/exports/charts/temp_chart.png')
+result
+
+It fails with the following error:
+Traceback (most recent call last):
+  File "D:\Inowell\Backend\.venv\Lib\site-packages\pandasai\pipelines\chat\code_execution.py", line 85, in execute
+    result = self.execute_code(code_to_run, code_context)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Inowell\Backend\.venv\Lib\site-packages\pandasai\pipelines\chat\code_execution.py", line 174, in execute_code
+    exec(code, environment)
+  File "<string>", line 1, in <module>
+  File "<string>", line 1, in <listcomp>
+  File "D:\Inowell\Backend\.venv\Lib\site-packages\pandas\core\generic.py", line 1527, in __nonzero__
+    raise ValueError(
+ValueError: The truth value of a Series is ambiguous. Use a.empty, a.bool(), a.item(), a.any() or a.all().
+
+
+Fix the python code above and return the new python code:
+            
+2025-04-09 20:28:49 [INFO] Code generated:
+            ```
+            filtered_dfs = []
+for df in dfs:
+    if (df['Floor'].str.contains('F1')).any() and (df['Space'].str.contains('Hall 2')).any():
+        filtered_dfs.append(df)
+
+ac_count = len(filtered_dfs)
+result = {'type': 'number', 'value': ac_count}
+
+for df in dfs:
+    plt.plot(df['Date'], df['Temperature (°C)'], label=df['Building'].iloc[0])
+
+plt.xlabel('Date')
+plt.ylabel('Temperature (°C)')
+plt.title('Temperature over time')
+plt.legend()
+plt.savefig('D:/Inowell/Backend/exports/charts/temp_chart.png')
+
+result
+            ```
+            
+2025-04-09 20:28:49 [INFO] Executing Step 2: CodeCleaning
+2025-04-09 20:28:49 [INFO] Saving charts to D:\Inowell\Backend\exports\charts\temp_chart.png
+2025-04-09 20:28:49 [INFO] 
+Code running:
+```
+filtered_dfs = []
+for df in dfs:
+    if df['Floor'].str.contains('F1').any() and df['Space'].str.contains('Hall 2').any():
+        filtered_dfs.append(df)
+ac_count = len(filtered_dfs)
+result = {'type': 'number', 'value': ac_count}
+for df in dfs:
+    plt.plot(df['Date'], df['Temperature (°C)'], label=df['Building'].iloc[0])
+plt.xlabel('Date')
+plt.ylabel('Temperature (°C)')
+plt.title('Temperature over time')
+plt.legend()
+plt.savefig('D:/Inowell/Backend/exports/charts/temp_chart.png')
+result
+        ```
+2025-04-09 20:28:49 [INFO] Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2025-04-09 20:28:49 [INFO] Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2025-04-09 20:28:49 [INFO] Executing Step 7: ResultValidation
+2025-04-09 20:28:49 [INFO] Answer: {'type': 'number', 'value': 1}
+2025-04-09 20:28:49 [INFO] Executing Step 8: ResultParsing
+2025-04-09 20:29:55 [INFO] Client successfully initialized
+2025-04-09 20:29:56 [INFO] HTTP Request: GET https://au-syd.ml.cloud.ibm.com/ml/v1/foundation_model_specs?version=2025-03-20&project_id=853fb52b-1dec-44f4-a11f-29bf0229f522&filters=function_text_generation%2C%21lifecycle_withdrawn%3Aand&limit=200 "HTTP/1.1 200 OK"
+2025-04-09 20:29:57 [INFO] Successfully finished Get available foundation models for url: 'https://au-syd.ml.cloud.ibm.com/ml/v1/foundation_model_specs?version=2025-03-20&project_id=853fb52b-1dec-44f4-a11f-29bf0229f522&filters=function_text_generation%2C%21lifecycle_withdrawn%3Aand&limit=200'
+2025-04-09 20:29:57 [INFO] Question: How many AC presents where Floor is F1 and Space is Hall 2
+2025-04-09 20:29:57 [INFO] Running PandasAI with langchain_watsonx-chat LLM...
+2025-04-09 20:29:57 [INFO] Prompt ID: 70d0df0f-7ed5-430f-a3df-aaf01c63ea3a
+2025-04-09 20:29:57 [INFO] Executing Pipeline: GenerateChatPipeline
+2025-04-09 20:29:57 [INFO] Executing Step 0: ValidatePipelineInput
+2025-04-09 20:29:57 [INFO] Executing Step 1: CacheLookup
+2025-04-09 20:29:57 [INFO] Executing Step 2: PromptGeneration
+2025-04-09 20:29:57 [INFO] Using prompt: <dataframe>
+dfs[0]:61x7
+Building,Floor,Space,Equipment,Temperature (°C),Energy Consumption (kWh),Date
+Building 1,F3,Kitchen 3,Refrigerator,,0.8,2025-04-08
+Building 1,F2,Bedroom 2,Microwave,23.8,5.3,2025-04-08
+Building 1,F1,Study Room,AC,22.5,6.3,2025-04-08
+</dataframe>
+
+
+
+
+Update this initial code:
+```python
+# TODO: import the required dependencies
+import pandas as pd
+
+# Write code here
+
+# Declare result var: 
+type (possible values "string", "number", "dataframe", "plot"). Examples: { "type": "string", "value": f"The highest salary is {highest_salary}." } or { "type": "number", "value": 125 } or { "type": "dataframe", "value": pd.DataFrame({...}) } or { "type": "plot", "value": "temp_chart.png" }
+
+```
+
+
+
+### QUERY
+ How many AC presents where Floor is F1 and Space is Hall 2
+
+Variable `dfs: list[pd.DataFrame]` is already declared.
+
+At the end, declare "result" variable as a dictionary of type and value.
+
+If you are asked to plot a chart, use "matplotlib" for charts, save as png.
+
+
+Generate python code and return full updated code:
+2025-04-09 20:29:57 [INFO] Executing Step 3: CodeGenerator
+2025-04-09 20:30:00 [INFO] HTTP Request: POST https://au-syd.ml.cloud.ibm.com/ml/v1/text/chat?version=2025-03-20 "HTTP/1.1 200 OK"
+2025-04-09 20:30:00 [INFO] Successfully finished chat for url: 'https://au-syd.ml.cloud.ibm.com/ml/v1/text/chat?version=2025-03-20'
+2025-04-09 20:30:00 [INFO] Prompt used:
+            
+<dataframe>
+dfs[0]:61x7
+Building,Floor,Space,Equipment,Temperature (°C),Energy Consumption (kWh),Date
+Building 1,F3,Kitchen 3,Refrigerator,,0.8,2025-04-08
+Building 1,F2,Bedroom 2,Microwave,23.8,5.3,2025-04-08
+Building 1,F1,Study Room,AC,22.5,6.3,2025-04-08
+</dataframe>
+
+
+
+
+Update this initial code:
+```python
+# TODO: import the required dependencies
+import pandas as pd
+
+# Write code here
+
+# Declare result var: 
+type (possible values "string", "number", "dataframe", "plot"). Examples: { "type": "string", "value": f"The highest salary is {highest_salary}." } or { "type": "number", "value": 125 } or { "type": "dataframe", "value": pd.DataFrame({...}) } or { "type": "plot", "value": "temp_chart.png" }
+
+```
+
+
+
+### QUERY
+ How many AC presents where Floor is F1 and Space is Hall 2
+
+Variable `dfs: list[pd.DataFrame]` is already declared.
+
+At the end, declare "result" variable as a dictionary of type and value.
+
+If you are asked to plot a chart, use "matplotlib" for charts, save as png.
+
+
+Generate python code and return full updated code:
+            
+2025-04-09 20:30:00 [INFO] Code generated:
+            ```
+            # TODO: import the required dependencies
+import pandas as pd
+import matplotlib.pyplot as plt
+
+# Assuming dfs is already defined
+dfs = [pd.DataFrame({
+    'Building': ['Building 1'],
+    'Floor': ['F1'],
+    'Space': ['Hall 2'],
+    'Equipment': ['AC'],
+    'Temperature (°C)': [22.5],
+    'Energy Consumption (kWh)': [6.3],
+    'Date': ['2025-04-08']
+})]
+
+# Filter the dataframe to find AC in F1 and Hall 2
+ac_in_f1_hall2 = dfs[0][(dfs[0]['Floor'] == 'F1') & (dfs[0]['Space'] == 'Hall 2') & (dfs[0]['Equipment'] == 'AC')]
+
+# Count the number of ACs
+num_ac_f1_hall2 = len(ac_in_f1_hall2)
+
+# Declare result var:
+result = {
+    "type": "number",
+    "value": num_ac_f1_hall2
+}
+
+# Print the result
+print(result)
+            ```
+            
+2025-04-09 20:30:00 [INFO] Executing Step 4: CachePopulation
+2025-04-09 20:30:01 [INFO] Executing Step 5: CodeCleaning
+2025-04-09 20:30:01 [INFO] 
+Code running:
+```
+ac_in_f1_hall2 = dfs[0][(dfs[0]['Floor'] == 'F1') & (dfs[0]['Space'] == 'Hall 2') & (dfs[0]['Equipment'] == 'AC')]
+num_ac_f1_hall2 = len(ac_in_f1_hall2)
+result = {'type': 'number', 'value': num_ac_f1_hall2}
+print(result)
+        ```
+2025-04-09 20:30:01 [INFO] Executing Step 6: CodeExecution
+2025-04-09 20:30:01 [INFO] Executing Step 7: ResultValidation
+2025-04-09 20:30:01 [INFO] Answer: {'type': 'number', 'value': 2}
+2025-04-09 20:30:01 [INFO] Executing Step 8: ResultParsing
+2025-04-09 20:32:11 [INFO] Client successfully initialized
+2025-04-09 20:32:13 [INFO] HTTP Request: GET https://au-syd.ml.cloud.ibm.com/ml/v1/foundation_model_specs?version=2025-03-20&project_id=853fb52b-1dec-44f4-a11f-29bf0229f522&filters=function_text_generation%2C%21lifecycle_withdrawn%3Aand&limit=200 "HTTP/1.1 200 OK"
+2025-04-09 20:32:13 [INFO] Successfully finished Get available foundation models for url: 'https://au-syd.ml.cloud.ibm.com/ml/v1/foundation_model_specs?version=2025-03-20&project_id=853fb52b-1dec-44f4-a11f-29bf0229f522&filters=function_text_generation%2C%21lifecycle_withdrawn%3Aand&limit=200'
+2025-04-09 20:32:13 [INFO] Question: How many AC presents where Space is Bedroom 2 ?
+2025-04-09 20:32:13 [INFO] Running PandasAI with langchain_watsonx-chat LLM...
+2025-04-09 20:32:13 [INFO] Prompt ID: a840870b-5846-4136-bac1-1ca8b3a6ee68
+2025-04-09 20:32:13 [INFO] Executing Pipeline: GenerateChatPipeline
+2025-04-09 20:32:13 [INFO] Executing Step 0: ValidatePipelineInput
+2025-04-09 20:32:13 [INFO] Executing Step 1: CacheLookup
+2025-04-09 20:32:13 [INFO] Executing Step 2: PromptGeneration
+2025-04-09 20:32:13 [INFO] Using prompt: <dataframe>
+dfs[0]:61x7
+Building,Floor,Space,Equipment,Temperature (°C),Energy Consumption (kWh),Date
+Building 1,F2,Office Room,TV,,1.1,2025-04-08
+Building 1,F1,Bathroom 1,Fan,24.2,1.8,2025-04-08
+Building 1,GF,Balcony 1,Heater,23.0,0.5,2025-04-08
+</dataframe>
+
+
+
+
+Update this initial code:
+```python
+# TODO: import the required dependencies
+import pandas as pd
+
+# Write code here
+
+# Declare result var: 
+type (possible values "string", "number", "dataframe", "plot"). Examples: { "type": "string", "value": f"The highest salary is {highest_salary}." } or { "type": "number", "value": 125 } or { "type": "dataframe", "value": pd.DataFrame({...}) } or { "type": "plot", "value": "temp_chart.png" }
+
+```
+
+
+
+### QUERY
+ How many AC presents where Space is Bedroom 2 ?
+
+Variable `dfs: list[pd.DataFrame]` is already declared.
+
+At the end, declare "result" variable as a dictionary of type and value.
+
+If you are asked to plot a chart, use "matplotlib" for charts, save as png.
+
+
+Generate python code and return full updated code:
+2025-04-09 20:32:13 [INFO] Executing Step 3: CodeGenerator
+2025-04-09 20:32:17 [INFO] HTTP Request: POST https://au-syd.ml.cloud.ibm.com/ml/v1/text/chat?version=2025-03-20 "HTTP/1.1 200 OK"
+2025-04-09 20:32:17 [INFO] Successfully finished chat for url: 'https://au-syd.ml.cloud.ibm.com/ml/v1/text/chat?version=2025-03-20'
+2025-04-09 20:32:17 [INFO] Prompt used:
+            
+<dataframe>
+dfs[0]:61x7
+Building,Floor,Space,Equipment,Temperature (°C),Energy Consumption (kWh),Date
+Building 1,F2,Office Room,TV,,1.1,2025-04-08
+Building 1,F1,Bathroom 1,Fan,24.2,1.8,2025-04-08
+Building 1,GF,Balcony 1,Heater,23.0,0.5,2025-04-08
+</dataframe>
+
+
+
+
+Update this initial code:
+```python
+# TODO: import the required dependencies
+import pandas as pd
+
+# Write code here
+
+# Declare result var: 
+type (possible values "string", "number", "dataframe", "plot"). Examples: { "type": "string", "value": f"The highest salary is {highest_salary}." } or { "type": "number", "value": 125 } or { "type": "dataframe", "value": pd.DataFrame({...}) } or { "type": "plot", "value": "temp_chart.png" }
+
+```
+
+
+
+### QUERY
+ How many AC presents where Space is Bedroom 2 ?
+
+Variable `dfs: list[pd.DataFrame]` is already declared.
+
+At the end, declare "result" variable as a dictionary of type and value.
+
+If you are asked to plot a chart, use "matplotlib" for charts, save as png.
+
+
+Generate python code and return full updated code:
+            
+2025-04-09 20:32:17 [INFO] Code generated:
+            ```
+            # TODO: import the required dependencies
+import pandas as pd
+import matplotlib.pyplot as plt
+
+# Assuming dfs is already defined
+dfs = [pd.DataFrame({
+    'Building': ['Building 1'],
+    'Floor': ['F2'],
+    'Space': ['Bedroom 2'],
+    'Equipment': ['AC'],
+    'Temperature (°C)': [22.5],
+    'Energy Consumption (kWh)': [0.9],
+    'Date': ['2025-04-08']
+})]
+
+# Filter the dataframe to find AC in Bedroom 2
+ac_in_bedroom2 = dfs[0][(dfs[0]['Space'] == 'Bedroom 2') & (dfs[0]['Equipment'] == 'AC')]
+
+# Count the number of AC in Bedroom 2
+num_ac_in_bedroom2 = len(ac_in_bedroom2.index)
+
+# Declare result var:
+result = {
+    "type": "number",
+    "value": num_ac_in_bedroom2
+}
+
+# Print the result
+print(f"Number of AC in Bedroom 2: {num_ac_in_bedroom2}")
+
+# Plot a bar chart
+plt.bar(['AC in Bedroom 2'], [num_ac_in_bedroom2])
+plt.title('Number of AC in Bedroom 2')
+plt.ylabel('Count')
+plt.savefig('ac_in_bedroom2.png')
+
+result
+            ```
+            
+2025-04-09 20:32:17 [INFO] Executing Step 4: CachePopulation
+2025-04-09 20:32:18 [INFO] Executing Step 5: CodeCleaning
+2025-04-09 20:32:18 [INFO] Saving charts to D:\Inowell\Backend\exports\charts\temp_chart.png
+2025-04-09 20:32:18 [INFO] 
+Code running:
+```
+ac_in_bedroom2 = dfs[0][(dfs[0]['Space'] == 'Bedroom 2') & (dfs[0]['Equipment'] == 'AC')]
+num_ac_in_bedroom2 = len(ac_in_bedroom2.index)
+result = {'type': 'number', 'value': num_ac_in_bedroom2}
+print(f'Number of AC in Bedroom 2: {num_ac_in_bedroom2}')
+plt.bar(['AC in Bedroom 2'], [num_ac_in_bedroom2])
+plt.title('Number of AC in Bedroom 2')
+plt.ylabel('Count')
+plt.savefig('D:/Inowell/Backend/exports/charts/temp_chart.png')
+result
+        ```
+2025-04-09 20:32:18 [INFO] Executing Step 6: CodeExecution
+2025-04-09 20:32:18 [INFO] Executing Step 7: ResultValidation
+2025-04-09 20:32:18 [INFO] Answer: {'type': 'number', 'value': 2}
+2025-04-09 20:32:18 [INFO] Executing Step 8: ResultParsing
+2025-04-09 20:41:24 [INFO] Client successfully initialized
+2025-04-09 20:41:26 [INFO] HTTP Request: GET https://au-syd.ml.cloud.ibm.com/ml/v1/foundation_model_specs?version=2025-03-20&project_id=853fb52b-1dec-44f4-a11f-29bf0229f522&filters=function_text_generation%2C%21lifecycle_withdrawn%3Aand&limit=200 "HTTP/1.1 200 OK"
+2025-04-09 20:41:26 [INFO] Successfully finished Get available foundation models for url: 'https://au-syd.ml.cloud.ibm.com/ml/v1/foundation_model_specs?version=2025-03-20&project_id=853fb52b-1dec-44f4-a11f-29bf0229f522&filters=function_text_generation%2C%21lifecycle_withdrawn%3Aand&limit=200'
+2025-04-09 20:41:26 [INFO] Question: How many AC presents where Space is Dining Room ?
+2025-04-09 20:41:26 [INFO] Running PandasAI with langchain_watsonx-chat LLM...
+2025-04-09 20:41:26 [INFO] Prompt ID: 7191aed9-756d-46a3-8f95-50b5f24419d6
+2025-04-09 20:41:26 [INFO] Executing Pipeline: GenerateChatPipeline
+2025-04-09 20:41:26 [INFO] Executing Step 0: ValidatePipelineInput
+2025-04-09 20:41:26 [INFO] Executing Step 1: CacheLookup
+2025-04-09 20:41:26 [INFO] Executing Step 2: PromptGeneration
+2025-04-09 20:41:26 [INFO] Using prompt: <dataframe>
+dfs[0]:61x7
+Building,Floor,Space,Equipment,Temperature (°C),Energy Consumption (kWh),Date
+Building 1,F2,Kitchen 1,TV,23.1,0.3,2025-04-08
+Building 1,GF,Dining Room,Heater,25.2,0.7,2025-04-08
+Building 1,F1,Office Room,Fan,,0.9,2025-04-08
+</dataframe>
+
+
+
+
+Update this initial code:
+```python
+# TODO: import the required dependencies
+import pandas as pd
+
+# Write code here
+
+# Declare result var: 
+type (possible values "string", "number", "dataframe", "plot"). Examples: { "type": "string", "value": f"The highest salary is {highest_salary}." } or { "type": "number", "value": 125 } or { "type": "dataframe", "value": pd.DataFrame({...}) } or { "type": "plot", "value": "temp_chart.png" }
+
+```
+
+
+
+### QUERY
+ How many AC presents where Space is Dining Room ?
+
+Variable `dfs: list[pd.DataFrame]` is already declared.
+
+At the end, declare "result" variable as a dictionary of type and value.
+
+If you are asked to plot a chart, use "matplotlib" for charts, save as png.
+
+
+Generate python code and return full updated code:
+2025-04-09 20:41:26 [INFO] Executing Step 3: CodeGenerator
+2025-04-09 20:41:31 [INFO] HTTP Request: POST https://au-syd.ml.cloud.ibm.com/ml/v1/text/chat?version=2025-03-20 "HTTP/1.1 200 OK"
+2025-04-09 20:41:31 [INFO] Successfully finished chat for url: 'https://au-syd.ml.cloud.ibm.com/ml/v1/text/chat?version=2025-03-20'
+2025-04-09 20:41:31 [INFO] Prompt used:
+            
+<dataframe>
+dfs[0]:61x7
+Building,Floor,Space,Equipment,Temperature (°C),Energy Consumption (kWh),Date
+Building 1,F2,Kitchen 1,TV,23.1,0.3,2025-04-08
+Building 1,GF,Dining Room,Heater,25.2,0.7,2025-04-08
+Building 1,F1,Office Room,Fan,,0.9,2025-04-08
+</dataframe>
+
+
+
+
+Update this initial code:
+```python
+# TODO: import the required dependencies
+import pandas as pd
+
+# Write code here
+
+# Declare result var: 
+type (possible values "string", "number", "dataframe", "plot"). Examples: { "type": "string", "value": f"The highest salary is {highest_salary}." } or { "type": "number", "value": 125 } or { "type": "dataframe", "value": pd.DataFrame({...}) } or { "type": "plot", "value": "temp_chart.png" }
+
+```
+
+
+
+### QUERY
+ How many AC presents where Space is Dining Room ?
+
+Variable `dfs: list[pd.DataFrame]` is already declared.
+
+At the end, declare "result" variable as a dictionary of type and value.
+
+If you are asked to plot a chart, use "matplotlib" for charts, save as png.
+
+
+Generate python code and return full updated code:
+            
+2025-04-09 20:41:31 [INFO] Code generated:
+            ```
+            # TODO: import the required dependencies
+import pandas as pd
+import matplotlib.pyplot as plt
+
+# Assuming dfs is a list containing the provided DataFrame
+dfs = [pd.DataFrame({
+    'Building': ['Building 1'],
+    'Floor': ['F2', 'GF', 'F1'],
+    'Space': ['Kitchen 1', 'Dining Room', 'Office Room'],
+    'Equipment': ['TV', 'Heater', 'Fan'],
+    'Temperature (°C)': [23.1, 25.2, 24.5],
+    'Energy Consumption (kWh)': [0.3, 0.7, 0.9],
+    'Date': ['2025-04-08']
+})]
+
+# Filter the DataFrame to find rows where Space is 'Dining Room'
+dining_room_ac = dfs[0][dfs[0]['Space'] == 'Dining Room']
+
+# Count the number of ACs in the Dining Room
+num_ac_dining_room = len(dining_room_ac)
+
+# Declare result var:
+result = {
+    "type": "number",
+    "value": num_ac_dining_room
+}
+
+# Print the result
+print(f"Number of ACs in Dining Room: {num_ac_dining_room}")
+
+# Plot a bar chart of energy consumption by space
+dfs[0].plot(kind='bar', x='Space', y='Energy Consumption (kWh)', legend=False)
+plt.title('Energy Consumption by Space')
+plt.xlabel('Space')
+plt.ylabel('Energy Consumption (kWh)')
+plt.savefig('energy_consumption_chart.png')
+
+result
+            ```
+            
+2025-04-09 20:41:31 [INFO] Executing Step 4: CachePopulation
+2025-04-09 20:41:31 [INFO] Executing Step 5: CodeCleaning
+2025-04-09 20:41:31 [INFO] Saving charts to D:\Inowell\Backend\exports\charts\temp_chart.png
+2025-04-09 20:41:31 [INFO] 
+Code running:
+```
+dining_room_ac = dfs[0][dfs[0]['Space'] == 'Dining Room']
+num_ac_dining_room = len(dining_room_ac)
+result = {'type': 'number', 'value': num_ac_dining_room}
+print(f'Number of ACs in Dining Room: {num_ac_dining_room}')
+dfs[0].plot(kind='bar', x='Space', y='Energy Consumption (kWh)', legend=False)
+plt.title('Energy Consumption by Space')
+plt.xlabel('Space')
+plt.ylabel('Energy Consumption (kWh)')
+plt.savefig('D:/Inowell/Backend/exports/charts/temp_chart.png')
+result
+        ```
+2025-04-09 20:41:31 [INFO] Executing Step 6: CodeExecution
+2025-04-09 20:41:31 [INFO] Executing Step 7: ResultValidation
+2025-04-09 20:41:31 [INFO] Answer: {'type': 'number', 'value': 2}
+2025-04-09 20:41:31 [INFO] Executing Step 8: ResultParsing
+2025-04-09 20:42:10 [INFO] Client successfully initialized
+2025-04-09 20:42:12 [INFO] HTTP Request: GET https://au-syd.ml.cloud.ibm.com/ml/v1/foundation_model_specs?version=2025-03-20&project_id=853fb52b-1dec-44f4-a11f-29bf0229f522&filters=function_text_generation%2C%21lifecycle_withdrawn%3Aand&limit=200 "HTTP/1.1 200 OK"
+2025-04-09 20:42:12 [INFO] Successfully finished Get available foundation models for url: 'https://au-syd.ml.cloud.ibm.com/ml/v1/foundation_model_specs?version=2025-03-20&project_id=853fb52b-1dec-44f4-a11f-29bf0229f522&filters=function_text_generation%2C%21lifecycle_withdrawn%3Aand&limit=200'
+2025-04-09 20:42:12 [INFO] Question: How many AC presents ?
+2025-04-09 20:42:12 [INFO] Running PandasAI with langchain_watsonx-chat LLM...
+2025-04-09 20:42:12 [INFO] Prompt ID: 3e0bc85c-f364-4c50-b834-f85b42a1ad40
+2025-04-09 20:42:12 [INFO] Executing Pipeline: GenerateChatPipeline
+2025-04-09 20:42:12 [INFO] Executing Step 0: ValidatePipelineInput
+2025-04-09 20:42:12 [INFO] Executing Step 1: CacheLookup
+2025-04-09 20:42:12 [INFO] Executing Step 2: PromptGeneration
+2025-04-09 20:42:12 [INFO] Using prompt: <dataframe>
+dfs[0]:61x7
+Building,Floor,Space,Equipment,Temperature (°C),Energy Consumption (kWh),Date
+Building 1,GF,Office Room,AC,22.2,2.4,2025-04-08
+Building 1,F3,Bedroom 1,Refrigerator,23.1,0.5,2025-04-08
+Building 1,F1,Bedroom 2,Fan,,3.5,2025-04-08
+</dataframe>
+
+
+
+
+Update this initial code:
+```python
+# TODO: import the required dependencies
+import pandas as pd
+
+# Write code here
+
+# Declare result var: 
+type (possible values "string", "number", "dataframe", "plot"). Examples: { "type": "string", "value": f"The highest salary is {highest_salary}." } or { "type": "number", "value": 125 } or { "type": "dataframe", "value": pd.DataFrame({...}) } or { "type": "plot", "value": "temp_chart.png" }
+
+```
+
+
+
+### QUERY
+ How many AC presents ?
+
+Variable `dfs: list[pd.DataFrame]` is already declared.
+
+At the end, declare "result" variable as a dictionary of type and value.
+
+If you are asked to plot a chart, use "matplotlib" for charts, save as png.
+
+
+Generate python code and return full updated code:
+2025-04-09 20:42:12 [INFO] Executing Step 3: CodeGenerator
+2025-04-09 20:42:15 [INFO] HTTP Request: POST https://au-syd.ml.cloud.ibm.com/ml/v1/text/chat?version=2025-03-20 "HTTP/1.1 200 OK"
+2025-04-09 20:42:15 [INFO] Successfully finished chat for url: 'https://au-syd.ml.cloud.ibm.com/ml/v1/text/chat?version=2025-03-20'
+2025-04-09 20:42:15 [INFO] Prompt used:
+            
+<dataframe>
+dfs[0]:61x7
+Building,Floor,Space,Equipment,Temperature (°C),Energy Consumption (kWh),Date
+Building 1,GF,Office Room,AC,22.2,2.4,2025-04-08
+Building 1,F3,Bedroom 1,Refrigerator,23.1,0.5,2025-04-08
+Building 1,F1,Bedroom 2,Fan,,3.5,2025-04-08
+</dataframe>
+
+
+
+
+Update this initial code:
+```python
+# TODO: import the required dependencies
+import pandas as pd
+
+# Write code here
+
+# Declare result var: 
+type (possible values "string", "number", "dataframe", "plot"). Examples: { "type": "string", "value": f"The highest salary is {highest_salary}." } or { "type": "number", "value": 125 } or { "type": "dataframe", "value": pd.DataFrame({...}) } or { "type": "plot", "value": "temp_chart.png" }
+
+```
+
+
+
+### QUERY
+ How many AC presents ?
+
+Variable `dfs: list[pd.DataFrame]` is already declared.
+
+At the end, declare "result" variable as a dictionary of type and value.
+
+If you are asked to plot a chart, use "matplotlib" for charts, save as png.
+
+
+Generate python code and return full updated code:
+            
+2025-04-09 20:42:15 [INFO] Code generated:
+            ```
+            # TODO: import the required dependencies
+import pandas as pd
+import matplotlib.pyplot as plt
+
+# Declare result var: 
+result = {
+    "type": "number",
+    "value": dfs[0]['Equipment'].value_counts()['AC']
+}
+
+# Plotting the temperature data
+temp_data = dfs[0]['Temperature (°C)']
+plt.figure(figsize=(10, 5))
+plt.plot(temp_data, marker='o')
+plt.title('Temperature Over Time')
+plt.xlabel('Index')
+plt.ylabel('Temperature (°C)')
+plt.grid(True)
+plt.savefig('temp_chart.png')
+            ```
+            
+2025-04-09 20:42:15 [INFO] Executing Step 4: CachePopulation
+2025-04-09 20:42:15 [INFO] Executing Step 5: CodeCleaning
+2025-04-09 20:42:15 [INFO] Saving charts to D:\Inowell\Backend\exports\charts\temp_chart.png
+2025-04-09 20:42:15 [INFO] 
+Code running:
+```
+result = {'type': 'number', 'value': dfs[0]['Equipment'].value_counts()['AC']}
+temp_data = dfs[0]['Temperature (°C)']
+plt.figure(figsize=(10, 5))
+plt.plot(temp_data, marker='o')
+plt.title('Temperature Over Time')
+plt.xlabel('Index')
+plt.ylabel('Temperature (°C)')
+plt.grid(True)
+plt.savefig('D:/Inowell/Backend/exports/charts/temp_chart.png')
+        ```
+2025-04-09 20:42:15 [INFO] Executing Step 6: CodeExecution
+2025-04-09 20:42:15 [INFO] Executing Step 7: ResultValidation
+2025-04-09 20:42:15 [INFO] Answer: {'type': 'number', 'value': 19}
+2025-04-09 20:42:15 [INFO] Executing Step 8: ResultParsing
+2025-04-09 20:42:47 [INFO] Client successfully initialized
+2025-04-09 20:42:49 [INFO] HTTP Request: GET https://au-syd.ml.cloud.ibm.com/ml/v1/foundation_model_specs?version=2025-03-20&project_id=853fb52b-1dec-44f4-a11f-29bf0229f522&filters=function_text_generation%2C%21lifecycle_withdrawn%3Aand&limit=200 "HTTP/1.1 200 OK"
+2025-04-09 20:42:49 [INFO] Successfully finished Get available foundation models for url: 'https://au-syd.ml.cloud.ibm.com/ml/v1/foundation_model_specs?version=2025-03-20&project_id=853fb52b-1dec-44f4-a11f-29bf0229f522&filters=function_text_generation%2C%21lifecycle_withdrawn%3Aand&limit=200'
+2025-04-09 20:42:49 [INFO] Question: What are the floor types ?
+2025-04-09 20:42:49 [INFO] Running PandasAI with langchain_watsonx-chat LLM...
+2025-04-09 20:42:49 [INFO] Prompt ID: 2f070f0b-1014-49e3-81e1-ec964c5d2a4a
+2025-04-09 20:42:49 [INFO] Executing Pipeline: GenerateChatPipeline
+2025-04-09 20:42:49 [INFO] Executing Step 0: ValidatePipelineInput
+2025-04-09 20:42:49 [INFO] Executing Step 1: CacheLookup
+2025-04-09 20:42:49 [INFO] Executing Step 2: PromptGeneration
+2025-04-09 20:42:49 [INFO] Using prompt: <dataframe>
+dfs[0]:61x7
+Building,Floor,Space,Equipment,Temperature (°C),Energy Consumption (kWh),Date
+Building 1,F3,Guest Room,Computer,,0.5,2025-04-08
+Building 1,GF,Hall 3,AC,23.0,3.8,2025-04-08
+Building 1,F1,Waiting Hall,Light,24.2,0.2,2025-04-08
+</dataframe>
+
+
+
+
+Update this initial code:
+```python
+# TODO: import the required dependencies
+import pandas as pd
+
+# Write code here
+
+# Declare result var: 
+type (possible values "string", "number", "dataframe", "plot"). Examples: { "type": "string", "value": f"The highest salary is {highest_salary}." } or { "type": "number", "value": 125 } or { "type": "dataframe", "value": pd.DataFrame({...}) } or { "type": "plot", "value": "temp_chart.png" }
+
+```
+
+
+
+### QUERY
+ What are the floor types ?
+
+Variable `dfs: list[pd.DataFrame]` is already declared.
+
+At the end, declare "result" variable as a dictionary of type and value.
+
+If you are asked to plot a chart, use "matplotlib" for charts, save as png.
+
+
+Generate python code and return full updated code:
+2025-04-09 20:42:49 [INFO] Executing Step 3: CodeGenerator
+2025-04-09 20:42:52 [INFO] HTTP Request: POST https://au-syd.ml.cloud.ibm.com/ml/v1/text/chat?version=2025-03-20 "HTTP/1.1 200 OK"
+2025-04-09 20:42:52 [INFO] Successfully finished chat for url: 'https://au-syd.ml.cloud.ibm.com/ml/v1/text/chat?version=2025-03-20'
+2025-04-09 20:42:52 [INFO] Prompt used:
+            
+<dataframe>
+dfs[0]:61x7
+Building,Floor,Space,Equipment,Temperature (°C),Energy Consumption (kWh),Date
+Building 1,F3,Guest Room,Computer,,0.5,2025-04-08
+Building 1,GF,Hall 3,AC,23.0,3.8,2025-04-08
+Building 1,F1,Waiting Hall,Light,24.2,0.2,2025-04-08
+</dataframe>
+
+
+
+
+Update this initial code:
+```python
+# TODO: import the required dependencies
+import pandas as pd
+
+# Write code here
+
+# Declare result var: 
+type (possible values "string", "number", "dataframe", "plot"). Examples: { "type": "string", "value": f"The highest salary is {highest_salary}." } or { "type": "number", "value": 125 } or { "type": "dataframe", "value": pd.DataFrame({...}) } or { "type": "plot", "value": "temp_chart.png" }
+
+```
+
+
+
+### QUERY
+ What are the floor types ?
+
+Variable `dfs: list[pd.DataFrame]` is already declared.
+
+At the end, declare "result" variable as a dictionary of type and value.
+
+If you are asked to plot a chart, use "matplotlib" for charts, save as png.
+
+
+Generate python code and return full updated code:
+            
+2025-04-09 20:42:52 [INFO] Code generated:
+            ```
+            # TODO: import the required dependencies
+import pandas as pd
+import matplotlib.pyplot as plt
+
+# Combine all dataframes into one
+combined_df = pd.concat(dfs, ignore_index=True)
+
+# Extract unique floor types
+floor_types = combined_df['Floor'].unique()
+
+# Prepare result
+result = {
+    "type": "string",
+    "value": f"The floor types are: {', '.join(floor_types)}"
+}
+
+# Plot temperature distribution by floor type
+floor_temp_distribution = combined_df.groupby('Floor')['Temperature (°C)'].mean()
+floor_temp_distribution.plot(kind='bar')
+plt.title('Average Temperature by Floor Type')
+plt.xlabel('Floor Type')
+plt.ylabel('Average Temperature (°C)')
+plt.savefig('floor_temp_distribution.png')
+
+result
+            ```
+            
+2025-04-09 20:42:52 [INFO] Executing Step 4: CachePopulation
+2025-04-09 20:42:52 [INFO] Executing Step 5: CodeCleaning
+2025-04-09 20:42:52 [INFO] Saving charts to D:\Inowell\Backend\exports\charts\temp_chart.png
+2025-04-09 20:42:52 [INFO] 
+Code running:
+```
+combined_df = pd.concat(dfs, ignore_index=True)
+floor_types = combined_df['Floor'].unique()
+result = {'type': 'string', 'value': f"The floor types are: {', '.join(floor_types)}"}
+floor_temp_distribution = combined_df.groupby('Floor')['Temperature (°C)'].mean()
+floor_temp_distribution.plot(kind='bar')
+plt.title('Average Temperature by Floor Type')
+plt.xlabel('Floor Type')
+plt.ylabel('Average Temperature (°C)')
+plt.savefig('D:/Inowell/Backend/exports/charts/temp_chart.png')
+result
+        ```
+2025-04-09 20:42:52 [INFO] Executing Step 6: CodeExecution
+2025-04-09 20:42:52 [INFO] Executing Step 7: ResultValidation
+2025-04-09 20:42:52 [INFO] Answer: {'type': 'string', 'value': 'The floor types are: GF, F1, F2, F3'}
+2025-04-09 20:42:52 [INFO] Executing Step 8: ResultParsing
+2025-04-09 20:43:26 [INFO] Client successfully initialized
+2025-04-09 20:43:28 [INFO] HTTP Request: GET https://au-syd.ml.cloud.ibm.com/ml/v1/foundation_model_specs?version=2025-03-20&project_id=853fb52b-1dec-44f4-a11f-29bf0229f522&filters=function_text_generation%2C%21lifecycle_withdrawn%3Aand&limit=200 "HTTP/1.1 200 OK"
+2025-04-09 20:43:28 [INFO] Successfully finished Get available foundation models for url: 'https://au-syd.ml.cloud.ibm.com/ml/v1/foundation_model_specs?version=2025-03-20&project_id=853fb52b-1dec-44f4-a11f-29bf0229f522&filters=function_text_generation%2C%21lifecycle_withdrawn%3Aand&limit=200'
+2025-04-09 20:43:28 [INFO] Question: Which is the highest energy consumption using Fan ?
+2025-04-09 20:43:28 [INFO] Running PandasAI with langchain_watsonx-chat LLM...
+2025-04-09 20:43:28 [INFO] Prompt ID: 40fa63d0-09d4-4534-b135-82ae8fa42bdc
+2025-04-09 20:43:28 [INFO] Executing Pipeline: GenerateChatPipeline
+2025-04-09 20:43:28 [INFO] Executing Step 0: ValidatePipelineInput
+2025-04-09 20:43:28 [INFO] Executing Step 1: CacheLookup
+2025-04-09 20:43:28 [INFO] Executing Step 2: PromptGeneration
+2025-04-09 20:43:28 [INFO] Using prompt: <dataframe>
+dfs[0]:61x7
+Building,Floor,Space,Equipment,Temperature (°C),Energy Consumption (kWh),Date
+Building 1,F1,Hall 2,Light,,6.3,2025-04-08
+Building 1,GF,Guest Room,AC,23.1,3.8,2025-04-08
+Building 1,F3,Storage Room,Fan,23.8,1.1,2025-04-08
+</dataframe>
+
+
+
+
+Update this initial code:
+```python
+# TODO: import the required dependencies
+import pandas as pd
+
+# Write code here
+
+# Declare result var: 
+type (possible values "string", "number", "dataframe", "plot"). Examples: { "type": "string", "value": f"The highest salary is {highest_salary}." } or { "type": "number", "value": 125 } or { "type": "dataframe", "value": pd.DataFrame({...}) } or { "type": "plot", "value": "temp_chart.png" }
+
+```
+
+
+
+### QUERY
+ Which is the highest energy consumption using Fan ?
+
+Variable `dfs: list[pd.DataFrame]` is already declared.
+
+At the end, declare "result" variable as a dictionary of type and value.
+
+If you are asked to plot a chart, use "matplotlib" for charts, save as png.
+
+
+Generate python code and return full updated code:
+2025-04-09 20:43:28 [INFO] Executing Step 3: CodeGenerator
+2025-04-09 20:43:32 [INFO] HTTP Request: POST https://au-syd.ml.cloud.ibm.com/ml/v1/text/chat?version=2025-03-20 "HTTP/1.1 200 OK"
+2025-04-09 20:43:32 [INFO] Successfully finished chat for url: 'https://au-syd.ml.cloud.ibm.com/ml/v1/text/chat?version=2025-03-20'
+2025-04-09 20:43:32 [INFO] Prompt used:
+            
+<dataframe>
+dfs[0]:61x7
+Building,Floor,Space,Equipment,Temperature (°C),Energy Consumption (kWh),Date
+Building 1,F1,Hall 2,Light,,6.3,2025-04-08
+Building 1,GF,Guest Room,AC,23.1,3.8,2025-04-08
+Building 1,F3,Storage Room,Fan,23.8,1.1,2025-04-08
+</dataframe>
+
+
+
+
+Update this initial code:
+```python
+# TODO: import the required dependencies
+import pandas as pd
+
+# Write code here
+
+# Declare result var: 
+type (possible values "string", "number", "dataframe", "plot"). Examples: { "type": "string", "value": f"The highest salary is {highest_salary}." } or { "type": "number", "value": 125 } or { "type": "dataframe", "value": pd.DataFrame({...}) } or { "type": "plot", "value": "temp_chart.png" }
+
+```
+
+
+
+### QUERY
+ Which is the highest energy consumption using Fan ?
+
+Variable `dfs: list[pd.DataFrame]` is already declared.
+
+At the end, declare "result" variable as a dictionary of type and value.
+
+If you are asked to plot a chart, use "matplotlib" for charts, save as png.
+
+
+Generate python code and return full updated code:
+            
+2025-04-09 20:43:32 [INFO] Code generated:
+            ```
+            # TODO: import the required dependencies
+import pandas as pd
+import matplotlib.pyplot as plt
+
+# Assuming dfs is already defined
+dfs = [pd.DataFrame({
+    'Building': ['Building 1', 'Building 1', 'Building 1'],
+    'Floor': ['F1', 'GF', 'F3'],
+    'Space': ['Hall 2', 'Guest Room', 'Storage Room'],
+    'Equipment': ['Light', 'AC', 'Fan'],
+    'Temperature (°C)': [6.3, 23.1, 23.8],
+    'Energy Consumption (kWh)': [6.3, 3.8, 1.1],
+    'Date': ['2025-04-08', '2025-04-08', '2025-04-08']
+})]
+
+# Filter data for Fan equipment
+fan_data = dfs[0][dfs[0]['Equipment'] == 'Fan']
+
+# Find the maximum energy consumption for Fan
+max_energy_consumption = fan_data['Energy Consumption (kWh)'].max()
+
+# Prepare the result
+result = {
+    "type": "number",
+    "value": max_energy_consumption
+}
+
+# Plot the energy consumption for Fan
+plt.figure(figsize=(10, 6))
+plt.bar(fan_data['Space'], fan_data['Energy Consumption (kWh)'], color='skyblue')
+plt.xlabel('Space')
+plt.ylabel('Energy Consumption (kWh)')
+plt.title('Energy Consumption by Space using Fan')
+plt.savefig('fan_energy_consumption.png')
+
+result
+            ```
+            
+2025-04-09 20:43:32 [INFO] Executing Step 4: CachePopulation
+2025-04-09 20:43:32 [INFO] Executing Step 5: CodeCleaning
+2025-04-09 20:43:32 [INFO] Saving charts to D:\Inowell\Backend\exports\charts\temp_chart.png
+2025-04-09 20:43:32 [INFO] 
+Code running:
+```
+fan_data = dfs[0][dfs[0]['Equipment'] == 'Fan']
+max_energy_consumption = fan_data['Energy Consumption (kWh)'].max()
+result = {'type': 'number', 'value': max_energy_consumption}
+plt.figure(figsize=(10, 6))
+plt.bar(fan_data['Space'], fan_data['Energy Consumption (kWh)'], color='skyblue')
+plt.xlabel('Space')
+plt.ylabel('Energy Consumption (kWh)')
+plt.title('Energy Consumption by Space using Fan')
+plt.savefig('D:/Inowell/Backend/exports/charts/temp_chart.png')
+result
+        ```
+2025-04-09 20:43:32 [INFO] Executing Step 6: CodeExecution
+2025-04-09 20:43:33 [INFO] Executing Step 7: ResultValidation
+2025-04-09 20:43:33 [INFO] Answer: {'type': 'number', 'value': 3.7}
+2025-04-09 20:43:33 [INFO] Executing Step 8: ResultParsing
+2025-04-09 20:44:25 [INFO] Client successfully initialized
+2025-04-09 20:44:27 [INFO] HTTP Request: GET https://au-syd.ml.cloud.ibm.com/ml/v1/foundation_model_specs?version=2025-03-20&project_id=853fb52b-1dec-44f4-a11f-29bf0229f522&filters=function_text_generation%2C%21lifecycle_withdrawn%3Aand&limit=200 "HTTP/1.1 200 OK"
+2025-04-09 20:44:28 [INFO] Successfully finished Get available foundation models for url: 'https://au-syd.ml.cloud.ibm.com/ml/v1/foundation_model_specs?version=2025-03-20&project_id=853fb52b-1dec-44f4-a11f-29bf0229f522&filters=function_text_generation%2C%21lifecycle_withdrawn%3Aand&limit=200'
+2025-04-09 20:44:28 [INFO] Question: What are the steps to do reduce the energy consumption in the kitchen ?
+2025-04-09 20:44:28 [INFO] Running PandasAI with langchain_watsonx-chat LLM...
+2025-04-09 20:44:28 [INFO] Prompt ID: f15785b2-5e76-4ef6-a009-4296e41fb479
+2025-04-09 20:44:28 [INFO] Executing Pipeline: GenerateChatPipeline
+2025-04-09 20:44:28 [INFO] Executing Step 0: ValidatePipelineInput
+2025-04-09 20:44:28 [INFO] Executing Step 1: CacheLookup
+2025-04-09 20:44:28 [INFO] Executing Step 2: PromptGeneration
+2025-04-09 20:44:28 [INFO] Using prompt: <dataframe>
+dfs[0]:61x7
+Building,Floor,Space,Equipment,Temperature (°C),Energy Consumption (kWh),Date
+Building 1,GF,Pooja Room,Light,,0.6,2025-04-08
+Building 1,F3,Bathroom 2,AC,23.0,3.8,2025-04-08
+Building 1,F1,Dining Room,Computer,23.8,3.5,2025-04-08
+</dataframe>
+
+
+
+
+Update this initial code:
+```python
+# TODO: import the required dependencies
+import pandas as pd
+
+# Write code here
+
+# Declare result var: 
+type (possible values "string", "number", "dataframe", "plot"). Examples: { "type": "string", "value": f"The highest salary is {highest_salary}." } or { "type": "number", "value": 125 } or { "type": "dataframe", "value": pd.DataFrame({...}) } or { "type": "plot", "value": "temp_chart.png" }
+
+```
+
+
+
+### QUERY
+ What are the steps to do reduce the energy consumption in the kitchen ?
+
+Variable `dfs: list[pd.DataFrame]` is already declared.
+
+At the end, declare "result" variable as a dictionary of type and value.
+
+If you are asked to plot a chart, use "matplotlib" for charts, save as png.
+
+
+Generate python code and return full updated code:
+2025-04-09 20:44:28 [INFO] Executing Step 3: CodeGenerator
+2025-04-09 20:44:33 [INFO] HTTP Request: POST https://au-syd.ml.cloud.ibm.com/ml/v1/text/chat?version=2025-03-20 "HTTP/1.1 200 OK"
+2025-04-09 20:44:33 [INFO] Successfully finished chat for url: 'https://au-syd.ml.cloud.ibm.com/ml/v1/text/chat?version=2025-03-20'
+2025-04-09 20:44:33 [INFO] Prompt used:
+            
+<dataframe>
+dfs[0]:61x7
+Building,Floor,Space,Equipment,Temperature (°C),Energy Consumption (kWh),Date
+Building 1,GF,Pooja Room,Light,,0.6,2025-04-08
+Building 1,F3,Bathroom 2,AC,23.0,3.8,2025-04-08
+Building 1,F1,Dining Room,Computer,23.8,3.5,2025-04-08
+</dataframe>
+
+
+
+
+Update this initial code:
+```python
+# TODO: import the required dependencies
+import pandas as pd
+
+# Write code here
+
+# Declare result var: 
+type (possible values "string", "number", "dataframe", "plot"). Examples: { "type": "string", "value": f"The highest salary is {highest_salary}." } or { "type": "number", "value": 125 } or { "type": "dataframe", "value": pd.DataFrame({...}) } or { "type": "plot", "value": "temp_chart.png" }
+
+```
+
+
+
+### QUERY
+ What are the steps to do reduce the energy consumption in the kitchen ?
+
+Variable `dfs: list[pd.DataFrame]` is already declared.
+
+At the end, declare "result" variable as a dictionary of type and value.
+
+If you are asked to plot a chart, use "matplotlib" for charts, save as png.
+
+
+Generate python code and return full updated code:
+            
+2025-04-09 20:44:33 [INFO] Code generated:
+            ```
+            # TODO: import the required dependencies
+import pandas as pd
+import matplotlib.pyplot as plt
+
+# Read the data
+dfs = [pd.DataFrame({
+    'Building': ['Building 1'],
+    'Floor': ['GF'],
+    'Space': ['Pooja Room'],
+    'Equipment': ['Light'],
+    'Temperature (°C)': [0.6],
+    'Energy Consumption (kWh)': [0.6],
+    'Date': ['2025-04-08']
+})]
+
+# Merge all dataframes
+df = pd.concat(dfs, ignore_index=True)
+
+# Calculate average energy consumption per space
+avg_energy_consumption = df.groupby('Space')['Energy Consumption (kWh)'].mean()
+
+# Identify spaces with high energy consumption
+high_consumption_spaces = avg_energy_consumption[avg_energy_consumption > avg_energy_consumption.mean()].index.tolist()
+
+# Steps to reduce energy consumption in the kitchen
+result = {
+    "type": "string",
+    "value": f"To reduce energy consumption in the kitchen, consider the following steps:\n"
+              f"1. Replace inefficient lighting with energy-efficient alternatives like LED lights.\n"
+              f"2. Use energy-efficient appliances and ensure they are properly maintained.\n"
+              f"3. Implement smart controls for lighting and appliances to reduce unnecessary usage.\n"
+              f"4. Regularly clean and maintain air conditioning units to ensure optimal performance.\n"
+              f"5. Consider using natural light and ventilation where possible.\n"
+              f"6. Monitor and analyze energy consumption data to identify further optimization opportunities.\n"
+              f"In this dataset, the spaces with high energy consumption are: {', '.join(high_consumption_spaces)}."
+}
+
+# Plot energy consumption per space
+plt.figure(figsize=(10, 6))
+avg_energy_consumption.plot(kind='bar')
+plt.title('Average Energy Consumption per Space')
+plt.xlabel('Space')
+plt.ylabel('Energy Consumption (kWh)')
+plt.savefig('energy_consumption_chart.png')
+
+result
+            ```
+            
+2025-04-09 20:44:33 [INFO] Executing Step 4: CachePopulation
+2025-04-09 20:44:33 [INFO] Executing Step 5: CodeCleaning
+2025-04-09 20:44:33 [INFO] Saving charts to D:\Inowell\Backend\exports\charts\temp_chart.png
+2025-04-09 20:44:33 [INFO] 
+Code running:
+```
+df = pd.concat(dfs, ignore_index=True)
+avg_energy_consumption = df.groupby('Space')['Energy Consumption (kWh)'].mean()
+high_consumption_spaces = avg_energy_consumption[avg_energy_consumption > avg_energy_consumption.mean()].index.tolist()
+result = {'type': 'string', 'value': f"""To reduce energy consumption in the kitchen, consider the following steps:
+1. Replace inefficient lighting with energy-efficient alternatives like LED lights.
+2. Use energy-efficient appliances and ensure they are properly maintained.
+3. Implement smart controls for lighting and appliances to reduce unnecessary usage.
+4. Regularly clean and maintain air conditioning units to ensure optimal performance.
+5. Consider using natural light and ventilation where possible.
+6. Monitor and analyze energy consumption data to identify further optimization opportunities.
+In this dataset, the spaces with high energy consumption are: {', '.join(high_consumption_spaces)}."""}
+plt.figure(figsize=(10, 6))
+avg_energy_consumption.plot(kind='bar')
+plt.title('Average Energy Consumption per Space')
+plt.xlabel('Space')
+plt.ylabel('Energy Consumption (kWh)')
+plt.savefig('D:/Inowell/Backend/exports/charts/temp_chart.png')
+result
+        ```
+2025-04-09 20:44:33 [INFO] Executing Step 6: CodeExecution
+2025-04-09 20:44:33 [INFO] Executing Step 7: ResultValidation
+2025-04-09 20:44:33 [INFO] Answer: {'type': 'string', 'value': 'To reduce energy consumption in the kitchen, consider the following steps:\n1. Replace inefficient lighting with energy-efficient alternatives like LED lights.\n2. Use energy-efficient appliances and ensure they are properly maintained.\n3. Implement smart controls for lighting and appliances to reduce unnecessary usage.\n4. Regularly clean and maintain air conditioning units to ensure optimal performance.\n5. Consider using natural light and ventilation where possible.\n6. Monitor and analyze energy consumption data to identify further optimization opportunities.\nIn this dataset, the spaces with high energy consumption are: Bedroom 1, Bedroom 2, Bedroom 3, Dining Room, Guest Room, Hall 1, Hall 2, Hall 3, Kitchen 1, Library, Office Room, Study Room, Waiting Hall.'}
+2025-04-09 20:44:33 [INFO] Executing Step 8: ResultParsing
+2025-04-09 20:45:52 [INFO] Client successfully initialized
+2025-04-09 20:45:54 [INFO] HTTP Request: GET https://au-syd.ml.cloud.ibm.com/ml/v1/foundation_model_specs?version=2025-03-20&project_id=853fb52b-1dec-44f4-a11f-29bf0229f522&filters=function_text_generation%2C%21lifecycle_withdrawn%3Aand&limit=200 "HTTP/1.1 200 OK"
+2025-04-09 20:45:54 [INFO] Successfully finished Get available foundation models for url: 'https://au-syd.ml.cloud.ibm.com/ml/v1/foundation_model_specs?version=2025-03-20&project_id=853fb52b-1dec-44f4-a11f-29bf0229f522&filters=function_text_generation%2C%21lifecycle_withdrawn%3Aand&limit=200'
+2025-04-09 20:45:54 [INFO] Question: What are the types of equipment ?
+2025-04-09 20:45:54 [INFO] Running PandasAI with langchain_watsonx-chat LLM...
+2025-04-09 20:45:54 [INFO] Prompt ID: ba914dab-c509-4699-90f1-1db93a4128f5
+2025-04-09 20:45:54 [INFO] Executing Pipeline: GenerateChatPipeline
+2025-04-09 20:45:54 [INFO] Executing Step 0: ValidatePipelineInput
+2025-04-09 20:45:54 [INFO] Executing Step 1: CacheLookup
+2025-04-09 20:45:54 [INFO] Executing Step 2: PromptGeneration
+2025-04-09 20:45:54 [INFO] Using prompt: <dataframe>
+dfs[0]:61x7
+Building,Floor,Space,Equipment,Temperature (°C),Energy Consumption (kWh),Date
+Building 1,F3,Guest Room,Fan,25.2,3.2,2025-04-08
+Building 1,GF,Dining Room,Microwave,,0.6,2025-04-08
+Building 1,F1,Bathroom 2,Heater,22.2,3.7,2025-04-08
+</dataframe>
+
+
+
+
+Update this initial code:
+```python
+# TODO: import the required dependencies
+import pandas as pd
+
+# Write code here
+
+# Declare result var: 
+type (possible values "string", "number", "dataframe", "plot"). Examples: { "type": "string", "value": f"The highest salary is {highest_salary}." } or { "type": "number", "value": 125 } or { "type": "dataframe", "value": pd.DataFrame({...}) } or { "type": "plot", "value": "temp_chart.png" }
+
+```
+
+
+
+### QUERY
+ What are the types of equipment ?
+
+Variable `dfs: list[pd.DataFrame]` is already declared.
+
+At the end, declare "result" variable as a dictionary of type and value.
+
+If you are asked to plot a chart, use "matplotlib" for charts, save as png.
+
+
+Generate python code and return full updated code:
+2025-04-09 20:45:54 [INFO] Executing Step 3: CodeGenerator
+2025-04-09 20:45:57 [INFO] HTTP Request: POST https://au-syd.ml.cloud.ibm.com/ml/v1/text/chat?version=2025-03-20 "HTTP/1.1 200 OK"
+2025-04-09 20:45:57 [INFO] Successfully finished chat for url: 'https://au-syd.ml.cloud.ibm.com/ml/v1/text/chat?version=2025-03-20'
+2025-04-09 20:45:57 [INFO] Prompt used:
+            
+<dataframe>
+dfs[0]:61x7
+Building,Floor,Space,Equipment,Temperature (°C),Energy Consumption (kWh),Date
+Building 1,F3,Guest Room,Fan,25.2,3.2,2025-04-08
+Building 1,GF,Dining Room,Microwave,,0.6,2025-04-08
+Building 1,F1,Bathroom 2,Heater,22.2,3.7,2025-04-08
+</dataframe>
+
+
+
+
+Update this initial code:
+```python
+# TODO: import the required dependencies
+import pandas as pd
+
+# Write code here
+
+# Declare result var: 
+type (possible values "string", "number", "dataframe", "plot"). Examples: { "type": "string", "value": f"The highest salary is {highest_salary}." } or { "type": "number", "value": 125 } or { "type": "dataframe", "value": pd.DataFrame({...}) } or { "type": "plot", "value": "temp_chart.png" }
+
+```
+
+
+
+### QUERY
+ What are the types of equipment ?
+
+Variable `dfs: list[pd.DataFrame]` is already declared.
+
+At the end, declare "result" variable as a dictionary of type and value.
+
+If you are asked to plot a chart, use "matplotlib" for charts, save as png.
+
+
+Generate python code and return full updated code:
+            
+2025-04-09 20:45:57 [INFO] Code generated:
+            ```
+            # TODO: import the required dependencies
+import pandas as pd
+import matplotlib.pyplot as plt
+
+# Combine all dataframes into one
+combined_df = pd.concat(dfs, ignore_index=True)
+
+# Get unique equipment types
+equipment_types = combined_df['Equipment'].unique()
+
+# Prepare result
+result = {
+    "type": "string",
+    "value": f"The types of equipment are: {', '.join(equipment_types)}"
+}
+
+# Plot equipment energy consumption
+equipment_energy = combined_df.groupby('Equipment')['Energy Consumption (kWh)'].sum().sort_values(ascending=False)
+equipment_energy.plot(kind='bar')
+plt.title('Equipment Energy Consumption')
+plt.xlabel('Equipment')
+plt.ylabel('Energy Consumption (kWh)')
+plt.savefig('equipment_energy.png')
+
+result
+            ```
+            
+2025-04-09 20:45:57 [INFO] Executing Step 4: CachePopulation
+2025-04-09 20:45:57 [INFO] Executing Step 5: CodeCleaning
+2025-04-09 20:45:57 [INFO] Saving charts to D:\Inowell\Backend\exports\charts\temp_chart.png
+2025-04-09 20:45:57 [INFO] 
+Code running:
+```
+combined_df = pd.concat(dfs, ignore_index=True)
+equipment_types = combined_df['Equipment'].unique()
+result = {'type': 'string', 'value': f"The types of equipment are: {', '.join(equipment_types)}"}
+equipment_energy = combined_df.groupby('Equipment')['Energy Consumption (kWh)'].sum().sort_values(ascending=False)
+equipment_energy.plot(kind='bar')
+plt.title('Equipment Energy Consumption')
+plt.xlabel('Equipment')
+plt.ylabel('Energy Consumption (kWh)')
+plt.savefig('D:/Inowell/Backend/exports/charts/temp_chart.png')
+result
+        ```
+2025-04-09 20:45:57 [INFO] Executing Step 6: CodeExecution
+2025-04-09 20:45:57 [INFO] Executing Step 7: ResultValidation
+2025-04-09 20:45:57 [INFO] Answer: {'type': 'string', 'value': 'The types of equipment are: AC, Fan, Light, Microwave, Refrigerator, Heater, TV, Computer'}
+2025-04-09 20:45:57 [INFO] Executing Step 8: ResultParsing
+2025-04-09 20:49:18 [INFO] Client successfully initialized
+2025-04-09 20:49:20 [INFO] HTTP Request: GET https://au-syd.ml.cloud.ibm.com/ml/v1/foundation_model_specs?version=2025-03-20&project_id=853fb52b-1dec-44f4-a11f-29bf0229f522&filters=function_text_generation%2C%21lifecycle_withdrawn%3Aand&limit=200 "HTTP/1.1 200 OK"
+2025-04-09 20:49:20 [INFO] Successfully finished Get available foundation models for url: 'https://au-syd.ml.cloud.ibm.com/ml/v1/foundation_model_specs?version=2025-03-20&project_id=853fb52b-1dec-44f4-a11f-29bf0229f522&filters=function_text_generation%2C%21lifecycle_withdrawn%3Aand&limit=200'
+2025-04-09 20:49:20 [INFO] Question: Are there any zones that are experiencing significant temperature fluctuations or discomfort?
+2025-04-09 20:49:20 [INFO] Running PandasAI with langchain_watsonx-chat LLM...
+2025-04-09 20:49:20 [INFO] Prompt ID: b887e37d-ac80-498e-9580-4761fb9a8739
+2025-04-09 20:49:20 [INFO] Executing Pipeline: GenerateChatPipeline
+2025-04-09 20:49:20 [INFO] Executing Step 0: ValidatePipelineInput
+2025-04-09 20:49:20 [INFO] Executing Step 1: CacheLookup
+2025-04-09 20:49:20 [INFO] Executing Step 2: PromptGeneration
+2025-04-09 20:49:20 [INFO] Using prompt: <dataframe>
+dfs[0]:61x7
+Building,Floor,Space,Equipment,Temperature (°C),Energy Consumption (kWh),Date
+Building 1,F1,Study Room,Light,22.5,1.2,2025-04-08
+Building 1,GF,Library,Microwave,23.0,3.8,2025-04-08
+Building 1,F2,Office Room,AC,,3.9,2025-04-08
+</dataframe>
+
+
+
+
+Update this initial code:
+```python
+# TODO: import the required dependencies
+import pandas as pd
+
+# Write code here
+
+# Declare result var: 
+type (possible values "string", "number", "dataframe", "plot"). Examples: { "type": "string", "value": f"The highest salary is {highest_salary}." } or { "type": "number", "value": 125 } or { "type": "dataframe", "value": pd.DataFrame({...}) } or { "type": "plot", "value": "temp_chart.png" }
+
+```
+
+
+
+### QUERY
+ Are there any zones that are experiencing significant temperature fluctuations or discomfort?
+
+Variable `dfs: list[pd.DataFrame]` is already declared.
+
+At the end, declare "result" variable as a dictionary of type and value.
+
+If you are asked to plot a chart, use "matplotlib" for charts, save as png.
+
+
+Generate python code and return full updated code:
+2025-04-09 20:49:20 [INFO] Executing Step 3: CodeGenerator
+2025-04-09 20:49:22 [INFO] HTTP Request: POST https://au-syd.ml.cloud.ibm.com/ml/v1/text/chat?version=2025-03-20 "HTTP/1.1 200 OK"
+2025-04-09 20:49:22 [INFO] Successfully finished chat for url: 'https://au-syd.ml.cloud.ibm.com/ml/v1/text/chat?version=2025-03-20'
+2025-04-09 20:49:22 [INFO] Prompt used:
+            
+<dataframe>
+dfs[0]:61x7
+Building,Floor,Space,Equipment,Temperature (°C),Energy Consumption (kWh),Date
+Building 1,F1,Study Room,Light,22.5,1.2,2025-04-08
+Building 1,GF,Library,Microwave,23.0,3.8,2025-04-08
+Building 1,F2,Office Room,AC,,3.9,2025-04-08
+</dataframe>
+
+
+
+
+Update this initial code:
+```python
+# TODO: import the required dependencies
+import pandas as pd
+
+# Write code here
+
+# Declare result var: 
+type (possible values "string", "number", "dataframe", "plot"). Examples: { "type": "string", "value": f"The highest salary is {highest_salary}." } or { "type": "number", "value": 125 } or { "type": "dataframe", "value": pd.DataFrame({...}) } or { "type": "plot", "value": "temp_chart.png" }
+
+```
+
+
+
+### QUERY
+ Are there any zones that are experiencing significant temperature fluctuations or discomfort?
+
+Variable `dfs: list[pd.DataFrame]` is already declared.
+
+At the end, declare "result" variable as a dictionary of type and value.
+
+If you are asked to plot a chart, use "matplotlib" for charts, save as png.
+
+
+Generate python code and return full updated code:
+            
+2025-04-09 20:49:22 [INFO] Code generated:
+            ```
+            # TODO: import the required dependencies
+import pandas as pd
+import matplotlib.pyplot as plt
+
+# Declare result var: 
+result = {
+    "type": "dataframe",
+    "value": dfs[0]
+}
+
+# Calculate temperature fluctuations
+dfs[0]['Temperature Fluctuation'] = dfs[0].groupby('Building')['Temperature (°C)'].apply(lambda x: x.diff().abs().max())
+
+# Identify zones with significant temperature fluctuations
+significant_fluctuations = dfs[0][dfs[0]['Temperature Fluctuation'] > 5]
+
+# Plot temperature fluctuations
+plt.figure(figsize=(10, 6))
+for building, group in significant_fluctuations.groupby('Building'):
+    plt.plot(group['Date'], group['Temperature (°C)'], label=building)
+plt.title('Temperature Fluctuations')
+plt.xlabel('Date')
+plt.ylabel('Temperature (°C)')
+plt.legend()
+plt.savefig('temperature_fluctuations.png')
+
+# Update result
+result = {
+    "type": "dataframe",
+    "value": significant_fluctuations
+}
+
+result
+            ```
+            
+2025-04-09 20:49:22 [INFO] Executing Step 4: CachePopulation
+2025-04-09 20:49:23 [INFO] Executing Step 5: CodeCleaning
+2025-04-09 20:49:23 [INFO] Saving charts to D:\Inowell\Backend\exports\charts\temp_chart.png
+2025-04-09 20:49:23 [INFO] 
+Code running:
+```
+result = {'type': 'dataframe', 'value': dfs[0]}
+dfs[0]['Temperature Fluctuation'] = dfs[0].groupby('Building')['Temperature (°C)'].apply(lambda x: x.diff().abs().max())
+significant_fluctuations = dfs[0][dfs[0]['Temperature Fluctuation'] > 5]
+plt.figure(figsize=(10, 6))
+for building, group in significant_fluctuations.groupby('Building'):
+    plt.plot(group['Date'], group['Temperature (°C)'], label=building)
+plt.title('Temperature Fluctuations')
+plt.xlabel('Date')
+plt.ylabel('Temperature (°C)')
+plt.legend()
+plt.savefig('D:/Inowell/Backend/exports/charts/temp_chart.png')
+result = {'type': 'dataframe', 'value': significant_fluctuations}
+result
+        ```
+2025-04-09 20:49:23 [INFO] Executing Step 6: CodeExecution
+2025-04-09 20:49:23 [INFO] Executing Step 7: ResultValidation
+2025-04-09 20:49:23 [INFO] Answer: {'type': 'dataframe', 'value': Empty DataFrame
+Columns: [Building, Floor, Space, Equipment, Temperature (°C), Energy Consumption (kWh), Date, Temperature Fluctuation]
+Index: []}
+2025-04-09 20:49:23 [INFO] Executing Step 8: ResultParsing
+2025-04-09 20:49:54 [INFO] Client successfully initialized
+2025-04-09 20:49:56 [INFO] HTTP Request: GET https://au-syd.ml.cloud.ibm.com/ml/v1/foundation_model_specs?version=2025-03-20&project_id=853fb52b-1dec-44f4-a11f-29bf0229f522&filters=function_text_generation%2C%21lifecycle_withdrawn%3Aand&limit=200 "HTTP/1.1 200 OK"
+2025-04-09 20:49:56 [INFO] Successfully finished Get available foundation models for url: 'https://au-syd.ml.cloud.ibm.com/ml/v1/foundation_model_specs?version=2025-03-20&project_id=853fb52b-1dec-44f4-a11f-29bf0229f522&filters=function_text_generation%2C%21lifecycle_withdrawn%3Aand&limit=200'
+2025-04-09 20:49:56 [INFO] Question: What is the current energy consumption of the HVAC system, and how does it compare to historical data for this time of year
+2025-04-09 20:49:56 [INFO] Running PandasAI with langchain_watsonx-chat LLM...
+2025-04-09 20:49:56 [INFO] Prompt ID: 34500d80-9cbf-4bee-8833-949af76d3b3d
+2025-04-09 20:49:56 [INFO] Executing Pipeline: GenerateChatPipeline
+2025-04-09 20:49:56 [INFO] Executing Step 0: ValidatePipelineInput
+2025-04-09 20:49:56 [INFO] Executing Step 1: CacheLookup
+2025-04-09 20:49:56 [INFO] Executing Step 2: PromptGeneration
+2025-04-09 20:49:56 [INFO] Using prompt: <dataframe>
+dfs[0]:61x7
+Building,Floor,Space,Equipment,Temperature (°C),Energy Consumption (kWh),Date
+Building 1,F3,Waiting Hall,Light,24.2,5.1,2025-04-08
+Building 1,GF,Bedroom 2,Microwave,,0.8,2025-04-08
+Building 1,F1,Kitchen 2,Heater,23.0,3.5,2025-04-08
+</dataframe>
+
+
+
+
+Update this initial code:
+```python
+# TODO: import the required dependencies
+import pandas as pd
+
+# Write code here
+
+# Declare result var: 
+type (possible values "string", "number", "dataframe", "plot"). Examples: { "type": "string", "value": f"The highest salary is {highest_salary}." } or { "type": "number", "value": 125 } or { "type": "dataframe", "value": pd.DataFrame({...}) } or { "type": "plot", "value": "temp_chart.png" }
+
+```
+
+
+
+### QUERY
+ What is the current energy consumption of the HVAC system, and how does it compare to historical data for this time of year
+
+Variable `dfs: list[pd.DataFrame]` is already declared.
+
+At the end, declare "result" variable as a dictionary of type and value.
+
+If you are asked to plot a chart, use "matplotlib" for charts, save as png.
+
+
+Generate python code and return full updated code:
+2025-04-09 20:49:56 [INFO] Executing Step 3: CodeGenerator
+2025-04-09 20:50:05 [INFO] HTTP Request: POST https://au-syd.ml.cloud.ibm.com/ml/v1/text/chat?version=2025-03-20 "HTTP/1.1 200 OK"
+2025-04-09 20:50:05 [INFO] Successfully finished chat for url: 'https://au-syd.ml.cloud.ibm.com/ml/v1/text/chat?version=2025-03-20'
+2025-04-09 20:50:05 [ERROR] Pipeline failed on step 3: No code found in the response
+2025-04-09 20:50:23 [INFO] Client successfully initialized
+2025-04-09 20:50:25 [INFO] HTTP Request: GET https://au-syd.ml.cloud.ibm.com/ml/v1/foundation_model_specs?version=2025-03-20&project_id=853fb52b-1dec-44f4-a11f-29bf0229f522&filters=function_text_generation%2C%21lifecycle_withdrawn%3Aand&limit=200 "HTTP/1.1 200 OK"
+2025-04-09 20:50:25 [INFO] Successfully finished Get available foundation models for url: 'https://au-syd.ml.cloud.ibm.com/ml/v1/foundation_model_specs?version=2025-03-20&project_id=853fb52b-1dec-44f4-a11f-29bf0229f522&filters=function_text_generation%2C%21lifecycle_withdrawn%3Aand&limit=200'
+2025-04-09 20:50:25 [INFO] Question: How can we optimize the cooling schedule for the third floor based on the current occupancy?
+2025-04-09 20:50:25 [INFO] Running PandasAI with langchain_watsonx-chat LLM...
+2025-04-09 20:50:25 [INFO] Prompt ID: ff248f73-c44f-49dd-8805-709dec61e293
+2025-04-09 20:50:25 [INFO] Executing Pipeline: GenerateChatPipeline
+2025-04-09 20:50:25 [INFO] Executing Step 0: ValidatePipelineInput
+2025-04-09 20:50:25 [INFO] Executing Step 1: CacheLookup
+2025-04-09 20:50:25 [INFO] Executing Step 2: PromptGeneration
+2025-04-09 20:50:25 [INFO] Using prompt: <dataframe>
+dfs[0]:61x7
+Building,Floor,Space,Equipment,Temperature (°C),Energy Consumption (kWh),Date
+Building 1,F2,Bedroom 2,Microwave,23.5,0.2,2025-04-08
+Building 1,F3,Hall 1,Refrigerator,,4.2,2025-04-08
+Building 1,GF,Bathroom 1,Heater,22.5,4.0,2025-04-08
+</dataframe>
+
+
+
+
+Update this initial code:
+```python
+# TODO: import the required dependencies
+import pandas as pd
+
+# Write code here
+
+# Declare result var: 
+type (possible values "string", "number", "dataframe", "plot"). Examples: { "type": "string", "value": f"The highest salary is {highest_salary}." } or { "type": "number", "value": 125 } or { "type": "dataframe", "value": pd.DataFrame({...}) } or { "type": "plot", "value": "temp_chart.png" }
+
+```
+
+
+
+### QUERY
+ How can we optimize the cooling schedule for the third floor based on the current occupancy?
+
+Variable `dfs: list[pd.DataFrame]` is already declared.
+
+At the end, declare "result" variable as a dictionary of type and value.
+
+If you are asked to plot a chart, use "matplotlib" for charts, save as png.
+
+
+Generate python code and return full updated code:
+2025-04-09 20:50:25 [INFO] Executing Step 3: CodeGenerator
+2025-04-09 20:50:29 [INFO] HTTP Request: POST https://au-syd.ml.cloud.ibm.com/ml/v1/text/chat?version=2025-03-20 "HTTP/1.1 200 OK"
+2025-04-09 20:50:29 [INFO] Successfully finished chat for url: 'https://au-syd.ml.cloud.ibm.com/ml/v1/text/chat?version=2025-03-20'
+2025-04-09 20:50:29 [INFO] Prompt used:
+            
+<dataframe>
+dfs[0]:61x7
+Building,Floor,Space,Equipment,Temperature (°C),Energy Consumption (kWh),Date
+Building 1,F2,Bedroom 2,Microwave,23.5,0.2,2025-04-08
+Building 1,F3,Hall 1,Refrigerator,,4.2,2025-04-08
+Building 1,GF,Bathroom 1,Heater,22.5,4.0,2025-04-08
+</dataframe>
+
+
+
+
+Update this initial code:
+```python
+# TODO: import the required dependencies
+import pandas as pd
+
+# Write code here
+
+# Declare result var: 
+type (possible values "string", "number", "dataframe", "plot"). Examples: { "type": "string", "value": f"The highest salary is {highest_salary}." } or { "type": "number", "value": 125 } or { "type": "dataframe", "value": pd.DataFrame({...}) } or { "type": "plot", "value": "temp_chart.png" }
+
+```
+
+
+
+### QUERY
+ How can we optimize the cooling schedule for the third floor based on the current occupancy?
+
+Variable `dfs: list[pd.DataFrame]` is already declared.
+
+At the end, declare "result" variable as a dictionary of type and value.
+
+If you are asked to plot a chart, use "matplotlib" for charts, save as png.
+
+
+Generate python code and return full updated code:
+            
+2025-04-09 20:50:29 [INFO] Code generated:
+            ```
+            import pandas as pd
+import matplotlib.pyplot as plt
+
+# Combine all dataframes into one
+combined_df = pd.concat(dfs, ignore_index=True)
+
+# Calculate total energy consumption for each floor
+floor_energy = combined_df.groupby('Floor')['Energy Consumption (kWh)'].sum()
+
+# Calculate average temperature for each floor
+floor_avg_temp = combined_df.groupby('Floor')['Temperature (°C)'].mean()
+
+# Determine the current occupancy for each floor
+occupancy = {
+    'F2': 1,  # Assuming Bedroom 2 is occupied
+    'F3': 1,  # Assuming Hall 1 is occupied
+    'GF': 1   # Assuming Bathroom 1 is occupied
+}
+
+# Calculate the cooling efficiency for each floor
+cooling_efficiency = floor_energy / floor_avg_temp
+
+# Determine the optimal cooling schedule based on occupancy and cooling efficiency
+optimal_schedule = {}
+for floor, occupancy_level in occupancy.items():
+    if occupancy_level == 1:
+        optimal_schedule[floor] = 'Low'
+    else:
+        optimal_schedule[floor] = 'High'
+
+# Plot the temperature data for each floor
+plt.figure(figsize=(10, 6))
+for floor, group in combined_df.groupby('Floor'):
+    plt.plot(group['Date'], group['Temperature (°C)'], label=floor)
+plt.title('Temperature over Time by Floor')
+plt.xlabel('Date')
+plt.ylabel('Temperature (°C)')
+plt.legend()
+plt.grid(True)
+plt.savefig('temp_chart.png')
+
+# Prepare the result
+result = {
+    "type": "dataframe",
+    "value": pd.DataFrame({
+        'Floor': list(optimal_schedule.keys()),
+        'Cooling Schedule': list(optimal_schedule.values())
+    })
+}
+
+result
+            ```
+            
+2025-04-09 20:50:29 [INFO] Executing Step 4: CachePopulation
+2025-04-09 20:50:29 [INFO] Executing Step 5: CodeCleaning
+2025-04-09 20:50:29 [INFO] Saving charts to D:\Inowell\Backend\exports\charts\temp_chart.png
+2025-04-09 20:50:29 [INFO] 
+Code running:
+```
+combined_df = pd.concat(dfs, ignore_index=True)
+floor_energy = combined_df.groupby('Floor')['Energy Consumption (kWh)'].sum()
+floor_avg_temp = combined_df.groupby('Floor')['Temperature (°C)'].mean()
+occupancy = {'F2': 1, 'F3': 1, 'GF': 1}
+cooling_efficiency = floor_energy / floor_avg_temp
+optimal_schedule = {}
+for floor, occupancy_level in occupancy.items():
+    if occupancy_level == 1:
+        optimal_schedule[floor] = 'Low'
+    else:
+        optimal_schedule[floor] = 'High'
+plt.figure(figsize=(10, 6))
+for floor, group in combined_df.groupby('Floor'):
+    plt.plot(group['Date'], group['Temperature (°C)'], label=floor)
+plt.title('Temperature over Time by Floor')
+plt.xlabel('Date')
+plt.ylabel('Temperature (°C)')
+plt.legend()
+plt.grid(True)
+plt.savefig('D:/Inowell/Backend/exports/charts/temp_chart.png')
+result = {'type': 'dataframe', 'value': pd.DataFrame({'Floor': list(optimal_schedule.keys()), 'Cooling Schedule': list(optimal_schedule.values())})}
+result
+        ```
+2025-04-09 20:50:29 [INFO] Executing Step 6: CodeExecution
+2025-04-09 20:50:30 [INFO] Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2025-04-09 20:50:30 [INFO] Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2025-04-09 20:50:30 [INFO] Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2025-04-09 20:50:30 [INFO] Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2025-04-09 20:50:30 [INFO] Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2025-04-09 20:50:30 [INFO] Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2025-04-09 20:50:30 [INFO] Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2025-04-09 20:50:30 [INFO] Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+2025-04-09 20:50:30 [INFO] Executing Step 7: ResultValidation
+2025-04-09 20:50:30 [INFO] Answer: {'type': 'dataframe', 'value':   Floor Cooling Schedule
+0    F2              Low
+1    F3              Low
+2    GF              Low}
+2025-04-09 20:50:30 [INFO] Executing Step 8: ResultParsing
+2025-04-09 22:19:30 [INFO] Question: How many ac which is present in ground floor ?
+2025-04-09 22:19:30 [INFO] Running PandasAI with langchain_watsonx-chat LLM...
+2025-04-09 22:19:30 [INFO] Prompt ID: 03722280-cde4-450f-89c7-f82cf0470e81
+2025-04-09 22:19:30 [INFO] Executing Pipeline: GenerateChatPipeline
+2025-04-09 22:19:30 [INFO] Executing Step 0: ValidatePipelineInput
+2025-04-09 22:19:30 [INFO] Executing Step 1: CacheLookup
+2025-04-09 22:19:30 [INFO] Executing Step 2: PromptGeneration
+2025-04-09 22:19:30 [INFO] Using prompt: <dataframe>
+dfs[0]:61x7
+Building,Floor,Space,Equipment,Temperature (°C),Energy Consumption (kWh),Date
+Building 1,F2,Dining Room,Computer,24.2,1.0,2025-04-08
+Building 1,GF,Bathroom 2,AC,,3.7,2025-04-08
+Building 1,F3,Bedroom 1,Microwave,22.2,2.4,2025-04-08
+</dataframe>
+
+
+
+
+Update this initial code:
+```python
+# TODO: import the required dependencies
+import pandas as pd
+
+# Write code here
+
+# Declare result var: 
+type (possible values "string", "number", "dataframe", "plot"). Examples: { "type": "string", "value": f"The highest salary is {highest_salary}." } or { "type": "number", "value": 125 } or { "type": "dataframe", "value": pd.DataFrame({...}) } or { "type": "plot", "value": "temp_chart.png" }
+
+```
+
+
+
+### QUERY
+ How many ac which is present in ground floor ?
+
+Variable `dfs: list[pd.DataFrame]` is already declared.
+
+At the end, declare "result" variable as a dictionary of type and value.
+
+If you are asked to plot a chart, use "matplotlib" for charts, save as png.
+
+
+Generate python code and return full updated code:
+2025-04-09 22:19:30 [INFO] Executing Step 3: CodeGenerator
+2025-04-09 22:19:34 [INFO] HTTP Request: POST https://au-syd.ml.cloud.ibm.com/ml/v1/text/chat?version=2025-03-20 "HTTP/1.1 200 OK"
+2025-04-09 22:19:34 [INFO] Successfully finished chat for url: 'https://au-syd.ml.cloud.ibm.com/ml/v1/text/chat?version=2025-03-20'
+2025-04-09 22:19:34 [INFO] Prompt used:
+            
+<dataframe>
+dfs[0]:61x7
+Building,Floor,Space,Equipment,Temperature (°C),Energy Consumption (kWh),Date
+Building 1,F2,Dining Room,Computer,24.2,1.0,2025-04-08
+Building 1,GF,Bathroom 2,AC,,3.7,2025-04-08
+Building 1,F3,Bedroom 1,Microwave,22.2,2.4,2025-04-08
+</dataframe>
+
+
+
+
+Update this initial code:
+```python
+# TODO: import the required dependencies
+import pandas as pd
+
+# Write code here
+
+# Declare result var: 
+type (possible values "string", "number", "dataframe", "plot"). Examples: { "type": "string", "value": f"The highest salary is {highest_salary}." } or { "type": "number", "value": 125 } or { "type": "dataframe", "value": pd.DataFrame({...}) } or { "type": "plot", "value": "temp_chart.png" }
+
+```
+
+
+
+### QUERY
+ How many ac which is present in ground floor ?
+
+Variable `dfs: list[pd.DataFrame]` is already declared.
+
+At the end, declare "result" variable as a dictionary of type and value.
+
+If you are asked to plot a chart, use "matplotlib" for charts, save as png.
+
+
+Generate python code and return full updated code:
+            
+2025-04-09 22:19:34 [INFO] Code generated:
+            ```
+            # TODO: import the required dependencies
+import pandas as pd
+import matplotlib.pyplot as plt
+
+# Assuming dfs is already defined
+dfs = [pd.DataFrame({
+    'Building': ['Building 1'],
+    'Floor': ['GF'],
+    'Space': ['Bathroom 2'],
+    'Equipment': ['AC'],
+    'Temperature (°C)': [np.nan],
+    'Energy Consumption (kWh)': [3.7],
+    'Date': ['2025-04-08']
+})]
+
+# Filter for AC equipment on ground floor
+ac_on_ground_floor = dfs[0][(dfs[0]['Equipment'] == 'AC') & (dfs[0]['Floor'] == 'GF')]
+
+# Count the number of AC units on the ground floor
+num_ac_on_ground_floor = len(ac_on_ground_floor)
+
+# Declare result var:
+result = {
+    "type": "number",
+    "value": num_ac_on_ground_floor
+}
+
+# Print the result
+print(f"Number of AC units on the ground floor: {num_ac_on_ground_floor}")
+
+# Plot a bar chart (if needed)
+# plt.bar(['Ground Floor'], [num_ac_on_ground_floor])
+# plt.title('Number of AC Units on Ground Floor')
+# plt.xlabel('Floor')
+# plt.ylabel('Number of AC Units')
+# plt.savefig('ac_on_ground_floor.png')
+            ```
+            
+2025-04-09 22:19:34 [INFO] Executing Step 4: CachePopulation
+2025-04-09 22:19:34 [INFO] Executing Step 5: CodeCleaning
+2025-04-09 22:19:34 [INFO] Saving charts to D:\Inowell\Backend\exports\charts\temp_chart.png
+2025-04-09 22:19:34 [INFO] 
+Code running:
+```
+ac_on_ground_floor = dfs[0][(dfs[0]['Equipment'] == 'AC') & (dfs[0]['Floor'] == 'GF')]
+num_ac_on_ground_floor = len(ac_on_ground_floor)
+result = {'type': 'number', 'value': num_ac_on_ground_floor}
+print(f'Number of AC units on the ground floor: {num_ac_on_ground_floor}')
+        ```
+2025-04-09 22:19:34 [INFO] Executing Step 6: CodeExecution
+2025-04-09 22:19:34 [INFO] Executing Step 7: ResultValidation
+2025-04-09 22:19:34 [INFO] Answer: {'type': 'number', 'value': 5}
+2025-04-09 22:19:34 [INFO] Executing Step 8: ResultParsing
+2025-04-09 22:19:59 [INFO] Client successfully initialized
+2025-04-09 22:20:00 [INFO] HTTP Request: GET https://au-syd.ml.cloud.ibm.com/ml/v1/foundation_model_specs?version=2025-03-20&project_id=853fb52b-1dec-44f4-a11f-29bf0229f522&filters=function_text_generation%2C%21lifecycle_withdrawn%3Aand&limit=200 "HTTP/1.1 200 OK"
+2025-04-09 22:20:00 [INFO] Successfully finished Get available foundation models for url: 'https://au-syd.ml.cloud.ibm.com/ml/v1/foundation_model_specs?version=2025-03-20&project_id=853fb52b-1dec-44f4-a11f-29bf0229f522&filters=function_text_generation%2C%21lifecycle_withdrawn%3Aand&limit=200'
+2025-04-09 22:20:00 [INFO] Question: How many rows totally you have ?
+2025-04-09 22:20:00 [INFO] Running PandasAI with langchain_watsonx-chat LLM...
+2025-04-09 22:20:00 [INFO] Prompt ID: 222d881a-9d05-487a-b9ca-72c0f615cc00
+2025-04-09 22:20:00 [INFO] Executing Pipeline: GenerateChatPipeline
+2025-04-09 22:20:00 [INFO] Executing Step 0: ValidatePipelineInput
+2025-04-09 22:20:00 [INFO] Executing Step 1: CacheLookup
+2025-04-09 22:20:00 [INFO] Executing Step 2: PromptGeneration
+2025-04-09 22:20:00 [INFO] Using prompt: <dataframe>
+dfs[0]:61x7
+Building,Floor,Space,Equipment,Temperature (°C),Energy Consumption (kWh),Date
+Building 1,GF,Study Room,Refrigerator,22.5,0.2,2025-04-08
+Building 1,F1,Terrace,AC,22.2,4.5,2025-04-08
+Building 1,F2,Library,Computer,,4.1,2025-04-08
+</dataframe>
+
+
+
+
+Update this initial code:
+```python
+# TODO: import the required dependencies
+import pandas as pd
+
+# Write code here
+
+# Declare result var: 
+type (possible values "string", "number", "dataframe", "plot"). Examples: { "type": "string", "value": f"The highest salary is {highest_salary}." } or { "type": "number", "value": 125 } or { "type": "dataframe", "value": pd.DataFrame({...}) } or { "type": "plot", "value": "temp_chart.png" }
+
+```
+
+
+
+### QUERY
+ How many rows totally you have ?
+
+Variable `dfs: list[pd.DataFrame]` is already declared.
+
+At the end, declare "result" variable as a dictionary of type and value.
+
+If you are asked to plot a chart, use "matplotlib" for charts, save as png.
+
+
+Generate python code and return full updated code:
+2025-04-09 22:20:00 [INFO] Executing Step 3: CodeGenerator
+2025-04-09 22:20:05 [INFO] HTTP Request: POST https://au-syd.ml.cloud.ibm.com/ml/v1/text/chat?version=2025-03-20 "HTTP/1.1 200 OK"
+2025-04-09 22:20:05 [INFO] Successfully finished chat for url: 'https://au-syd.ml.cloud.ibm.com/ml/v1/text/chat?version=2025-03-20'
+2025-04-09 22:20:05 [INFO] Prompt used:
+            
+<dataframe>
+dfs[0]:61x7
+Building,Floor,Space,Equipment,Temperature (°C),Energy Consumption (kWh),Date
+Building 1,GF,Study Room,Refrigerator,22.5,0.2,2025-04-08
+Building 1,F1,Terrace,AC,22.2,4.5,2025-04-08
+Building 1,F2,Library,Computer,,4.1,2025-04-08
+</dataframe>
+
+
+
+
+Update this initial code:
+```python
+# TODO: import the required dependencies
+import pandas as pd
+
+# Write code here
+
+# Declare result var: 
+type (possible values "string", "number", "dataframe", "plot"). Examples: { "type": "string", "value": f"The highest salary is {highest_salary}." } or { "type": "number", "value": 125 } or { "type": "dataframe", "value": pd.DataFrame({...}) } or { "type": "plot", "value": "temp_chart.png" }
+
+```
+
+
+
+### QUERY
+ How many rows totally you have ?
+
+Variable `dfs: list[pd.DataFrame]` is already declared.
+
+At the end, declare "result" variable as a dictionary of type and value.
+
+If you are asked to plot a chart, use "matplotlib" for charts, save as png.
+
+
+Generate python code and return full updated code:
+            
+2025-04-09 22:20:05 [INFO] Code generated:
+            ```
+            # TODO: import the required dependencies
+import pandas as pd
+import matplotlib.pyplot as plt
+
+# Read the data
+dfs = [pd.DataFrame({
+    'Building': ['Building 1', 'Building 1', 'Building 1'],
+    'Floor': ['GF', 'F1', 'F2'],
+    'Space': ['Study Room', 'Terrace', 'Library'],
+    'Equipment': ['Refrigerator', 'AC', 'Computer'],
+    'Temperature (°C)': [22.5, 22.2, 22.0],
+    'Energy Consumption (kWh)': [0.2, 4.5, 4.1],
+    'Date': ['2025-04-08', '2025-04-08', '2025-04-08']
+})]
+
+# Calculate total rows
+total_rows = sum([len(df) for df in dfs])
+
+# Plot temperature vs energy consumption
+plt.figure(figsize=(10, 6))
+for df in dfs:
+    plt.scatter(df['Temperature (°C)'], df['Energy Consumption (kWh)'], label=df['Building'].iloc[0])
+plt.xlabel('Temperature (°C)')
+plt.ylabel('Energy Consumption (kWh)')
+plt.title('Temperature vs Energy Consumption')
+plt.legend()
+plt.grid(True)
+plt.savefig('temp_chart.png')
+
+# Declare result var:
+result = {
+    "type": "number",
+    "value": total_rows
+}
+
+result
+            ```
+            
+2025-04-09 22:20:05 [INFO] Executing Step 4: CachePopulation
+2025-04-09 22:20:05 [INFO] Executing Step 5: CodeCleaning
+2025-04-09 22:20:05 [INFO] Saving charts to D:\Inowell\Backend\exports\charts\temp_chart.png
+2025-04-09 22:20:05 [INFO] 
+Code running:
+```
+total_rows = sum([len(df) for df in dfs])
+plt.figure(figsize=(10, 6))
+for df in dfs:
+    plt.scatter(df['Temperature (°C)'], df['Energy Consumption (kWh)'], label=df['Building'].iloc[0])
+plt.xlabel('Temperature (°C)')
+plt.ylabel('Energy Consumption (kWh)')
+plt.title('Temperature vs Energy Consumption')
+plt.legend()
+plt.grid(True)
+plt.savefig('D:/Inowell/Backend/exports/charts/temp_chart.png')
+result = {'type': 'number', 'value': total_rows}
+result
+        ```
+2025-04-09 22:20:05 [INFO] Executing Step 6: CodeExecution
+2025-04-09 22:20:06 [INFO] Executing Step 7: ResultValidation
+2025-04-09 22:20:06 [INFO] Answer: {'type': 'number', 'value': 61}
+2025-04-09 22:20:06 [INFO] Executing Step 8: ResultParsing
+2025-04-09 22:21:49 [INFO] Client successfully initialized
+2025-04-09 22:21:51 [INFO] HTTP Request: GET https://au-syd.ml.cloud.ibm.com/ml/v1/foundation_model_specs?version=2025-03-20&project_id=853fb52b-1dec-44f4-a11f-29bf0229f522&filters=function_text_generation%2C%21lifecycle_withdrawn%3Aand&limit=200 "HTTP/1.1 200 OK"
+2025-04-09 22:21:51 [INFO] Successfully finished Get available foundation models for url: 'https://au-syd.ml.cloud.ibm.com/ml/v1/foundation_model_specs?version=2025-03-20&project_id=853fb52b-1dec-44f4-a11f-29bf0229f522&filters=function_text_generation%2C%21lifecycle_withdrawn%3Aand&limit=200'
+2025-04-09 22:21:51 [INFO] Question: How many AC units which is present in ground floor ?
+2025-04-09 22:21:51 [INFO] Running PandasAI with langchain_watsonx-chat LLM...
+2025-04-09 22:21:51 [INFO] Prompt ID: 45021593-7d48-4973-b10c-e6680017798d
+2025-04-09 22:21:51 [INFO] Executing Pipeline: GenerateChatPipeline
+2025-04-09 22:21:51 [INFO] Executing Step 0: ValidatePipelineInput
+2025-04-09 22:21:51 [INFO] Executing Step 1: CacheLookup
+2025-04-09 22:21:51 [INFO] Executing Step 2: PromptGeneration
+2025-04-09 22:21:51 [INFO] Using prompt: <dataframe>
+dfs[0]:61x7
+Building,Floor,Space,Equipment,Temperature (°C),Energy Consumption (kWh),Date
+Building 1,F1,Garage,Fan,28.0,4.5,2025-04-08
+Building 1,F3,Dining Room,Light,23.5,5.1,2025-04-08
+Building 1,F2,Bedroom 3,Microwave,,0.6,2025-04-08
+</dataframe>
+
+
+
+
+Update this initial code:
+```python
+# TODO: import the required dependencies
+import pandas as pd
+
+# Write code here
+
+# Declare result var: 
+type (possible values "string", "number", "dataframe", "plot"). Examples: { "type": "string", "value": f"The highest salary is {highest_salary}." } or { "type": "number", "value": 125 } or { "type": "dataframe", "value": pd.DataFrame({...}) } or { "type": "plot", "value": "temp_chart.png" }
+
+```
+
+
+
+### QUERY
+ How many AC units which is present in ground floor ?
+
+Variable `dfs: list[pd.DataFrame]` is already declared.
+
+At the end, declare "result" variable as a dictionary of type and value.
+
+If you are asked to plot a chart, use "matplotlib" for charts, save as png.
+
+
+Generate python code and return full updated code:
+2025-04-09 22:21:51 [INFO] Executing Step 3: CodeGenerator
+2025-04-09 22:21:55 [INFO] HTTP Request: POST https://au-syd.ml.cloud.ibm.com/ml/v1/text/chat?version=2025-03-20 "HTTP/1.1 200 OK"
+2025-04-09 22:21:55 [INFO] Successfully finished chat for url: 'https://au-syd.ml.cloud.ibm.com/ml/v1/text/chat?version=2025-03-20'
+2025-04-09 22:21:55 [INFO] Prompt used:
+            
+<dataframe>
+dfs[0]:61x7
+Building,Floor,Space,Equipment,Temperature (°C),Energy Consumption (kWh),Date
+Building 1,F1,Garage,Fan,28.0,4.5,2025-04-08
+Building 1,F3,Dining Room,Light,23.5,5.1,2025-04-08
+Building 1,F2,Bedroom 3,Microwave,,0.6,2025-04-08
+</dataframe>
+
+
+
+
+Update this initial code:
+```python
+# TODO: import the required dependencies
+import pandas as pd
+
+# Write code here
+
+# Declare result var: 
+type (possible values "string", "number", "dataframe", "plot"). Examples: { "type": "string", "value": f"The highest salary is {highest_salary}." } or { "type": "number", "value": 125 } or { "type": "dataframe", "value": pd.DataFrame({...}) } or { "type": "plot", "value": "temp_chart.png" }
+
+```
+
+
+
+### QUERY
+ How many AC units which is present in ground floor ?
+
+Variable `dfs: list[pd.DataFrame]` is already declared.
+
+At the end, declare "result" variable as a dictionary of type and value.
+
+If you are asked to plot a chart, use "matplotlib" for charts, save as png.
+
+
+Generate python code and return full updated code:
+            
+2025-04-09 22:21:55 [INFO] Code generated:
+            ```
+            # TODO: import the required dependencies
+import pandas as pd
+import matplotlib.pyplot as plt
+
+# Assuming dfs is a list containing the provided DataFrame
+dfs = [pd.DataFrame({
+    'Building': ['Building 1'],
+    'Floor': ['F1', 'F3', 'F2'],
+    'Space': ['Garage', 'Dining Room', 'Bedroom 3'],
+    'Equipment': ['Fan', 'Light', 'Microwave'],
+    'Temperature (°C)': [28.0, 23.5, 23.5],
+    'Energy Consumption (kWh)': [4.5, 5.1, 0.6],
+    'Date': ['2025-04-08']
+})]
+
+# Filter the DataFrame for AC units (assuming 'Fan' is an AC unit)
+ac_units = dfs[0][dfs[0]['Equipment'] == 'Fan']
+
+# Count the number of AC units on the ground floor (F1)
+ac_units_ground_floor = len(ac_units[ac_units['Floor'] == 'F1'])
+
+# Declare result var:
+result = {
+    "type": "number",
+    "value": ac_units_ground_floor
+}
+
+# Plotting the temperature data (optional)
+plt.figure(figsize=(10, 5))
+plt.bar(ac_units['Space'], ac_units['Temperature (°C)'], color='skyblue')
+plt.xlabel('Space')
+plt.ylabel('Temperature (°C)')
+plt.title('Temperature in Different Spaces')
+plt.savefig('temp_chart.png')
+
+result
+            ```
+            
+2025-04-09 22:21:55 [INFO] Executing Step 4: CachePopulation
+2025-04-09 22:21:55 [INFO] Executing Step 5: CodeCleaning
+2025-04-09 22:21:55 [INFO] Saving charts to D:\Inowell\Backend\exports\charts\temp_chart.png
+2025-04-09 22:21:55 [INFO] 
+Code running:
+```
+ac_units = dfs[0][dfs[0]['Equipment'] == 'Fan']
+ac_units_ground_floor = len(ac_units[ac_units['Floor'] == 'F1'])
+result = {'type': 'number', 'value': ac_units_ground_floor}
+plt.figure(figsize=(10, 5))
+plt.bar(ac_units['Space'], ac_units['Temperature (°C)'], color='skyblue')
+plt.xlabel('Space')
+plt.ylabel('Temperature (°C)')
+plt.title('Temperature in Different Spaces')
+plt.savefig('D:/Inowell/Backend/exports/charts/temp_chart.png')
+result
+        ```
+2025-04-09 22:21:55 [INFO] Executing Step 6: CodeExecution
+2025-04-09 22:21:55 [INFO] Executing Step 7: ResultValidation
+2025-04-09 22:21:55 [INFO] Answer: {'type': 'number', 'value': 5}
+2025-04-09 22:21:55 [INFO] Executing Step 8: ResultParsing
+2025-04-09 22:22:56 [INFO] Client successfully initialized
+2025-04-09 22:22:58 [INFO] HTTP Request: GET https://au-syd.ml.cloud.ibm.com/ml/v1/foundation_model_specs?version=2025-03-20&project_id=853fb52b-1dec-44f4-a11f-29bf0229f522&filters=function_text_generation%2C%21lifecycle_withdrawn%3Aand&limit=200 "HTTP/1.1 200 OK"
+2025-04-09 22:22:58 [INFO] Successfully finished Get available foundation models for url: 'https://au-syd.ml.cloud.ibm.com/ml/v1/foundation_model_specs?version=2025-03-20&project_id=853fb52b-1dec-44f4-a11f-29bf0229f522&filters=function_text_generation%2C%21lifecycle_withdrawn%3Aand&limit=200'
+2025-04-09 22:22:58 [INFO] Question: How many Fan present in floor 2 ?
+2025-04-09 22:22:58 [INFO] Running PandasAI with langchain_watsonx-chat LLM...
+2025-04-09 22:22:58 [INFO] Prompt ID: d9cdb7fd-f422-49d3-91f9-3b25a7b482b9
+2025-04-09 22:22:58 [INFO] Executing Pipeline: GenerateChatPipeline
+2025-04-09 22:22:58 [INFO] Executing Step 0: ValidatePipelineInput
+2025-04-09 22:22:58 [INFO] Executing Step 1: CacheLookup
+2025-04-09 22:22:58 [INFO] Executing Step 2: PromptGeneration
+2025-04-09 22:22:58 [INFO] Using prompt: <dataframe>
+dfs[0]:61x7
+Building,Floor,Space,Equipment,Temperature (°C),Energy Consumption (kWh),Date
+Building 1,F2,Bedroom 1,Refrigerator,23.8,3.5,2025-04-08
+Building 1,F1,Bathroom 1,Light,,0.3,2025-04-08
+Building 1,F3,Guest Room,Computer,24.2,4.1,2025-04-08
+</dataframe>
+
+
+
+
+Update this initial code:
+```python
+# TODO: import the required dependencies
+import pandas as pd
+
+# Write code here
+
+# Declare result var: 
+type (possible values "string", "number", "dataframe", "plot"). Examples: { "type": "string", "value": f"The highest salary is {highest_salary}." } or { "type": "number", "value": 125 } or { "type": "dataframe", "value": pd.DataFrame({...}) } or { "type": "plot", "value": "temp_chart.png" }
+
+```
+
+
+
+### QUERY
+ How many Fan present in floor 2 ?
+
+Variable `dfs: list[pd.DataFrame]` is already declared.
+
+At the end, declare "result" variable as a dictionary of type and value.
+
+If you are asked to plot a chart, use "matplotlib" for charts, save as png.
+
+
+Generate python code and return full updated code:
+2025-04-09 22:22:58 [INFO] Executing Step 3: CodeGenerator
+2025-04-09 22:23:01 [INFO] HTTP Request: POST https://au-syd.ml.cloud.ibm.com/ml/v1/text/chat?version=2025-03-20 "HTTP/1.1 200 OK"
+2025-04-09 22:23:01 [INFO] Successfully finished chat for url: 'https://au-syd.ml.cloud.ibm.com/ml/v1/text/chat?version=2025-03-20'
+2025-04-09 22:23:01 [INFO] Prompt used:
+            
+<dataframe>
+dfs[0]:61x7
+Building,Floor,Space,Equipment,Temperature (°C),Energy Consumption (kWh),Date
+Building 1,F2,Bedroom 1,Refrigerator,23.8,3.5,2025-04-08
+Building 1,F1,Bathroom 1,Light,,0.3,2025-04-08
+Building 1,F3,Guest Room,Computer,24.2,4.1,2025-04-08
+</dataframe>
+
+
+
+
+Update this initial code:
+```python
+# TODO: import the required dependencies
+import pandas as pd
+
+# Write code here
+
+# Declare result var: 
+type (possible values "string", "number", "dataframe", "plot"). Examples: { "type": "string", "value": f"The highest salary is {highest_salary}." } or { "type": "number", "value": 125 } or { "type": "dataframe", "value": pd.DataFrame({...}) } or { "type": "plot", "value": "temp_chart.png" }
+
+```
+
+
+
+### QUERY
+ How many Fan present in floor 2 ?
+
+Variable `dfs: list[pd.DataFrame]` is already declared.
+
+At the end, declare "result" variable as a dictionary of type and value.
+
+If you are asked to plot a chart, use "matplotlib" for charts, save as png.
+
+
+Generate python code and return full updated code:
+            
+2025-04-09 22:23:01 [INFO] Code generated:
+            ```
+            # TODO: import the required dependencies
+import pandas as pd
+import matplotlib.pyplot as plt
+
+# Assuming dfs is already defined
+dfs = [pd.DataFrame({
+    'Building': ['Building 1'],
+    'Floor': ['F2'],
+    'Space': ['Bedroom 1'],
+    'Equipment': ['Refrigerator'],
+    'Temperature (°C)': [23.8],
+    'Energy Consumption (kWh)': [3.5],
+    'Date': ['2025-04-08']
+})]
+
+# Filter data for floor 2
+floor_2_data = dfs[0][dfs[0]['Floor'] == 'F2']
+
+# Count the number of unique equipment in floor 2
+num_fans = floor_2_data['Equipment'].nunique()
+
+# Declare result var:
+result = {
+    "type": "number",
+    "value": num_fans
+}
+
+# Print the result
+print(f"Number of unique equipment in floor 2: {num_fans}")
+
+# Plot a bar chart of energy consumption by equipment
+equipment_consumption = floor_2_data.groupby('Equipment')['Energy Consumption (kWh)'].sum()
+equipment_consumption.plot(kind='bar')
+plt.title('Energy Consumption by Equipment in Floor 2')
+plt.xlabel('Equipment')
+plt.ylabel('Energy Consumption (kWh)')
+plt.savefig('equipment_consumption_floor2.png')
+
+result
+            ```
+            
+2025-04-09 22:23:01 [INFO] Executing Step 4: CachePopulation
+2025-04-09 22:23:01 [INFO] Executing Step 5: CodeCleaning
+2025-04-09 22:23:01 [INFO] Saving charts to D:\Inowell\Backend\exports\charts\temp_chart.png
+2025-04-09 22:23:01 [INFO] 
+Code running:
+```
+floor_2_data = dfs[0][dfs[0]['Floor'] == 'F2']
+num_fans = floor_2_data['Equipment'].nunique()
+result = {'type': 'number', 'value': num_fans}
+print(f'Number of unique equipment in floor 2: {num_fans}')
+equipment_consumption = floor_2_data.groupby('Equipment')['Energy Consumption (kWh)'].sum()
+equipment_consumption.plot(kind='bar')
+plt.title('Energy Consumption by Equipment in Floor 2')
+plt.xlabel('Equipment')
+plt.ylabel('Energy Consumption (kWh)')
+plt.savefig('D:/Inowell/Backend/exports/charts/temp_chart.png')
+result
+        ```
+2025-04-09 22:23:01 [INFO] Executing Step 6: CodeExecution
+2025-04-09 22:23:02 [INFO] Executing Step 7: ResultValidation
+2025-04-09 22:23:02 [INFO] Answer: {'type': 'number', 'value': 4}
+2025-04-09 22:23:02 [INFO] Executing Step 8: ResultParsing
+2025-04-09 22:24:01 [INFO] Client successfully initialized
+2025-04-09 22:24:03 [INFO] HTTP Request: GET https://au-syd.ml.cloud.ibm.com/ml/v1/foundation_model_specs?version=2025-03-20&project_id=853fb52b-1dec-44f4-a11f-29bf0229f522&filters=function_text_generation%2C%21lifecycle_withdrawn%3Aand&limit=200 "HTTP/1.1 200 OK"
+2025-04-09 22:24:04 [INFO] Successfully finished Get available foundation models for url: 'https://au-syd.ml.cloud.ibm.com/ml/v1/foundation_model_specs?version=2025-03-20&project_id=853fb52b-1dec-44f4-a11f-29bf0229f522&filters=function_text_generation%2C%21lifecycle_withdrawn%3Aand&limit=200'
+2025-04-09 22:24:04 [INFO] Question: How many Fan units which is present in floor F1 ?
+2025-04-09 22:24:04 [INFO] Running PandasAI with langchain_watsonx-chat LLM...
+2025-04-09 22:24:04 [INFO] Prompt ID: 121a3c89-ccfe-4bd1-9b2b-8e43b84b9d18
+2025-04-09 22:24:04 [INFO] Executing Pipeline: GenerateChatPipeline
+2025-04-09 22:24:04 [INFO] Executing Step 0: ValidatePipelineInput
+2025-04-09 22:24:04 [INFO] Executing Step 1: CacheLookup
+2025-04-09 22:24:04 [INFO] Executing Step 2: PromptGeneration
+2025-04-09 22:24:04 [INFO] Using prompt: <dataframe>
+dfs[0]:61x7
+Building,Floor,Space,Equipment,Temperature (°C),Energy Consumption (kWh),Date
+Building 1,F1,Dining Room,Microwave,22.0,2.4,2025-04-08
+Building 1,F2,Kitchen 2,Computer,,6.3,2025-04-08
+Building 1,GF,Library,Heater,22.2,4.1,2025-04-08
+</dataframe>
+
+
+
+
+Update this initial code:
+```python
+# TODO: import the required dependencies
+import pandas as pd
+
+# Write code here
+
+# Declare result var: 
+type (possible values "string", "number", "dataframe", "plot"). Examples: { "type": "string", "value": f"The highest salary is {highest_salary}." } or { "type": "number", "value": 125 } or { "type": "dataframe", "value": pd.DataFrame({...}) } or { "type": "plot", "value": "temp_chart.png" }
+
+```
+
+
+
+### QUERY
+ How many Fan units which is present in floor F1 ?
+
+Variable `dfs: list[pd.DataFrame]` is already declared.
+
+At the end, declare "result" variable as a dictionary of type and value.
+
+If you are asked to plot a chart, use "matplotlib" for charts, save as png.
+
+
+Generate python code and return full updated code:
+2025-04-09 22:24:04 [INFO] Executing Step 3: CodeGenerator
+2025-04-09 22:24:08 [INFO] HTTP Request: POST https://au-syd.ml.cloud.ibm.com/ml/v1/text/chat?version=2025-03-20 "HTTP/1.1 200 OK"
+2025-04-09 22:24:08 [INFO] Successfully finished chat for url: 'https://au-syd.ml.cloud.ibm.com/ml/v1/text/chat?version=2025-03-20'
+2025-04-09 22:24:08 [INFO] Prompt used:
+            
+<dataframe>
+dfs[0]:61x7
+Building,Floor,Space,Equipment,Temperature (°C),Energy Consumption (kWh),Date
+Building 1,F1,Dining Room,Microwave,22.0,2.4,2025-04-08
+Building 1,F2,Kitchen 2,Computer,,6.3,2025-04-08
+Building 1,GF,Library,Heater,22.2,4.1,2025-04-08
+</dataframe>
+
+
+
+
+Update this initial code:
+```python
+# TODO: import the required dependencies
+import pandas as pd
+
+# Write code here
+
+# Declare result var: 
+type (possible values "string", "number", "dataframe", "plot"). Examples: { "type": "string", "value": f"The highest salary is {highest_salary}." } or { "type": "number", "value": 125 } or { "type": "dataframe", "value": pd.DataFrame({...}) } or { "type": "plot", "value": "temp_chart.png" }
+
+```
+
+
+
+### QUERY
+ How many Fan units which is present in floor F1 ?
+
+Variable `dfs: list[pd.DataFrame]` is already declared.
+
+At the end, declare "result" variable as a dictionary of type and value.
+
+If you are asked to plot a chart, use "matplotlib" for charts, save as png.
+
+
+Generate python code and return full updated code:
+            
+2025-04-09 22:24:08 [INFO] Code generated:
+            ```
+            # TODO: import the required dependencies
+import pandas as pd
+import matplotlib.pyplot as plt
+
+# Assuming dfs is already defined
+dfs = [pd.DataFrame({
+    'Building': ['Building 1'],
+    'Floor': ['F1'],
+    'Space': ['Dining Room'],
+    'Equipment': ['Microwave'],
+    'Temperature (°C)': [22.0],
+    'Energy Consumption (kWh)': [2.4],
+    'Date': ['2025-04-08']
+})]
+
+# Filter data for floor F1
+f1_data = dfs[0][dfs[0]['Floor'] == 'F1']
+
+# Count the number of Fan units
+num_fan_units = len(f1_data[f1_data['Equipment'] == 'Fan'])
+
+# Declare result var:
+result = {
+    "type": "number",
+    "value": num_fan_units
+}
+
+# Print the result
+print(f"Number of Fan units in floor F1: {num_fan_units}")
+
+# Plot a bar chart if there are any Fan units
+if num_fan_units > 0:
+    f1_data.plot(kind='bar', x='Space', y='Energy Consumption (kWh)', legend=False)
+    plt.title('Energy Consumption by Space in Floor F1')
+    plt.xlabel('Space')
+    plt.ylabel('Energy Consumption (kWh)')
+    plt.savefig('f1_energy_consumption.png')
+
+result
+            ```
+            
+2025-04-09 22:24:08 [INFO] Executing Step 4: CachePopulation
+2025-04-09 22:24:08 [INFO] Executing Step 5: CodeCleaning
+2025-04-09 22:24:08 [INFO] Saving charts to D:\Inowell\Backend\exports\charts\temp_chart.png
+2025-04-09 22:24:08 [INFO] 
+Code running:
+```
+f1_data = dfs[0][dfs[0]['Floor'] == 'F1']
+num_fan_units = len(f1_data[f1_data['Equipment'] == 'Fan'])
+result = {'type': 'number', 'value': num_fan_units}
+print(f'Number of Fan units in floor F1: {num_fan_units}')
+if num_fan_units > 0:
+    f1_data.plot(kind='bar', x='Space', y='Energy Consumption (kWh)', legend=False)
+    plt.title('Energy Consumption by Space in Floor F1')
+    plt.xlabel('Space')
+    plt.ylabel('Energy Consumption (kWh)')
+    plt.savefig('D:/Inowell/Backend/exports/charts/temp_chart.png')
+result
+        ```
+2025-04-09 22:24:08 [INFO] Executing Step 6: CodeExecution
+2025-04-09 22:24:08 [INFO] Executing Step 7: ResultValidation
+2025-04-09 22:24:08 [INFO] Answer: {'type': 'number', 'value': 5}
+2025-04-09 22:24:08 [INFO] Executing Step 8: ResultParsing
+2025-04-09 22:24:46 [INFO] Client successfully initialized
+2025-04-09 22:24:47 [INFO] HTTP Request: GET https://au-syd.ml.cloud.ibm.com/ml/v1/foundation_model_specs?version=2025-03-20&project_id=853fb52b-1dec-44f4-a11f-29bf0229f522&filters=function_text_generation%2C%21lifecycle_withdrawn%3Aand&limit=200 "HTTP/1.1 200 OK"
+2025-04-09 22:24:47 [INFO] Successfully finished Get available foundation models for url: 'https://au-syd.ml.cloud.ibm.com/ml/v1/foundation_model_specs?version=2025-03-20&project_id=853fb52b-1dec-44f4-a11f-29bf0229f522&filters=function_text_generation%2C%21lifecycle_withdrawn%3Aand&limit=200'
+2025-04-09 22:24:47 [INFO] Question: How many Fan units present in floor 2 ?
+2025-04-09 22:24:47 [INFO] Running PandasAI with langchain_watsonx-chat LLM...
+2025-04-09 22:24:47 [INFO] Prompt ID: 87c58838-6afd-478c-b770-cc5a6b1c7b88
+2025-04-09 22:24:47 [INFO] Executing Pipeline: GenerateChatPipeline
+2025-04-09 22:24:47 [INFO] Executing Step 0: ValidatePipelineInput
+2025-04-09 22:24:47 [INFO] Executing Step 1: CacheLookup
+2025-04-09 22:24:47 [INFO] Executing Step 2: PromptGeneration
+2025-04-09 22:24:47 [INFO] Using prompt: <dataframe>
+dfs[0]:61x7
+Building,Floor,Space,Equipment,Temperature (°C),Energy Consumption (kWh),Date
+Building 1,F1,Waiting Hall,Microwave,,5.1,2025-04-08
+Building 1,GF,Bathroom 1,Computer,22.5,0.2,2025-04-08
+Building 1,F3,Hall 1,Refrigerator,23.8,3.8,2025-04-08
+</dataframe>
+
+
+
+
+Update this initial code:
+```python
+# TODO: import the required dependencies
+import pandas as pd
+
+# Write code here
+
+# Declare result var: 
+type (possible values "string", "number", "dataframe", "plot"). Examples: { "type": "string", "value": f"The highest salary is {highest_salary}." } or { "type": "number", "value": 125 } or { "type": "dataframe", "value": pd.DataFrame({...}) } or { "type": "plot", "value": "temp_chart.png" }
+
+```
+
+
+
+### QUERY
+ How many Fan units present in floor 2 ?
+
+Variable `dfs: list[pd.DataFrame]` is already declared.
+
+At the end, declare "result" variable as a dictionary of type and value.
+
+If you are asked to plot a chart, use "matplotlib" for charts, save as png.
+
+
+Generate python code and return full updated code:
+2025-04-09 22:24:47 [INFO] Executing Step 3: CodeGenerator
+2025-04-09 22:24:51 [INFO] HTTP Request: POST https://au-syd.ml.cloud.ibm.com/ml/v1/text/chat?version=2025-03-20 "HTTP/1.1 200 OK"
+2025-04-09 22:24:51 [INFO] Successfully finished chat for url: 'https://au-syd.ml.cloud.ibm.com/ml/v1/text/chat?version=2025-03-20'
+2025-04-09 22:24:51 [INFO] Prompt used:
+            
+<dataframe>
+dfs[0]:61x7
+Building,Floor,Space,Equipment,Temperature (°C),Energy Consumption (kWh),Date
+Building 1,F1,Waiting Hall,Microwave,,5.1,2025-04-08
+Building 1,GF,Bathroom 1,Computer,22.5,0.2,2025-04-08
+Building 1,F3,Hall 1,Refrigerator,23.8,3.8,2025-04-08
+</dataframe>
+
+
+
+
+Update this initial code:
+```python
+# TODO: import the required dependencies
+import pandas as pd
+
+# Write code here
+
+# Declare result var: 
+type (possible values "string", "number", "dataframe", "plot"). Examples: { "type": "string", "value": f"The highest salary is {highest_salary}." } or { "type": "number", "value": 125 } or { "type": "dataframe", "value": pd.DataFrame({...}) } or { "type": "plot", "value": "temp_chart.png" }
+
+```
+
+
+
+### QUERY
+ How many Fan units present in floor 2 ?
+
+Variable `dfs: list[pd.DataFrame]` is already declared.
+
+At the end, declare "result" variable as a dictionary of type and value.
+
+If you are asked to plot a chart, use "matplotlib" for charts, save as png.
+
+
+Generate python code and return full updated code:
+            
+2025-04-09 22:24:51 [INFO] Code generated:
+            ```
+            # TODO: import the required dependencies
+import pandas as pd
+import matplotlib.pyplot as plt
+
+# Assuming dfs is already defined
+dfs = [pd.DataFrame({
+    'Building': ['Building 1'],
+    'Floor': ['F1', 'GF', 'F3'],
+    'Space': ['Waiting Hall', 'Bathroom 1', 'Hall 1'],
+    'Equipment': ['Microwave', 'Computer', 'Refrigerator'],
+    'Temperature (°C)': [5.1, 22.5, 23.8],
+    'Energy Consumption (kWh)': [5.1, 0.2, 3.8],
+    'Date': ['2025-04-08']
+})]
+
+# Filter data for floor 2
+floor_2_data = dfs[0][dfs[0]['Floor'] == 'F2']
+
+# Count the number of Fan units
+num_fan_units = len(floor_2_data)
+
+# Declare result var:
+result = {
+    "type": "number",
+    "value": num_fan_units
+}
+
+# Print the result
+print(f"Number of Fan units in floor 2: {num_fan_units}")
+
+# Plot a chart if needed
+# plt.bar(floor_2_data['Space'], floor_2_data['Energy Consumption (kWh)'])
+# plt.xlabel('Space')
+# plt.ylabel('Energy Consumption (kWh)')
+# plt.title('Energy Consumption by Space on Floor 2')
+# plt.savefig('floor_2_energy_consumption.png')
+
+result
+            ```
+            
+2025-04-09 22:24:51 [INFO] Executing Step 4: CachePopulation
+2025-04-09 22:24:51 [INFO] Executing Step 5: CodeCleaning
+2025-04-09 22:24:51 [INFO] Saving charts to D:\Inowell\Backend\exports\charts\temp_chart.png
+2025-04-09 22:24:51 [INFO] 
+Code running:
+```
+floor_2_data = dfs[0][dfs[0]['Floor'] == 'F2']
+num_fan_units = len(floor_2_data)
+result = {'type': 'number', 'value': num_fan_units}
+print(f'Number of Fan units in floor 2: {num_fan_units}')
+result
+        ```
+2025-04-09 22:24:51 [INFO] Executing Step 6: CodeExecution
+2025-04-09 22:24:51 [INFO] Executing Step 7: ResultValidation
+2025-04-09 22:24:51 [INFO] Answer: {'type': 'number', 'value': 11}
+2025-04-09 22:24:51 [INFO] Executing Step 8: ResultParsing
+2025-04-09 22:25:09 [INFO] Client successfully initialized
+2025-04-09 22:25:10 [INFO] HTTP Request: GET https://au-syd.ml.cloud.ibm.com/ml/v1/foundation_model_specs?version=2025-03-20&project_id=853fb52b-1dec-44f4-a11f-29bf0229f522&filters=function_text_generation%2C%21lifecycle_withdrawn%3Aand&limit=200 "HTTP/1.1 200 OK"
+2025-04-09 22:25:10 [INFO] Successfully finished Get available foundation models for url: 'https://au-syd.ml.cloud.ibm.com/ml/v1/foundation_model_specs?version=2025-03-20&project_id=853fb52b-1dec-44f4-a11f-29bf0229f522&filters=function_text_generation%2C%21lifecycle_withdrawn%3Aand&limit=200'
+2025-04-09 22:25:10 [INFO] Question: How many Fan units present in floor F2 ?
+2025-04-09 22:25:10 [INFO] Running PandasAI with langchain_watsonx-chat LLM...
+2025-04-09 22:25:10 [INFO] Prompt ID: ce00bc0e-4433-412f-8ace-a902bc7fa01f
+2025-04-09 22:25:10 [INFO] Executing Pipeline: GenerateChatPipeline
+2025-04-09 22:25:10 [INFO] Executing Step 0: ValidatePipelineInput
+2025-04-09 22:25:10 [INFO] Executing Step 1: CacheLookup
+2025-04-09 22:25:10 [INFO] Executing Step 2: PromptGeneration
+2025-04-09 22:25:10 [INFO] Using prompt: <dataframe>
+dfs[0]:61x7
+Building,Floor,Space,Equipment,Temperature (°C),Energy Consumption (kWh),Date
+Building 1,F1,Waiting Hall,AC,25.2,4.0,2025-04-08
+Building 1,F2,Garage,Heater,23.5,1.0,2025-04-08
+Building 1,F3,Hall 1,Microwave,,4.5,2025-04-08
+</dataframe>
+
+
+
+
+Update this initial code:
+```python
+# TODO: import the required dependencies
+import pandas as pd
+
+# Write code here
+
+# Declare result var: 
+type (possible values "string", "number", "dataframe", "plot"). Examples: { "type": "string", "value": f"The highest salary is {highest_salary}." } or { "type": "number", "value": 125 } or { "type": "dataframe", "value": pd.DataFrame({...}) } or { "type": "plot", "value": "temp_chart.png" }
+
+```
+
+
+
+### QUERY
+ How many Fan units present in floor F2 ?
+
+Variable `dfs: list[pd.DataFrame]` is already declared.
+
+At the end, declare "result" variable as a dictionary of type and value.
+
+If you are asked to plot a chart, use "matplotlib" for charts, save as png.
+
+
+Generate python code and return full updated code:
+2025-04-09 22:25:10 [INFO] Executing Step 3: CodeGenerator
+2025-04-09 22:25:14 [INFO] HTTP Request: POST https://au-syd.ml.cloud.ibm.com/ml/v1/text/chat?version=2025-03-20 "HTTP/1.1 200 OK"
+2025-04-09 22:25:14 [INFO] Successfully finished chat for url: 'https://au-syd.ml.cloud.ibm.com/ml/v1/text/chat?version=2025-03-20'
+2025-04-09 22:25:14 [INFO] Prompt used:
+            
+<dataframe>
+dfs[0]:61x7
+Building,Floor,Space,Equipment,Temperature (°C),Energy Consumption (kWh),Date
+Building 1,F1,Waiting Hall,AC,25.2,4.0,2025-04-08
+Building 1,F2,Garage,Heater,23.5,1.0,2025-04-08
+Building 1,F3,Hall 1,Microwave,,4.5,2025-04-08
+</dataframe>
+
+
+
+
+Update this initial code:
+```python
+# TODO: import the required dependencies
+import pandas as pd
+
+# Write code here
+
+# Declare result var: 
+type (possible values "string", "number", "dataframe", "plot"). Examples: { "type": "string", "value": f"The highest salary is {highest_salary}." } or { "type": "number", "value": 125 } or { "type": "dataframe", "value": pd.DataFrame({...}) } or { "type": "plot", "value": "temp_chart.png" }
+
+```
+
+
+
+### QUERY
+ How many Fan units present in floor F2 ?
+
+Variable `dfs: list[pd.DataFrame]` is already declared.
+
+At the end, declare "result" variable as a dictionary of type and value.
+
+If you are asked to plot a chart, use "matplotlib" for charts, save as png.
+
+
+Generate python code and return full updated code:
+            
+2025-04-09 22:25:14 [INFO] Code generated:
+            ```
+            # TODO: import the required dependencies
+import pandas as pd
+import matplotlib.pyplot as plt
+
+# Assuming dfs is already defined
+dfs = [pd.DataFrame({
+    'Building': ['Building 1'],
+    'Floor': ['F1', 'F2', 'F3'],
+    'Space': ['Waiting Hall', 'Garage', 'Hall 1'],
+    'Equipment': ['AC', 'Heater', 'Microwave'],
+    'Temperature (°C)': [25.2, 23.5, 25.2],
+    'Energy Consumption (kWh)': [4.0, 1.0, 4.5],
+    'Date': ['2025-04-08', '2025-04-08', '2025-04-08']
+})]
+
+# Filter data for floor F2
+f2_data = dfs[0][dfs[0]['Floor'] == 'F2']
+
+# Count the number of Fan units
+fan_units = f2_data[f2_data['Equipment'] == 'Fan'].shape[0]
+
+# Declare result var:
+result = {
+    "type": "number",
+    "value": fan_units
+}
+
+# Plot a bar chart for energy consumption
+plt.bar(f2_data['Space'], f2_data['Energy Consumption (kWh)'])
+plt.xlabel('Space')
+plt.ylabel('Energy Consumption (kWh)')
+plt.title('Energy Consumption on Floor F2')
+plt.savefig('energy_consumption_f2.png')
+
+result
+            ```
+            
+2025-04-09 22:25:14 [INFO] Executing Step 4: CachePopulation
+2025-04-09 22:25:14 [INFO] Executing Step 5: CodeCleaning
+2025-04-09 22:25:14 [INFO] Saving charts to D:\Inowell\Backend\exports\charts\temp_chart.png
+2025-04-09 22:25:14 [INFO] 
+Code running:
+```
+f2_data = dfs[0][dfs[0]['Floor'] == 'F2']
+fan_units = f2_data[f2_data['Equipment'] == 'Fan'].shape[0]
+result = {'type': 'number', 'value': fan_units}
+plt.bar(f2_data['Space'], f2_data['Energy Consumption (kWh)'])
+plt.xlabel('Space')
+plt.ylabel('Energy Consumption (kWh)')
+plt.title('Energy Consumption on Floor F2')
+plt.savefig('D:/Inowell/Backend/exports/charts/temp_chart.png')
+result
+        ```
+2025-04-09 22:25:14 [INFO] Executing Step 6: CodeExecution
+2025-04-09 22:25:14 [INFO] Executing Step 7: ResultValidation
+2025-04-09 22:25:14 [INFO] Answer: {'type': 'number', 'value': 1}
+2025-04-09 22:25:14 [INFO] Executing Step 8: ResultParsing
+2025-04-09 22:25:41 [INFO] Client successfully initialized
+2025-04-09 22:25:43 [INFO] HTTP Request: GET https://au-syd.ml.cloud.ibm.com/ml/v1/foundation_model_specs?version=2025-03-20&project_id=853fb52b-1dec-44f4-a11f-29bf0229f522&filters=function_text_generation%2C%21lifecycle_withdrawn%3Aand&limit=200 "HTTP/1.1 200 OK"
+2025-04-09 22:25:43 [INFO] Successfully finished Get available foundation models for url: 'https://au-syd.ml.cloud.ibm.com/ml/v1/foundation_model_specs?version=2025-03-20&project_id=853fb52b-1dec-44f4-a11f-29bf0229f522&filters=function_text_generation%2C%21lifecycle_withdrawn%3Aand&limit=200'
+2025-04-09 22:25:43 [INFO] Question: What are the recommended maintenance tasks for the air handling unit (AHU) scheduled for next month, according to its O&M manual ?
+2025-04-09 22:25:43 [INFO] Running PandasAI with langchain_watsonx-chat LLM...
+2025-04-09 22:25:43 [INFO] Prompt ID: 64a6ce45-b37a-4e1c-9c4c-c0d56ea2740b
+2025-04-09 22:25:43 [INFO] Executing Pipeline: GenerateChatPipeline
+2025-04-09 22:25:43 [INFO] Executing Step 0: ValidatePipelineInput
+2025-04-09 22:25:43 [INFO] Executing Step 1: CacheLookup
+2025-04-09 22:25:43 [INFO] Executing Step 2: PromptGeneration
+2025-04-09 22:25:43 [INFO] Using prompt: <dataframe>
+dfs[0]:61x7
+Building,Floor,Space,Equipment,Temperature (°C),Energy Consumption (kWh),Date
+Building 1,GF,Bedroom 3,Heater,28.0,0.7,2025-04-08
+Building 1,F3,Bedroom 2,TV,,0.8,2025-04-08
+Building 1,F1,Library,Computer,22.5,0.4,2025-04-08
+</dataframe>
+
+
+
+
+Update this initial code:
+```python
+# TODO: import the required dependencies
+import pandas as pd
+
+# Write code here
+
+# Declare result var: 
+type (possible values "string", "number", "dataframe", "plot"). Examples: { "type": "string", "value": f"The highest salary is {highest_salary}." } or { "type": "number", "value": 125 } or { "type": "dataframe", "value": pd.DataFrame({...}) } or { "type": "plot", "value": "temp_chart.png" }
+
+```
+
+
+
+### QUERY
+ What are the recommended maintenance tasks for the air handling unit (AHU) scheduled for next month, according to its O&M manual ?
+
+Variable `dfs: list[pd.DataFrame]` is already declared.
+
+At the end, declare "result" variable as a dictionary of type and value.
+
+If you are asked to plot a chart, use "matplotlib" for charts, save as png.
+
+
+Generate python code and return full updated code:
+2025-04-09 22:25:43 [INFO] Executing Step 3: CodeGenerator
+2025-04-09 22:25:47 [INFO] HTTP Request: POST https://au-syd.ml.cloud.ibm.com/ml/v1/text/chat?version=2025-03-20 "HTTP/1.1 200 OK"
+2025-04-09 22:25:47 [INFO] Successfully finished chat for url: 'https://au-syd.ml.cloud.ibm.com/ml/v1/text/chat?version=2025-03-20'
+2025-04-09 22:25:47 [INFO] Prompt used:
+            
+<dataframe>
+dfs[0]:61x7
+Building,Floor,Space,Equipment,Temperature (°C),Energy Consumption (kWh),Date
+Building 1,GF,Bedroom 3,Heater,28.0,0.7,2025-04-08
+Building 1,F3,Bedroom 2,TV,,0.8,2025-04-08
+Building 1,F1,Library,Computer,22.5,0.4,2025-04-08
+</dataframe>
+
+
+
+
+Update this initial code:
+```python
+# TODO: import the required dependencies
+import pandas as pd
+
+# Write code here
+
+# Declare result var: 
+type (possible values "string", "number", "dataframe", "plot"). Examples: { "type": "string", "value": f"The highest salary is {highest_salary}." } or { "type": "number", "value": 125 } or { "type": "dataframe", "value": pd.DataFrame({...}) } or { "type": "plot", "value": "temp_chart.png" }
+
+```
+
+
+
+### QUERY
+ What are the recommended maintenance tasks for the air handling unit (AHU) scheduled for next month, according to its O&M manual ?
+
+Variable `dfs: list[pd.DataFrame]` is already declared.
+
+At the end, declare "result" variable as a dictionary of type and value.
+
+If you are asked to plot a chart, use "matplotlib" for charts, save as png.
+
+
+Generate python code and return full updated code:
+            
+2025-04-09 22:25:47 [INFO] Code generated:
+            ```
+            # TODO: import the required dependencies
+import pandas as pd
+import matplotlib.pyplot as plt
+
+# Assuming dfs is a list containing the provided DataFrame
+dfs = [pd.DataFrame({
+    'Building': ['Building 1'],
+    'Floor': ['GF', 'F3', 'F1'],
+    'Space': ['Bedroom 3', 'Bedroom 2', 'Library'],
+    'Equipment': ['Heater', 'TV', 'Computer'],
+    'Temperature (°C)': [28.0, 22.5, 22.5],
+    'Energy Consumption (kWh)': [0.7, 0.8, 0.4],
+    'Date': ['2025-04-08', '2025-04-08', '2025-04-08']
+})]
+
+# Filter data for AHU-related equipment
+ahu_data = dfs[0][dfs[0]['Equipment'] == 'Heater']
+
+# Assuming the O&M manual recommends AHU maintenance every 3 months
+# Calculate the next maintenance date
+from datetime import datetime, timedelta
+next_maintenance_date = ahu_data['Date'].max() + timedelta(days=90)
+
+# Format the date
+next_maintenance_date_str = next_maintenance_date.strftime('%Y-%m-%d')
+
+# Prepare the result
+result = {
+    "type": "string",
+    "value": f"The recommended maintenance task for the air handling unit (AHU) is scheduled for {next_maintenance_date_str}."
+}
+
+result
+            ```
+            
+2025-04-09 22:25:47 [INFO] Executing Step 4: CachePopulation
+2025-04-09 22:25:47 [INFO] Executing Step 5: CodeCleaning
+2025-04-09 22:25:47 [INFO] 
+Code running:
+```
+ahu_data = dfs[0][dfs[0]['Equipment'] == 'Heater']
+next_maintenance_date = ahu_data['Date'].max() + timedelta(days=90)
+next_maintenance_date_str = next_maintenance_date.strftime('%Y-%m-%d')
+result = {'type': 'string', 'value': f'The recommended maintenance task for the air handling unit (AHU) is scheduled for {next_maintenance_date_str}.'}
+result
+        ```
+2025-04-09 22:25:47 [INFO] Executing Step 6: CodeExecution
+2025-04-09 22:25:47 [ERROR] Failed with error: Traceback (most recent call last):
+  File "D:\Inowell\Backend\.venv\Lib\site-packages\pandasai\pipelines\chat\code_execution.py", line 85, in execute
+    result = self.execute_code(code_to_run, code_context)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Inowell\Backend\.venv\Lib\site-packages\pandasai\pipelines\chat\code_execution.py", line 174, in execute_code
+    exec(code, environment)
+  File "<string>", line 2, in <module>
+TypeError: can only concatenate str (not "datetime.timedelta") to str
+
+2025-04-09 22:25:47 [WARNING] Failed to execute code retrying with a correction framework [retry number: 1]
+2025-04-09 22:25:47 [INFO] Executing Pipeline: ErrorCorrectionPipeline
+2025-04-09 22:25:47 [INFO] Executing Step 0: ErrorPromptGeneration
+2025-04-09 22:25:47 [INFO] Using prompt: <dataframe>
+dfs[0]:61x7
+Building,Floor,Space,Equipment,Temperature (°C),Energy Consumption (kWh),Date
+Building 1,GF,Bedroom 3,Heater,28.0,0.7,2025-04-08
+Building 1,F3,Bedroom 2,TV,,0.8,2025-04-08
+Building 1,F1,Library,Computer,22.5,0.4,2025-04-08
+</dataframe>
+
+
+The user asked the following question:
+### QUERY
+ What are the recommended maintenance tasks for the air handling unit (AHU) scheduled for next month, according to its O&M manual ?
+
+You generated this python code:
+ahu_data = dfs[0][dfs[0]['Equipment'] == 'Heater']
+next_maintenance_date = ahu_data['Date'].max() + timedelta(days=90)
+next_maintenance_date_str = next_maintenance_date.strftime('%Y-%m-%d')
+result = {'type': 'string', 'value': f'The recommended maintenance task for the air handling unit (AHU) is scheduled for {next_maintenance_date_str}.'}
+result
+
+It fails with the following error:
+Traceback (most recent call last):
+  File "D:\Inowell\Backend\.venv\Lib\site-packages\pandasai\pipelines\chat\code_execution.py", line 85, in execute
+    result = self.execute_code(code_to_run, code_context)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Inowell\Backend\.venv\Lib\site-packages\pandasai\pipelines\chat\code_execution.py", line 174, in execute_code
+    exec(code, environment)
+  File "<string>", line 2, in <module>
+TypeError: can only concatenate str (not "datetime.timedelta") to str
+
+
+Fix the python code above and return the new python code:
+2025-04-09 22:25:47 [INFO] Executing Step 1: CodeGenerator
+2025-04-09 22:25:50 [INFO] HTTP Request: POST https://au-syd.ml.cloud.ibm.com/ml/v1/text/chat?version=2025-03-20 "HTTP/1.1 200 OK"
+2025-04-09 22:25:50 [INFO] Successfully finished chat for url: 'https://au-syd.ml.cloud.ibm.com/ml/v1/text/chat?version=2025-03-20'
+2025-04-09 22:25:50 [INFO] Prompt used:
+            
+<dataframe>
+dfs[0]:61x7
+Building,Floor,Space,Equipment,Temperature (°C),Energy Consumption (kWh),Date
+Building 1,GF,Bedroom 3,Heater,28.0,0.7,2025-04-08
+Building 1,F3,Bedroom 2,TV,,0.8,2025-04-08
+Building 1,F1,Library,Computer,22.5,0.4,2025-04-08
+</dataframe>
+
+
+The user asked the following question:
+### QUERY
+ What are the recommended maintenance tasks for the air handling unit (AHU) scheduled for next month, according to its O&M manual ?
+
+You generated this python code:
+ahu_data = dfs[0][dfs[0]['Equipment'] == 'Heater']
+next_maintenance_date = ahu_data['Date'].max() + timedelta(days=90)
+next_maintenance_date_str = next_maintenance_date.strftime('%Y-%m-%d')
+result = {'type': 'string', 'value': f'The recommended maintenance task for the air handling unit (AHU) is scheduled for {next_maintenance_date_str}.'}
+result
+
+It fails with the following error:
+Traceback (most recent call last):
+  File "D:\Inowell\Backend\.venv\Lib\site-packages\pandasai\pipelines\chat\code_execution.py", line 85, in execute
+    result = self.execute_code(code_to_run, code_context)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Inowell\Backend\.venv\Lib\site-packages\pandasai\pipelines\chat\code_execution.py", line 174, in execute_code
+    exec(code, environment)
+  File "<string>", line 2, in <module>
+TypeError: can only concatenate str (not "datetime.timedelta") to str
+
+
+Fix the python code above and return the new python code:
+            
+2025-04-09 22:25:50 [INFO] Code generated:
+            ```
+            import pandas as pd
+from datetime import datetime, timedelta
+
+# Assuming dfs is a list containing the dataframe
+ahu_data = dfs[0][dfs[0]['Equipment'] == 'Heater']
+next_maintenance_date = ahu_data['Date'].max() + timedelta(days=90)
+next_maintenance_date_str = next_maintenance_date.strftime('%Y-%m-%d')
+
+result = {'type': 'string', 'value': f'The recommended maintenance task for the air handling unit (AHU) is scheduled for {next_maintenance_date_str}.'}
+            ```
+            
+2025-04-09 22:25:50 [INFO] Executing Step 2: CodeCleaning
+2025-04-09 22:25:50 [INFO] 
+Code running:
+```
+ahu_data = dfs[0][dfs[0]['Equipment'] == 'Heater']
+next_maintenance_date = ahu_data['Date'].max() + timedelta(days=90)
+next_maintenance_date_str = next_maintenance_date.strftime('%Y-%m-%d')
+result = {'type': 'string', 'value': f'The recommended maintenance task for the air handling unit (AHU) is scheduled for {next_maintenance_date_str}.'}
+        ```
+2025-04-09 22:25:50 [ERROR] Failed with error: Traceback (most recent call last):
+  File "D:\Inowell\Backend\.venv\Lib\site-packages\pandasai\pipelines\chat\code_execution.py", line 85, in execute
+    result = self.execute_code(code_to_run, code_context)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Inowell\Backend\.venv\Lib\site-packages\pandasai\pipelines\chat\code_execution.py", line 174, in execute_code
+    exec(code, environment)
+  File "<string>", line 2, in <module>
+TypeError: can only concatenate str (not "datetime.timedelta") to str
+
+2025-04-09 22:25:50 [WARNING] Failed to execute code retrying with a correction framework [retry number: 2]
+2025-04-09 22:25:50 [INFO] Executing Pipeline: ErrorCorrectionPipeline
+2025-04-09 22:25:50 [INFO] Executing Step 0: ErrorPromptGeneration
+2025-04-09 22:25:50 [INFO] Using prompt: <dataframe>
+dfs[0]:61x7
+Building,Floor,Space,Equipment,Temperature (°C),Energy Consumption (kWh),Date
+Building 1,GF,Bedroom 3,Heater,28.0,0.7,2025-04-08
+Building 1,F3,Bedroom 2,TV,,0.8,2025-04-08
+Building 1,F1,Library,Computer,22.5,0.4,2025-04-08
+</dataframe>
+
+
+The user asked the following question:
+### QUERY
+ What are the recommended maintenance tasks for the air handling unit (AHU) scheduled for next month, according to its O&M manual ?
+
+You generated this python code:
+ahu_data = dfs[0][dfs[0]['Equipment'] == 'Heater']
+next_maintenance_date = ahu_data['Date'].max() + timedelta(days=90)
+next_maintenance_date_str = next_maintenance_date.strftime('%Y-%m-%d')
+result = {'type': 'string', 'value': f'The recommended maintenance task for the air handling unit (AHU) is scheduled for {next_maintenance_date_str}.'}
+
+It fails with the following error:
+Traceback (most recent call last):
+  File "D:\Inowell\Backend\.venv\Lib\site-packages\pandasai\pipelines\chat\code_execution.py", line 85, in execute
+    result = self.execute_code(code_to_run, code_context)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Inowell\Backend\.venv\Lib\site-packages\pandasai\pipelines\chat\code_execution.py", line 174, in execute_code
+    exec(code, environment)
+  File "<string>", line 2, in <module>
+TypeError: can only concatenate str (not "datetime.timedelta") to str
+
+
+Fix the python code above and return the new python code:
+2025-04-09 22:25:50 [INFO] Executing Step 1: CodeGenerator
+2025-04-09 22:25:53 [INFO] HTTP Request: POST https://au-syd.ml.cloud.ibm.com/ml/v1/text/chat?version=2025-03-20 "HTTP/1.1 200 OK"
+2025-04-09 22:25:53 [INFO] Successfully finished chat for url: 'https://au-syd.ml.cloud.ibm.com/ml/v1/text/chat?version=2025-03-20'
+2025-04-09 22:25:53 [INFO] Prompt used:
+            
+<dataframe>
+dfs[0]:61x7
+Building,Floor,Space,Equipment,Temperature (°C),Energy Consumption (kWh),Date
+Building 1,GF,Bedroom 3,Heater,28.0,0.7,2025-04-08
+Building 1,F3,Bedroom 2,TV,,0.8,2025-04-08
+Building 1,F1,Library,Computer,22.5,0.4,2025-04-08
+</dataframe>
+
+
+The user asked the following question:
+### QUERY
+ What are the recommended maintenance tasks for the air handling unit (AHU) scheduled for next month, according to its O&M manual ?
+
+You generated this python code:
+ahu_data = dfs[0][dfs[0]['Equipment'] == 'Heater']
+next_maintenance_date = ahu_data['Date'].max() + timedelta(days=90)
+next_maintenance_date_str = next_maintenance_date.strftime('%Y-%m-%d')
+result = {'type': 'string', 'value': f'The recommended maintenance task for the air handling unit (AHU) is scheduled for {next_maintenance_date_str}.'}
+
+It fails with the following error:
+Traceback (most recent call last):
+  File "D:\Inowell\Backend\.venv\Lib\site-packages\pandasai\pipelines\chat\code_execution.py", line 85, in execute
+    result = self.execute_code(code_to_run, code_context)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Inowell\Backend\.venv\Lib\site-packages\pandasai\pipelines\chat\code_execution.py", line 174, in execute_code
+    exec(code, environment)
+  File "<string>", line 2, in <module>
+TypeError: can only concatenate str (not "datetime.timedelta") to str
+
+
+Fix the python code above and return the new python code:
+            
+2025-04-09 22:25:53 [INFO] Code generated:
+            ```
+            import pandas as pd
+from datetime import datetime, timedelta
+
+# Assuming dfs is a list containing the dataframe
+ahu_data = dfs[0][dfs[0]['Equipment'] == 'Heater']
+next_maintenance_date = ahu_data['Date'].max() + timedelta(days=90)
+next_maintenance_date_str = next_maintenance_date.strftime('%Y-%m-%d')
+
+result = {'type': 'string', 'value': f'The recommended maintenance task for the air handling unit (AHU) is scheduled for {next_maintenance_date_str}.'}
+            ```
+            
+2025-04-09 22:25:53 [INFO] Executing Step 2: CodeCleaning
+2025-04-09 22:25:53 [INFO] 
+Code running:
+```
+ahu_data = dfs[0][dfs[0]['Equipment'] == 'Heater']
+next_maintenance_date = ahu_data['Date'].max() + timedelta(days=90)
+next_maintenance_date_str = next_maintenance_date.strftime('%Y-%m-%d')
+result = {'type': 'string', 'value': f'The recommended maintenance task for the air handling unit (AHU) is scheduled for {next_maintenance_date_str}.'}
+        ```
+2025-04-09 22:25:53 [ERROR] Failed with error: Traceback (most recent call last):
+  File "D:\Inowell\Backend\.venv\Lib\site-packages\pandasai\pipelines\chat\code_execution.py", line 85, in execute
+    result = self.execute_code(code_to_run, code_context)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Inowell\Backend\.venv\Lib\site-packages\pandasai\pipelines\chat\code_execution.py", line 174, in execute_code
+    exec(code, environment)
+  File "<string>", line 2, in <module>
+TypeError: can only concatenate str (not "datetime.timedelta") to str
+
+2025-04-09 22:25:53 [WARNING] Failed to execute code retrying with a correction framework [retry number: 3]
+2025-04-09 22:25:53 [INFO] Executing Pipeline: ErrorCorrectionPipeline
+2025-04-09 22:25:53 [INFO] Executing Step 0: ErrorPromptGeneration
+2025-04-09 22:25:53 [INFO] Using prompt: <dataframe>
+dfs[0]:61x7
+Building,Floor,Space,Equipment,Temperature (°C),Energy Consumption (kWh),Date
+Building 1,GF,Bedroom 3,Heater,28.0,0.7,2025-04-08
+Building 1,F3,Bedroom 2,TV,,0.8,2025-04-08
+Building 1,F1,Library,Computer,22.5,0.4,2025-04-08
+</dataframe>
+
+
+The user asked the following question:
+### QUERY
+ What are the recommended maintenance tasks for the air handling unit (AHU) scheduled for next month, according to its O&M manual ?
+
+You generated this python code:
+ahu_data = dfs[0][dfs[0]['Equipment'] == 'Heater']
+next_maintenance_date = ahu_data['Date'].max() + timedelta(days=90)
+next_maintenance_date_str = next_maintenance_date.strftime('%Y-%m-%d')
+result = {'type': 'string', 'value': f'The recommended maintenance task for the air handling unit (AHU) is scheduled for {next_maintenance_date_str}.'}
+
+It fails with the following error:
+Traceback (most recent call last):
+  File "D:\Inowell\Backend\.venv\Lib\site-packages\pandasai\pipelines\chat\code_execution.py", line 85, in execute
+    result = self.execute_code(code_to_run, code_context)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Inowell\Backend\.venv\Lib\site-packages\pandasai\pipelines\chat\code_execution.py", line 174, in execute_code
+    exec(code, environment)
+  File "<string>", line 2, in <module>
+TypeError: can only concatenate str (not "datetime.timedelta") to str
+
+
+Fix the python code above and return the new python code:
+2025-04-09 22:25:53 [INFO] Executing Step 1: CodeGenerator
+2025-04-09 22:25:57 [INFO] HTTP Request: POST https://au-syd.ml.cloud.ibm.com/ml/v1/text/chat?version=2025-03-20 "HTTP/1.1 200 OK"
+2025-04-09 22:25:57 [INFO] Successfully finished chat for url: 'https://au-syd.ml.cloud.ibm.com/ml/v1/text/chat?version=2025-03-20'
+2025-04-09 22:25:57 [INFO] Prompt used:
+            
+<dataframe>
+dfs[0]:61x7
+Building,Floor,Space,Equipment,Temperature (°C),Energy Consumption (kWh),Date
+Building 1,GF,Bedroom 3,Heater,28.0,0.7,2025-04-08
+Building 1,F3,Bedroom 2,TV,,0.8,2025-04-08
+Building 1,F1,Library,Computer,22.5,0.4,2025-04-08
+</dataframe>
+
+
+The user asked the following question:
+### QUERY
+ What are the recommended maintenance tasks for the air handling unit (AHU) scheduled for next month, according to its O&M manual ?
+
+You generated this python code:
+ahu_data = dfs[0][dfs[0]['Equipment'] == 'Heater']
+next_maintenance_date = ahu_data['Date'].max() + timedelta(days=90)
+next_maintenance_date_str = next_maintenance_date.strftime('%Y-%m-%d')
+result = {'type': 'string', 'value': f'The recommended maintenance task for the air handling unit (AHU) is scheduled for {next_maintenance_date_str}.'}
+
+It fails with the following error:
+Traceback (most recent call last):
+  File "D:\Inowell\Backend\.venv\Lib\site-packages\pandasai\pipelines\chat\code_execution.py", line 85, in execute
+    result = self.execute_code(code_to_run, code_context)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Inowell\Backend\.venv\Lib\site-packages\pandasai\pipelines\chat\code_execution.py", line 174, in execute_code
+    exec(code, environment)
+  File "<string>", line 2, in <module>
+TypeError: can only concatenate str (not "datetime.timedelta") to str
+
+
+Fix the python code above and return the new python code:
+            
+2025-04-09 22:25:57 [INFO] Code generated:
+            ```
+            import pandas as pd
+from datetime import datetime, timedelta
+
+# Assuming dfs is a list containing the dataframe
+ahu_data = dfs[0][dfs[0]['Equipment'] == 'Heater']
+next_maintenance_date = ahu_data['Date'].max() + timedelta(days=90)
+next_maintenance_date_str = next_maintenance_date.strftime('%Y-%m-%d')
+
+result = {'type': 'string', 'value': f'The recommended maintenance task for the air handling unit (AHU) is scheduled for {next_maintenance_date_str}.'}
+            ```
+            
+2025-04-09 22:25:57 [INFO] Executing Step 2: CodeCleaning
+2025-04-09 22:25:57 [INFO] 
+Code running:
+```
+ahu_data = dfs[0][dfs[0]['Equipment'] == 'Heater']
+next_maintenance_date = ahu_data['Date'].max() + timedelta(days=90)
+next_maintenance_date_str = next_maintenance_date.strftime('%Y-%m-%d')
+result = {'type': 'string', 'value': f'The recommended maintenance task for the air handling unit (AHU) is scheduled for {next_maintenance_date_str}.'}
+        ```
+2025-04-09 22:25:57 [ERROR] Failed with error: Traceback (most recent call last):
+  File "D:\Inowell\Backend\.venv\Lib\site-packages\pandasai\pipelines\chat\code_execution.py", line 85, in execute
+    result = self.execute_code(code_to_run, code_context)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Inowell\Backend\.venv\Lib\site-packages\pandasai\pipelines\chat\code_execution.py", line 174, in execute_code
+    exec(code, environment)
+  File "<string>", line 2, in <module>
+TypeError: can only concatenate str (not "datetime.timedelta") to str
+
+2025-04-09 22:25:57 [ERROR] Pipeline failed on step 6: can only concatenate str (not "datetime.timedelta") to str

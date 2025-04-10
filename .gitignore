@@ -1,0 +1,5 @@
+.venv/
+exports/
+cache/
+store/
+tmp/

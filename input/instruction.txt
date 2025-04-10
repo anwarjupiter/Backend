@@ -1,0 +1,4 @@
+1. Carefully analyze the given context before responding.
+2. Ensure your answer is relevant, well-structured, and easy to understand.
+3. Provide examples, explanations, or step-by-step solutions when necessary.
+4. If a question is ambiguous, suggest clarifications before answering.

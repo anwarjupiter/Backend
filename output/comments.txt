@@ -1,0 +1,334 @@
+DATE UPDATED : 2-Dec-10 
+COMMENT'S ISSUED BY : Mr.Peter Bistrom REVISION : R0 
+RESPONSE BY : Guna, ADES 
+COMMENT 
+#
+COMMENT 
+DATE 
+COMMENT DESCRIPTION REFERENCE COMMENT 
+BY 
+RESPONSE DESCRIPTION RESPONSE BY RESPONSE DATE 
+1 30-Nov-10 There are not all Nokia guidelines, referred to. F or ex. all airflows and 
+noise levels must be according to NSN Guidelines Appendix Indo or 
+air climate target values. 
+Number.2 (001, Design Report) Peter Bistrom .We have fo llowed NSN Guidelines while preparing HVAC DBR, 
+but the values are not shown. Now we will duplicated the NSN Guidelines Appendix Indoor air climate target values in our DBR 
+and will revise 
+Guna 2-Dec-10 
+2 30-Nov-10 All space/rooms should be Air-conditioned, except Waste room (only 
+ventilation). The humid outdoor air can´t be let inside, to th e 
+Production area. 
+Number.2 (001, Design Report) Peter Bistrom We have rece ived the space data sheet only after preparation of 
+Concept design. Hence we have made assumption on space air- conditioning & ventilation requirements. We will revise thethe DBR 
+now considering all the space as air-conditioned spaces except 
+"Waste room" which is ventilated. 
+Guna 2-Dec-10 
+3 30-Nov-10 We would want to use, for outside design condition , for summer 
+weather: +40° C temperature and 45% RH (as in our Concept design). 
+Number.2 (001, Design Report) Peter Bistrom As per our l ocal ISHRAE Standard data, the outside design 
+conditions for summer is : DBT +39.4 Deg C, WBT 27.8 Deg C &RH 41%. Hence we have considered the same in our design. Please clarify which standard specifies to consider DBT +40 Deg C& RH 45%. Please note that we will consider the outside design 
+conditions as per ISHRAE Standard only 
+Guna 2-Dec-10 
+4 30-Nov-10 Fresh air amount: NSN guideline must also  be mentioned. Number.2 (001, Design Report) Peter Bi strom Fresh air amount calculation is based on NSN guideline on ly. We 
+will mention the NSN guideline in the DBR. 
+Guna 2-Dec-10 
+5 30-Nov-10 The cooling capacity for different spaces/rooms: Th e calculation must 
+be shown during design, not only the result for the spaces, as now. 
+Number.2 (001, Design Report) Peter Bistrom The Detail ed Cooling load calculation shall be provided along with 
+Detail design Documents 
+Guna 2-Dec-10 
+6 30-Nov-10 Smoke exhaust: Must be checked again. Our estimation is that only 
+one present smoke exhaust system (384SEF07) isn´t enough. Th is 
+depend on the Architect layouts and present smoke exhaust 
+departments. 
+Number.2 (001, Design Report) Peter Bistrom We will check with Architect for smoke compartments and the 
+revise the DBR accordingly 
+Guna 2-Dec-10 
+7 30-Nov-10 As mentioned before: all rooms except Waste room m ust be Air- 
+conditioned (see our Concept design). This means either the ai r will 
+come straight from PAU or from AHU. From AHU would be better because the air from PAU is very cold. One solution would be thatall 
+“supply” air for ancillary rooms, except Test lab and Training room, 
+would be transferred air from Production area 
+Number.2 (001, Design Report) Peter Bistrom If the "sup ply air" for ancillary rooms are transferred from 
+Production Area, it may not be possible to maintain the room temperature. That's why we have considered Fan Coil units forfew 
+areas. As per design, it is acceptable to supply the air from PAU since itis 
+only 13 Deg C. 
+We will proceed with our concept. 
+Guna 2-Dec-10 
+8 30-Nov-10 We think that 2 psc. of new chillers are needed thinki ng of the spare- 
+/standby-unit. 
+Number.2 (001, Design Report) Peter Bistrom It is noted . We will add two chillers (One 324 TR & one 184 TR). As 
+you said, the additional capacity will be considered as stand-by unit 
+Guna 2-Dec-10 
+9 30-Nov-10 For the final Design, as part of the HVAC-design package, there must 
+be a Specification (demands) for the Contractor, as well as demands 
+of equipments etc. which must be met before approvals. 
+Number.2 (001, Design Report) Peter Bistrom Please ela borate the specific demands those need to be added to 
+the Tender documents 
+Guna 2-Dec-10 
+10 30-Nov-10 The Production-area must be totally ready befor e “moving in”, this 
+means that also all equipments are fully working for the Produ ction 
+area. 
+Number.2 (001, Design Report) Peter Bistrom OK Noted. W e will inform the Project Managers to sequence the 
+work accordingly 
+Guna 2-Dec-10 
+11 30-Nov-10 In the Specification there must also be solutions and demands for 
+Contractor during the construction phase (the phasing of the installations). These measures have to be checked and approvedby 
+NSN Production manager. 
+Number.2 (001, Design Report) Peter Bistrom Project Man ager shall specify the requirements of phasing the 
+construction activity 
+Guna 2-Dec-10 
+DOCUMENT TITLE : NSN PRODUCTION EXPANSION - HVAC CONCEPT DESIGN COMMENTS & RESPONSES 
+PROJECT NAME : NOKIA SIEMENS NETWORKS, Production Area Expansion, Oragadam 
+PROJECT NUMBER : 024-11206 
+NSN PRODUCTION EXPANSION HVAC CONCEPT DESIGN COMMENTS & RESPONSES - updated 2DEC10.xls 1 of 5COMMENT 
+#
+COMMENT 
+DATE 
+COMMENT DESCRIPTION REFERENCE COMMENT 
+BY 
+RESPONSE DESCRIPTION RESPONSE BY RESPONSE DATE 
+12 30-Nov-10 There is no description and documentation about e lectrical systems 
+relating HVAC installations. (frequency drivers, feeders, etc.). Only 
+mentioned electrical power for fans 
+Number.2 (001, Design Report) Peter Bistrom These det ails shall be provided during detailed design stage Guna 2-Dec-10 
+13 30-Nov-10 Our idea was to install new pipes from the cooling pump centre, 
+through the new incoming material warehouse. 
+Number.4 (M-01, Chilled water 
+schema) 
+Peter Bistrom OK Noted. We will provide separate pip ing for new AHUs/PAU Guna 2-Dec-10 
+14 30-Nov-10 If you connect the new equipments (PAU/AHU) to pre sent pipes in 
+present Ventilation room, the chilled water schema need anywa y to 
+be revised, as follows: o There are only one chilled water pipe-pair (for AHU:s) from present 
+Ventilation room, now both AHU:s have been connected to presen t 
+main pipes. o The capacity for the AHU:s are too low (43TR), should be raisedto 
+56TR, as the present AHU:s for the Production. o The capacity for the PAU is too low (50TR), should be raised to 72TR. Then the capacity is in line with present PAU:s for the Production. o The new secondary pumps (are the numbers right?) for the new chiller 402CHU04 (184TR) are connected to wrong pipe-system (only 
+one system). They should also be connected to same pipe-systemas 
+P03.1/03.2, now there are no additional capacity in the pipe-s ystem 
+even though two new AHU:s are added! o The possible Water tank/Reservoir isn´t showed at all (the reservation where the tank would be installed). 
+Number.4 (M-01, Chilled water 
+schema) 
+Peter Bistrom Since we are considering new pipes, this point m ay please be 
+ignored. We will indicate the possible location of Water tank/Reservoirin the 
+concept drawings 
+Guna 2-Dec-10 
+15 30-Nov-10 The cooling capacities (for PAU/AHU:s) shou ld be revised as above. Number.5 (M-02, Ventilation 
+schema) 
+Peter Bistrom The cooling capacities of new AHUs/PAU shall be b ased on our 
+detailed cooling load calculations 
+Guna 2-Dec-10 
+16 30-Nov-10 The ducts for the new PAU should be bigger, now the air speed over 
+7,5 m/s. The fresh air duct should be ~1600x1200 (some reservealso, if there is a problem with the humidity in the productionarea). 
+The extract duct to Hub, ~1000x800. The ducts have to be 
+condensate-tight insulated. 
+Number.5 (M-02, Ventilation 
+schema) 
+Peter Bistrom The fresh air duct will be changed to maintain an air velocity of 
+maximum 5 m/s. The extract air duct size will remains as designed. 
+Guna 2-Dec-10 
+17 30-Nov-10 Smoke exhaust systems 381SEF01-02 are serving p resent 
+Production area, New Production area also have/need smoke exhaust systems. Also present AS-Hub have a smoke exhaust system (383SEF) 
+Number.5 (M-02, Ventilation 
+schema) 
+Peter Bistrom OK Noted Guna 2-Dec-10 
+18 30-Nov-10 Why is the new smoke exhaust for the Incoming mater ial informed in 
+CMH, when all other ventilation amounts are in cfm? Why is the new 
+smoke exhaust (384SEF-10) ~double amount compared to present(382SEF)? Which one is the right one. 
+Number.5 (M-02, Ventilation 
+schema) 
+Peter Bistrom It is standard practice to use the "Metric Unit" completely or "IP" 
+Units completely. However the old drawings have duct dimensions 
+in "Metric" unit and air quantity in "IP" unit. But we have used only 
+metric units. That's why the air quantities are given in "CMH". 
+The floor area of new Incoming material area is 1126 m ². As per 
+NSN Guideline, the smoke extract fan capacity shall be 5-10 m³/s/1000 m². Hence the capacity of new extract fan is 1126/1000 
+x 10 x 3600 = 40536 CMH. Hence we have considered 44000 CMH 
+fan. 
+Guna 2-Dec-10 
+19 30-Nov-10 All supply/exhaust air to Production area have t op be measured, 
+therefore there must be flow measuring dampers in those ducts(as in 
+present installations). This means ducts from new 313PAU/EAU and 
+new ducts from 302PAU/EAU. 
+Number.5 (M-02, Ventilation 
+schema) 
+Peter Bistrom Based on the comment, there are six new flow mea suring dampers 
+shall be added. The location shall be noted on the revised concept 
+drawing 
+Guna 2-Dec-10 
+20 30-Nov-10 The total air amounts for 302PAU/EAU have to be r evised (now old 
+ones are seen). Also air-amount for the AHU:s (not all are s)een 
+Number.5 (M-02, Ventilation 
+schema) 
+Peter Bistrom The total air amounts for 302PAU/EAU has been revised. Also air- 
+amount for the AHUs are shown. 
+Guna 2-Dec-10 
+NSN PRODUCTION EXPANSION HVAC CONCEPT DESIGN COMMENTS & RESPONSES - updated 2DEC10.xls 2 of 5COMMENT 
+#
+COMMENT 
+DATE 
+COMMENT DESCRIPTION REFERENCE COMMENT 
+BY 
+RESPONSE DESCRIPTION RESPONSE BY RESPONSE DATE 
+21 30-Nov-10 The idea for 301 and 302 PAU/EAU ducting should be following 
+(maybe it has been already, I don´t know): the connection ducts toAHU.s are connected to the mixing box before the AHU, not in the duct (for. ex. ducts for 325AHU). 
+Number.5 (M-02, Ventilation 
+schema) 
+Peter Bistrom This will be verified at site during our visit on 8, 9 & 10th Dec-10. Guna 2-Dec-10 
+22 30-Nov-10 Schema for new rooms on level +0.00 are still miss ing, except 
+Production, these have to be added at next step. 
+Number.5 (M-02, Ventilation 
+schema) 
+Peter Bistrom Yes, the new rooms ventilation scheme shall be added in the 
+detailed design document 
+Guna 2-Dec-10 
+23 30-Nov-10 The Ventilation (from 312PAU, HuB-ventilatio n) for Waste rooms is 
+missing. 
+Number.5 (M-02, Ventilation 
+schema) 
+Peter Bistrom It is updated on detailed design drawing Guna 2-Dec-10 
+24 30-Nov-10 The Air Lock room is missing. Number.5 (M-02, Ventilation 
+schema) 
+Peter Bistrom It is updated on detailed design drawing Guna 2-Dec-10 
+25 30-Nov-10 Layout approved, as discussed in meeting in Chen nai and by 
+telephone. 
+Number.6 (M-03, Chiller plant 
+room) 
+Peter Bistrom NOTED Guna 2-Dec-10 
+26 30-Nov-10 New pumps will be installed in the reser ve-places in the pump room. Number.7 (M-04, Chiller p ump 
+room) 
+Peter Bistrom NOTED Guna 2-Dec-10 
+27 30-Nov-10 Please check that the pumps are connected to right chi lled water 
+system, as in the schema. 
+Number.7 (M-04, Chiller pump 
+room) 
+Peter Bistrom This will be verified at site during our visit on 8, 9 & 10th Dec-10. Guna 2-Dec-10 
+28 30-Nov-10 I would prefer that the new pumps would be of a oth er model. Now 
+the chilled water pumps are sk. norm-pumps (the motor on the side), 
+I would prefer vertical centrifugal pumps (the motor is on top o f the 
+pump). 
+Number.7 (M-04, Chiller pump 
+room) 
+Peter Bistrom Similarity may not be these if we use Vertical- inline-pumps for new 
+expansion. We use only Horizontal pumps 
+Guna 2-Dec-10 
+29 30-Nov-10 It would be good to show the reserved place for the Water 
+tank/Reservoir. 
+Number.7 (M-04, Chiller pump 
+room) 
+Peter Bistrom It will be updated on detailed design drawings Guna 2-Dec-10 
+30 30-Nov-10 Best location (technically) would be inside, in th e new Warehouse 
+(because there the air is treated, not as hot and moisture as ou tside 
+in the pump room). 
+Number.7 (M-04, Chiller pump 
+room) 
+Peter Bistrom The capacity of the tank will be around 30 m ³. We will see the 
+feasibility of locating the tank inside the New Incoming mater ial 
+area. If it is not feasible, we will located the storage tank at Chiller 
+yard. 
+Guna 2-Dec-10 
+NSN PRODUCTION EXPANSION HVAC CONCEPT DESIGN COMMENTS & RESPONSES - updated 2DEC10.xls 3 of 5COMMENT 
+#
+COMMENT 
+DATE 
+COMMENT DESCRIPTION REFERENCE COMMENT 
+BY 
+RESPONSE DESCRIPTION RESPONSE BY RESPONSE DATE 
+31 30-Nov-10 The demolition for the present AC Hub-area, wit h smaller rooms, 
+should be added / taken into consideration. 
+Number.8 (M-05, HVAC 
+demolition plan) 
+Peter Bistrom NOTED Guna 2-Dec-10 
+32 30-Nov-10 The chilled water pipes for present Vacuum equipm ent (in AC Hub) 
+also have to be added. 
+Number.8 (M-05, HVAC 
+demolition plan) 
+Peter Bistrom NOTED Guna 2-Dec-10 
+33 30-Nov-10 Please check how many supply louvers have been dem olished in 
+each system. Now, at least, in incoming material they are wrong. 
+Number.9 (M-06, Ventilation 
+design, Present Production area) 
+Peter Bistrom We will check and will revise the drawing appropriately Guna 2-Dec-10 
+34 30-Nov-10 As far as I know the new smaller rooms, underneath the new 
+Ventilation room, shouldn´t be raised with 300mm. If not, re move 
+note! 
+Number.9 (M-06, Ventilation 
+design, Present Production area) 
+Peter Bistrom We will check with Architect and will revise based on his inputs Guna 2-Dec-10 
+35 30-Nov-10 Waste room should be connected to big Hub ventilat ion (decided in 
+Chennai 11.11.2010, only ventilation). 
+Number.10 (M-07, Ventilation 
+design, New Production area) 
+Peter Bistrom We will connect the new Waste room to 31 2PAU Guna 2-Dec-10 
+36 30-Nov-10 Changes to production area beneath present Vent ilation room hasn´t 
+been showed. 
+Number.10 (M-07, Ventilation 
+design, New Production area) 
+Peter Bistrom Will be updated during detail design stage Guna 2-Dec-10 
+37 30-Nov-10 The numbers of supply louvers must be chosen accord ing to the air- 
+amount (according to air amount / pressure drop and the air patt ern 
+when knowing at what height it will be installed). Now there ar e too 
+many in new Incoming material and Production. 
+Number.10 (M-07, Ventilation 
+design, New Production area) 
+Peter Bistrom Will be updated during detail design stage Guna 2-Dec-10 
+38 30-Nov-10 The exhaust ducting for present AHU-machines whi ch will serve also 
+the new Production area have to be changed too. This means 324- 325 AHU:s. 
+Number.10 (M-07, Ventilation 
+design, New Production area) 
+Peter Bistrom Yes, the exhaust ducting of AHU 324 & 325 will be changed too 
+during detailed design stage 
+Guna 2-Dec-10 
+39 30-Nov-10 Mixing boxes (both supply and exhaust) for the A HU:s have to be 
+done, no connection straight to duct. 
+Number.11 (M-08, Ventilation 
+design, New Mechanical room) 
+Peter Bistrom NOTED Guna 2-Dec-10 
+40 30-Nov-10 Boxes should be as wide as the machinery. Number.11 (M-08, Ventilation 
+design, New Mechanical room) 
+Peter Bistrom NOTED. This will be specified in AHU techinical Specification Guna 2-Dec-10 
+NSN PRODUCTION EXPANSION HVAC CONCEPT DESIGN COMMENTS & RESPONSES - updated 2DEC10.xls 4 of 5COMMENT 
+#
+COMMENT 
+DATE 
+COMMENT DESCRIPTION REFERENCE COMMENT 
+BY 
+RESPONSE DESCRIPTION RESPONSE BY RESPONSE DATE 
+41 30-Nov-10 Exhaust grilles could also be bigger (or 2 on top o f each other). Now 
+the speed is ~ 
+Number.11 (M-08, Ventilation 
+design, New Mechanical room) 
+Peter Bistrom NOTED Guna 2-Dec-10 
+42 30-Nov-10 Duct-sizes should be a little bigger (to reduce the pressure-drop), see 
+also comment about Ventilation schema (M-02). 
+Number.11 (M-08, Ventilation 
+design, New Mechanical room) 
+Peter Bistrom NOTED Guna 2-Dec-10 
+43 30-Nov-10 The ducts for the rooms beneath the new Ventilati on rooms, as well 
+as the ventilation room, are missing. 
+Number.11 (M-08, Ventilation 
+design, New Mechanical room) 
+Peter Bistrom Will be updated during detail design stage Guna 2-Dec-10 
+44 30-Nov-10 There must be adjustment dampers installed, ot herwise it isn´t 
+possible to adjust the air-flows. 
+Number.11 (M-08, Ventilation 
+design, New Mechanical room) 
+Peter Bistrom Yes, each outlet & inlet terminal will have volume control dampers Guna 2-Dec-10 
+45 30-Nov-10 The ducts must be equipped with fire-dampers in t he ventilation room 
+wall. 
+Number.11 (M-08, Ventilation 
+design, New Mechanical room) 
+Peter Bistrom NOTED. This will be updated in detailed design drawings Guna 2-Dec-10 
+46 30-Nov-10 The fresh air duct (through the new Warehouse) ha s to be both 
+condensate tight- and fire-insulated. 
+Number.11 (M-08, Ventilation 
+design, New Mechanical room) 
+Peter Bistrom NOTED. Guna 2-Dec-10 
+47 30-Nov-10 Should the new stairs have some ventilat ion? Number.11 (M-08, Ventilation 
+design, New Mechanical room) 
+Peter Bistrom Ventilation not required. The people moveme nt will make air 
+movement in the staircase 
+Guna 2-Dec-10 
+48 30-Nov-10 New cooling pipes for Vacuum room should b e showed. Number.11 (M-08, Ventilation 
+design, New Mechanical room) 
+Peter Bistrom Will be updated during detail design stage Guna 2-Dec-10 
+NSN PRODUCTION EXPANSION HVAC CONCEPT DESIGN COMMENTS & RESPONSES - updated 2DEC10.xls 5 of 5
