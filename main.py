@@ -138,7 +138,12 @@ async def ask_to_dummy(request: Request, question: str = Form(...)):
 @app.post("/ask-to-csv")
 async def ask_to_csv(question: str = Form(...),csv_file: UploadFile = File(...)):
     try:
-
+        print("File Received :",csv_file)
+        if not csv_file :
+            return JSONResponse(status_code=500,content={'error':'File is Required'})
+        if question == "" or not question:
+            return JSONResponse(status_code=500,content={'error':'Question is  required'})
+        
         with tempfile.NamedTemporaryFile(delete=False, suffix=".csv") as tmp:
             tmp.write(await csv_file.read())
             temp_csv_path = tmp.name
