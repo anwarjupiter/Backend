@@ -6,9 +6,9 @@ from langchain_experimental.agents import create_pandas_dataframe_agent
 from langchain_google_genai import GoogleGenerativeAI
 import pandas as pd
 
-def run(query,file_path="input/civil.csv"):
+def run(query,file_path="input/live.csv"):
 
-    df = pd.read_csv(file_path)
+    df = pd.read_csv(file_path,encoding="ISO-8859-1")
 
     custom_prompt = """You are a helpful AI assistant that can answer questions based on the civil.csv file provided as a pandas dataframe.
     You have access to the following tools:
