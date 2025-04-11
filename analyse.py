@@ -1,24 +1,30 @@
 from langchain_ibm.llms import WatsonxLLM
-from langchain.agents import initialize_agent, AgentType, Tool
-from langchain_experimental.tools.python.tool import PythonREPLTool
-from langchain_experimental.agents.agent_toolkits.pandas.base import create_pandas_dataframe_agent
-from langchain.prompts import PromptTemplate
+from langchain_experimental.tools import PythonAstREPLTool
 import pandas as pd
 from constants import *
+from langchain_experimental.agents import create_pandas_dataframe_agent
 
 df = pd.read_csv("input/civil.csv")
 
-prompt = PromptTemplate(
-    input_variables=["input"],
-    template="""
-You are a smart data analyst working with a DataFrame called `df`.
+custom_prompt = """You are a helpful AI assistant that can answer questions based on the civil.csv file provided as a pandas dataframe.
+You have access to the following tools:
+{tools}
 
-You must use Python (Pandas) to answer questions accurately and concisely. 
-Avoid assumptions. Show your reasoning as comments.
+Use the following format:
+
+Question: the input question you must answer
+Thought: think about what to do
+Action: the action to take, should be one of [{tool_names}]
+Action Input: the input to the action
+Observation: the result of the action
+... (this Thought/Action/Action Input/Observation can repeat N times)
+Thought: I now know the final answer
+Final Answer: the final answer to the original question
+
+Begin!
 
 Question: {input}
-"""
-)
+{agent_scratchpad}"""
 
 llm = WatsonxLLM(
     model_id=MODEL_GRANITE_8B,
@@ -28,16 +34,19 @@ llm = WatsonxLLM(
     params=WASTSONX_PARAMS
 )
 
-# Create tools (Python REPL is required for pandas agents)
-tools = [PythonREPLTool()]
+repl_tool = PythonAstREPLTool(locals={"df": df})
 
-agent = initialize_agent(
-    tools,
+tools = [repl_tool]
+
+pandas_agent = create_pandas_dataframe_agent(
     llm,
-    agent=AgentType.ZERO_SHOT_REACT_DESCRIPTION,
+    df=df,
+    allow_dangerous_code=True,
     verbose=True,
-    agent_kwargs={"prefix": prompt.template,'handle_parsing_errors':True},
+    prefix=custom_prompt,
+    agent_executor_kwargs={'handle_parsing_errors':True},
 )
 
-response = agent.run("How many rows are there in the data?")
+response = pandas_agent.run("how many rows are totally you have ?")
+
 print(response)

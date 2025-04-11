@@ -100,9 +100,8 @@ def run(query,file_path="input/civil.csv"):
         top_k=10
     )
 
-        # Create a custom agent
-    
-    csv_agent = create_pandas_dataframe_agent(
+    # Create a custom agent
+    pandas_agent = create_pandas_dataframe_agent(
         llm=llm,
         df=df,
         verbose=False,
@@ -112,7 +111,7 @@ def run(query,file_path="input/civil.csv"):
         max_iterations=10,
     )
 
-    response = csv_agent.invoke(query)
+    response = pandas_agent.invoke(query)
     return response['output']
 
 if __name__ == "__main__":
