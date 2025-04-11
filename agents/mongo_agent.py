@@ -129,7 +129,7 @@ def run(question):
         tools,
         llm,
         agent=AgentType.ZERO_SHOT_REACT_DESCRIPTION,
-        verbose=True,
+        verbose=False,
         handle_parsing_errors=True,
         agent_kwargs={"prefix": prompt_prefix}
     )
