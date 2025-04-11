@@ -13,3 +13,7 @@ uvicorn
 python-multipart
 pypdf
 pymongo
+langchain_google_genai
+uvicorn
+python-multipart
+pypdf
