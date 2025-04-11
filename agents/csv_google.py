@@ -8,7 +8,11 @@ import pandas as pd
 
 def run(query,file_path="input/live.csv"):
 
+<<<<<<< HEAD
     df = pd.read_csv(file_path, encoding="ISO-8859-1")
+=======
+    df = pd.read_csv(file_path,encoding="ISO-8859-1")
+>>>>>>> main
 
     custom_prompt = """You are a helpful AI assistant that can answer questions based on the civil.csv file provided as a pandas dataframe.
     You have access to the following tools:
@@ -100,9 +104,14 @@ def run(query,file_path="input/live.csv"):
         top_k=10
     )
 
+<<<<<<< HEAD
         # Create a custom agent
     
     csv_agent = create_pandas_dataframe_agent(
+=======
+    # Create a custom agent
+    pandas_agent = create_pandas_dataframe_agent(
+>>>>>>> main
         llm=llm,
         df=df,
         verbose=False,
@@ -112,7 +121,11 @@ def run(query,file_path="input/live.csv"):
         max_iterations=10,
     )
 
+<<<<<<< HEAD
     response = csv_agent.invoke(query)
+=======
+    response = pandas_agent.invoke(query)
+>>>>>>> main
     return response['output']
 
 if __name__ == "__main__":

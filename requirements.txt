@@ -11,4 +11,12 @@ pdfplumber
 slowapi
 uvicorn
 python-multipart
+<<<<<<< HEAD
+=======
+pypdf
+pymongo
+langchain_google_genai
+uvicorn
+python-multipart
+>>>>>>> main
 pypdf

@@ -25,4 +25,10 @@ IBM_GRANITE_125M_ENGLISH = "ibm-granite/granite-embedding-125m-english"
 
 OPENAI_KEY = "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"
 
+<<<<<<< HEAD
 GOOGLE_GEMINI_KEY = "AIzaSyCqgpJTOLeA-BIk2lrHw2YojZA37NRBTJo"
+=======
+GOOGLE_GEMINI_KEY = "AIzaSyCqgpJTOLeA-BIk2lrHw2YojZA37NRBTJo"
+MONGO_URL= "mongodb+srv://anwarmydheenk:xcwSgYCDarOKZzrq@cluster0.3t32wd8.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0"
+# MONGO_URL=mongodb://localhost:27017/
+>>>>>>> main
