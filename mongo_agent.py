@@ -102,15 +102,11 @@ def retriever(mongo_query_str):
         if mongo_query_str.strip().startswith("```json"):
             mongo_query_str = mongo_query_str.replace("```json","").replace("```","").strip()
 
-        mongo_query = json.loads(mongo_query_str)
-
         # Execute aggregation
-        data = list(collection.aggregate(mongo_query))
-        return data
-
+        data = list(collection.aggregate(eval(mongo_query_str)))
+        print(data)
     except Exception as e:
         print(f"Error during query execution: {e}")
-        return []
 
 tools = [
     Tool(
