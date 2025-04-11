@@ -5,7 +5,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from fastapi import FastAPI, File, UploadFile, Form
 from fastapi.responses import JSONResponse
 from fastapi.responses import FileResponse
-from agents import pdf,resume_json_txt,pdf_to_csv,csv_llm,csv_google
+from agents import pdf,resume_json_txt,pdf_to_csv,csv_llm,csv_google,mongo_agent
 from slowapi import Limiter, _rate_limit_exceeded_handler
 from slowapi.util import get_remote_address
 from slowapi.errors import RateLimitExceeded
@@ -33,6 +33,26 @@ app.add_middleware(
 @app.get("/hello")
 def hello():
     return {"message": "Hello, FastAPI!"}
+
+@app.post("/agent")
+async def ask_to_agent(agent:str = Form(default="any"),question:str=Form(...),file: Optional[UploadFile] = File(default=None)):
+    try:
+        print(f"Agent : {agent}, Question : {question}, File : {file}")
+        
+        if file and Path(file.filename).suffix == '.pdf':
+            tool_input = PDFInput(
+                question=question,
+                database_path=f"store/{file.filename.replace('pdf', 'db')}",
+                file_path=f"input/{file.filename}"
+            )
+            result = react_agent.run(input=tool_input)
+        if not file:
+            result = react_agent.run(input=question)
+
+        return JSONResponse(status_code=200,content={"answer":result})
+    except Exception as e:
+        print(e)
+        return JSONResponse(status_code=500,content={'error':str(e)})
 
 # Aksing question with pdf file
 @app.post("/ask-pdf")
@@ -130,22 +150,10 @@ async def ask_to_csv(question: str = Form(...),csv_file: UploadFile = File(...))
     except Exception as e:
         return JSONResponse(status_code=500, content={"error": str(e)})
     
-@app.post("/agent")
-async def ask_to_agent(agent:str = Form(default="any"),question:str=Form(...),file: Optional[UploadFile] = File(default=None)):
+@app.post("/ask-to-mongodb")
+async def ask_to_mongodb(question:str = Form(...)):
     try:
-        print(f"Agent : {agent}, Question : {question}, File : {file}")
-        
-        if file and Path(file.filename).suffix == '.pdf':
-            tool_input = PDFInput(
-                question=question,
-                database_path=f"store/{file.filename.replace('pdf', 'db')}",
-                file_path=f"input/{file.filename}"
-            )
-            result = react_agent.run(input=tool_input)
-        if not file:
-            result = react_agent.run(input=question)
-
-        return JSONResponse(status_code=200,content={"answer":result})
+        answer = mongo_agent.run(question=question)
+        return JSONResponse(status_code=200,content={'answer':answer})
     except Exception as e:
-        print(e)
-        return JSONResponse(status_code=500,content={'error':str(e)})
+        return JSONResponse(status_code=500,content={"error":str(e)})
