@@ -154,7 +154,24 @@ async def ask_to_csv(question: str = Form(...),csv_file: UploadFile = File(...))
 
     except Exception as e:
         return JSONResponse(status_code=500, content={"error": str(e)})
-    
+
+  
+@app.post("/prompt")
+async def prompt_upload(prompt_file: UploadFile = File(...)):
+    try:
+        UPLOAD_DIR = "input"
+        file_location = os.path.join(UPLOAD_DIR, 'prompt.txt')
+
+        with open(file_location, "wb") as f:
+            content = await prompt_file.read()
+            f.write(content)
+
+        return JSONResponse(content={"message": f"File saved to {file_location}"})
+
+    except Exception as e:
+        return JSONResponse(status_code=500, content={"error": str(e)})
+
+
 @app.post("/ask-to-mongodb")
 async def ask_to_mongodb(question:str = Form(...)):
     try:

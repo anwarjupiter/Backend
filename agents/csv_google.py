@@ -10,25 +10,8 @@ def run(query,file_path="input/HVAC.csv"):
 
     df = pd.read_csv(file_path,encoding="ISO-8859-1")
 
-    custom_prompt = """You are a helpful AI assistant that can answer questions based on the civil.csv file provided as a pandas dataframe.
-    You have access to the following tools:
-    {tools}
-
-    Use the following format:
-
-    Question: the input question you must answer
-    Thought: think about what to do
-    Action: the action to take, should be one of [{tool_names}]
-    Action Input: the input to the action
-    Observation: the result of the action
-    ... (this Thought/Action/Action Input/Observation can repeat N times)
-    Thought: I now know the final answer
-    Final Answer: the final answer to the original question
-
-    Begin!
-
-    Question: {input}
-    {agent_scratchpad}"""
+    with open("input/prompt.txt", "r") as file:
+        custom_prompt = file.read()
 
     facility_prompprefix = """
     You are an AI Facility Manager expert named **FacilityAI**, responsible for overseeing the efficient and safe operation of a commercial building's HVAC system.
