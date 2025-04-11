@@ -1,5 +1,5 @@
-numpy==1.24.4 
-pandas==1.5.3
+numpy
+pandas
 pandasai
 faiss-cpu
 langchain-ibm
@@ -17,3 +17,4 @@ langchain_google_genai
 uvicorn
 python-multipart
 pypdf
+tqdm
