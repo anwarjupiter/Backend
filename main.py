@@ -143,7 +143,7 @@ async def ask_to_csv(question: str = Form(...),csv_file: UploadFile = File(...))
             tmp.write(await csv_file.read())
             temp_csv_path = tmp.name
 
-        answer = csv_llm.run(csv_file=temp_csv_path,query=question)
+        answer = csv_google.run(file_path=temp_csv_path,query=question)
 
         return JSONResponse(content={"answer": answer})
 

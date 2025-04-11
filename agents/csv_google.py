@@ -6,7 +6,7 @@ from langchain_experimental.agents import create_pandas_dataframe_agent
 from langchain_google_genai import GoogleGenerativeAI
 import pandas as pd
 
-def run(query,file_path="input/live.csv"):
+def run(query,file_path="input/HVAC.csv"):
 
     df = pd.read_csv(file_path,encoding="ISO-8859-1")
 
@@ -104,7 +104,7 @@ def run(query,file_path="input/live.csv"):
     pandas_agent = create_pandas_dataframe_agent(
         llm=llm,
         df=df,
-        verbose=False,
+        verbose=True,
         prefix=custom_prompt,
         allow_dangerous_code=True,
         agent_executor_kwargs={'handle_parsing_errors':True},
