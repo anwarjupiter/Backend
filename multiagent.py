@@ -3,12 +3,12 @@ from constants import *
 from pydantic import BaseModel
 from langchain.chains import LLMChain
 from bundle.PdfTeacher import PDFQABot
-from typing import TypedDict,Optional,List,Literal
+from typing import TypedDict,Optional,Literal
 from langgraph.graph import StateGraph, END
 from bundle.PandasDoctor import PandasDoctor
 from langchain.prompts import PromptTemplate
 from langchain_ibm.chat_models import ChatWatsonx
-from MongoTool import MongoAggregationTool
+from bundle.MongoTool import MongoAggregationTool
 from langchain.output_parsers import PydanticOutputParser
 
 # --- STATE MODEL ---
@@ -23,9 +23,7 @@ class AgentState(TypedDict):
 class RouteOutput(BaseModel):
     route: Literal["pdf", "csv", "mongo", "random"]
 
-
 #defining tools
-
 def pdf_tool(state: AgentState) -> AgentState:
     pdfBot = PDFQABot()
     pdfBot._build_qa_chain(pdf_path=state['file'])
@@ -49,8 +47,7 @@ def random_tool(state: AgentState) -> AgentState:
     return {**state, "result": result}
 
 class AgentRouter:
-    def __init__(self,routes):
-        self.routes = routes
+    def __init__(self):
         self.route_parser = PydanticOutputParser(pydantic_object=RouteOutput)
         self.llm = ChatWatsonx(
             model_id=MODEL_GRANITE_8B,
@@ -133,7 +130,7 @@ class AgentRouter:
         return self.graph
 
 if __name__ == "__main__":
-    agentRouter = AgentRouter(routes=['pdf','csv','mongo','random'])
+    agentRouter = AgentRouter()
     agent = agentRouter.build()
     response = agent.invoke({"question": "Can you give me top 10 tamil movies do you have ?","mongo_uri":MONGO_URL, "db_name":"sample_mflix"})
     print(response['result'])
