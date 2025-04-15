@@ -6,6 +6,7 @@ from fastapi import FastAPI, File, UploadFile, Form
 from fastapi.responses import JSONResponse
 from fastapi.responses import FileResponse
 from agents import pdf,resume_json_txt,pdf_to_csv,csv_llm,csv_google,mongo_agent
+from bundle.PandasDoctor import PandasDoctor
 from slowapi import Limiter, _rate_limit_exceeded_handler
 from slowapi.util import get_remote_address
 from slowapi.errors import RateLimitExceeded
@@ -143,7 +144,11 @@ async def ask_to_csv(question: str = Form(...),csv_file: UploadFile = File(...))
             tmp.write(await csv_file.read())
             temp_csv_path = tmp.name
 
-        answer = csv_llm.run(csv_file=temp_csv_path,query=question)
+        # pandasBot = PandasDoctor()
+        # pandasBot._load_dataset(path=temp_csv_path)
+        # answer = pandasBot.run(question=question)
+        answer = csv_google.run(query=question,file_path=temp_csv_path)
+        # answer = csv_llm.run(csv_file=temp_csv_path,query=question)
 
         return JSONResponse(content={"answer": answer})
 
