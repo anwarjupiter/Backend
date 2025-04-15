@@ -5,3 +5,4 @@ store/
 tmp/
 __pycache__/
 *.zip
+backups/

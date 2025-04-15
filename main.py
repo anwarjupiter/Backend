@@ -1,17 +1,16 @@
-import tempfile,os
+import tempfile
 from pathlib import Path
+from typing import Optional
 from fastapi import FastAPI,Request
-from fastapi.middleware.cors import CORSMiddleware
-from fastapi import FastAPI, File, UploadFile, Form
 from fastapi.responses import JSONResponse
 from fastapi.responses import FileResponse
-from agents import pdf,resume_json_txt,pdf_to_csv,csv_llm,csv_google,mongo_agent
-from bundle.PandasDoctor import PandasDoctor
-from slowapi import Limiter, _rate_limit_exceeded_handler
 from slowapi.util import get_remote_address
 from slowapi.errors import RateLimitExceeded
-from typing import Optional
-from agent_call import react_agent,PDFInput
+from fastapi.middleware.cors import CORSMiddleware
+from fastapi import FastAPI, File, UploadFile, Form
+from slowapi import Limiter, _rate_limit_exceeded_handler
+from agents import pdf,resume_json_txt,pdf_to_csv,csv_google,mongo_agent
+from MultiAgent import AgentRouter
 
 app = FastAPI()
 
@@ -36,21 +35,27 @@ def hello():
     return {"message": "Hello, FastAPI!"}
 
 @app.post("/agent")
-async def ask_to_agent(agent:str = Form(default="any"),question:str=Form(...),file: Optional[UploadFile] = File(default=None)):
+async def ask_to_agent(agent:str = Form(default="any"),question:str=Form(...),file: Optional[UploadFile] = File(default=None),mongo_uri:Optional[str] = Form(default=None),db_name:Optional[str] = Form(default=None)):
     try:
-        print(f"Agent : {agent}, Question : {question}, File : {file}")
+        temp_file_path = None
+        agentRouter = AgentRouter(routes=['pdf','csv','mongo','random'])
+        agent = agentRouter.build()
         
-        if file and Path(file.filename).suffix == '.pdf':
-            tool_input = PDFInput(
-                question=question,
-                database_path=f"store/{file.filename.replace('pdf', 'db')}",
-                file_path=f"input/{file.filename}"
-            )
-            result = react_agent.run(input=tool_input)
-        if not file:
-            result = react_agent.run(input=question)
+        if file:
+            ext = Path(file.filename).suffix
+            with tempfile.NamedTemporaryFile(delete=False, suffix=ext) as tmp:
+                tmp.write(await file.read())
+                temp_file_path = tmp.name
 
-        return JSONResponse(status_code=200,content={"answer":result})
+        if mongo_uri and db_name:
+            response = agent.invoke({"question": question,"mongo_uri":mongo_uri, "db_name":db_name})
+            answer = response['result']
+        
+        if temp_file_path:
+            response = agent.invoke({"question":question,"file":temp_file_path})
+            answer = response['result']
+
+        return JSONResponse(status_code=200,content={"answer":answer})
     except Exception as e:
         print(e)
         return JSONResponse(status_code=500,content={'error':str(e)})
@@ -59,7 +64,6 @@ async def ask_to_agent(agent:str = Form(default="any"),question:str=Form(...),fi
 @app.post("/ask-pdf")
 async def ask_pdf(question: str = Form(...),pdf_file: UploadFile = File(...),vector_db_path:str = Form(...)):
     try:
-
         with tempfile.NamedTemporaryFile(delete=False, suffix=".pdf") as tmp:
             tmp.write(await pdf_file.read())
             temp_pdf_path = tmp.name
