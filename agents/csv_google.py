@@ -93,6 +93,7 @@ def run(query,file_path="input/HVAC.csv"):
         agent_executor_kwargs={'handle_parsing_errors':True},
         max_iterations=10,
     )
+    print(pandas_agent)
 
     response = pandas_agent.invoke(query)
     return response['output']
