@@ -1,6 +1,8 @@
-import os
+import os,logging,warnings
 from dotenv import load_dotenv
 MODEL_GRANITE_13B = "ibm/granite-13b-sft"
+
+warnings.filterwarnings("ignore")
 
 load_dotenv()
 SERVER_URL = os.getenv("SERVER_URL")
@@ -30,3 +32,10 @@ GOOGLE_GEMINI_KEY = "AIzaSyCqgpJTOLeA-BIk2lrHw2YojZA37NRBTJo"
 
 MONGO_URL= "mongodb+srv://anwarmydheenk:xcwSgYCDarOKZzrq@cluster0.3t32wd8.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0"
 # MONGO_URL=mongodb://localhost:27017/
+
+logging.basicConfig(
+    level=logging.INFO,
+    # filename="log.txt",
+    # filemode="w+",
+    format='%(asctime)s - %(levelname)s - %(message)s'
+)
