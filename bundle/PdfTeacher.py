@@ -30,13 +30,21 @@ class PDFQABot():
     #     )
     
     def _init_llm(self):
-        return ChatWatsonx(
+        genai = ChatGoogleGenerativeAI(
+            model=MODEL_FLASH_2_0,
+            api_key=GOOGLE_GEMINI_KEY,
+            temperature=0,
+            max_tokens=500,
+            top_k=50,
+        )
+        watsonx = ChatWatsonx(
             model_id=MODEL_GRANITE_8B,
             project_id=WATSONX_PROJECT_ID,
             apikey=WATSONX_API_KEY,
             url=SERVER_URL,
             params=WASTSONX_PARAMS
         )
+        return watsonx
 
     def _load_pdf(self,pdf_path):
         loader = PyPDFLoader(file_path=pdf_path, extraction_mode="plain")
