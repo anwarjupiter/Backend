@@ -56,7 +56,7 @@ class PandasDoctor:
         return {"result": self.python_tool.invoke(state["code"])}
 
     def generate_answer(self, state: State):
-        with open("prompts/1.txt", "r") as file:
+        with open("input/prompt.txt", "r") as file:
             prompt_template = file.read()
         logging.info("Pandas Prompt Loaded")
         prompt = prompt_template.format(

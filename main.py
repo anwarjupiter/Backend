@@ -63,7 +63,7 @@ async def ask_to_agent(agent:str = Form(default="any"),question:str=Form(...),fi
 
         return JSONResponse(status_code=200,content={"answer":answer})
     except Exception as e:
-        print(e)
+        logging.error(e)
         return JSONResponse(status_code=500,content={'error':str(e)})
 
 # Aksing question with pdf file
