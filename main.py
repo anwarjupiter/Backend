@@ -10,7 +10,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from fastapi import FastAPI, File, UploadFile, Form
 from slowapi import Limiter, _rate_limit_exceeded_handler
 from agents import pdf,resume_json_txt,pdf_to_csv,csv_google,mongo_agent
-from MultiAgent import AgentRouter
+from multiagent import AgentRouter
 from constants import *
 
 
