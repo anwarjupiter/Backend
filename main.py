@@ -58,6 +58,10 @@ async def ask_to_agent(agent:str = Form(default="any"),question:str=Form(...),fi
             response = agent.invoke({"question":question,"file":temp_file_path,"vectorDB":vectorDB})
             answer = response['result']
 
+        if not temp_file_path and not mongo_uri and not db_name:
+            response = agent.invoke({"question":question})
+            answer = response['result']
+
         return JSONResponse(status_code=200,content={"answer":answer})
     except Exception as e:
         print(e)
