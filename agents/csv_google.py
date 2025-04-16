@@ -6,7 +6,7 @@ from langchain_experimental.agents import create_pandas_dataframe_agent
 from langchain_google_genai import GoogleGenerativeAI
 import pandas as pd
 
-def run(query,file_path="input/HVAC.csv"):
+def run(query,file_path="input/HVAC1.csv"):
 
     df = pd.read_csv(file_path,encoding="ISO-8859-1")
 
@@ -37,12 +37,13 @@ def run(query,file_path="input/HVAC.csv"):
     return response['output']
 
 if __name__ == "__main__":
+    csv_file = input("Enter the csv file path :")
     while True:
         try:
             user = input("You :")
             if user in ('exit','quit'):
                 break
-            bot = run(query=user)
+            bot = run(query=user,file_path=csv_file)
             print("Bot :\n",bot)
         except Exception as e:
             print(e)
