@@ -136,5 +136,5 @@ class AgentRouter:
 if __name__ == "__main__":
     agentRouter = AgentRouter()
     agent = agentRouter.build()
-    response = agent.invoke({"question": "Can you give me top 10 tamil movies do you have ?","mongo_uri":MONGO_URL, "db_name":"sample_mflix"})
+    response = agent.invoke({"question": "How many rows do you have ?","file":"input/HVAC1.csv"})
     print(response['result'])
