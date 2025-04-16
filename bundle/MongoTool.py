@@ -86,6 +86,7 @@ class MongoAggregationTool:
                 keys = list(doc.keys())
                 schema_lines.append(f"{name}: {keys}")
         schema_info = "\n".join(schema_lines)
+        logging.info("MongoDB Schema Generated Successfully !")
         return schema_info
 
     def _build_prompt(self):
@@ -132,7 +133,9 @@ Question: {question}
             question=question,
             raw_result=raw_result
         )
-        return self.llm.invoke(formatted_prompt).content.strip()
+        response = self.llm.invoke(formatted_prompt).content.strip()
+        logging.info("Finalizing Natural Response !")
+        return response
 
 
     def _generate_and_run(self, question: str) -> str:
@@ -147,6 +150,7 @@ Question: {question}
         )
 
         # print(prompt)
+        logging.info("Mongo Prompt Loaded Successfully !")
 
         # Step 3: LLM generates action input
         llm_output = self.llm.predict(prompt)
@@ -155,7 +159,9 @@ Question: {question}
         # Step 4: Parse structured pipeline
         try:
             parsed = self.mongo_parser.parse(llm_output)
+            logging.info("Parsing the MongoTool Response")
         except Exception as e:
+            logging.error(f"Parsing Failed : {e}")
             return f"❌ Parsing failed: {e}"
 
         # Step 5: Run Mongo pipeline

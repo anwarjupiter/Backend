@@ -1,4 +1,4 @@
-import tempfile,logging
+import tempfile
 from pathlib import Path
 from typing import Optional
 from fastapi import FastAPI,Request
@@ -11,6 +11,8 @@ from fastapi import FastAPI, File, UploadFile, Form
 from slowapi import Limiter, _rate_limit_exceeded_handler
 from agents import pdf,resume_json_txt,pdf_to_csv,csv_google,mongo_agent
 from MultiAgent import AgentRouter
+from constants import *
+
 
 app = FastAPI()
 
@@ -46,6 +48,7 @@ async def ask_to_agent(agent:str = Form(default="any"),question:str=Form(...),fi
             with tempfile.NamedTemporaryFile(delete=False, suffix=ext) as tmp:
                 tmp.write(await file.read())
                 temp_file_path = tmp.name
+            logging.info(f"File Uploaded Success !")
 
         if mongo_uri and db_name:
             response = agent.invoke({"question": question,"mongo_uri":mongo_uri, "db_name":db_name})

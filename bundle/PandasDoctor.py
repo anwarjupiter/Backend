@@ -38,6 +38,7 @@ class PandasDoctor:
             self.dataset = pd.read_excel(path)
         globals()["df"] = self.dataset 
         self.python_tool = PythonAstREPLTool(globals=globals())
+        logging.info(f"{path} dataset File Loaded ")
 
     def write_pandas_code(self,state: State, prompt):
         system_prompt = prompt.invoke({
@@ -48,6 +49,7 @@ class PandasDoctor:
         })
         structured_llm = self.llm.with_structured_output(PandasCodeOutput)
         result = structured_llm.invoke(system_prompt)
+        logging.info("Pands Code Success")
         return {"code": result["code"]}
 
     def execute_code(self,state: State):
@@ -56,13 +58,14 @@ class PandasDoctor:
     def generate_answer(self, state: State):
         with open("prompts/1.txt", "r") as file:
             prompt_template = file.read()
-        print("Prompt Loaded")
+        logging.info("Pandas Prompt Loaded")
         prompt = prompt_template.format(
             question=state["question"],
             code=state["code"],
             result=state["result"]
         )
         response = self.llm.invoke(prompt)
+        logging.info("Finalizing Natural Response")
         return {"answer": response.content}
 
     def run(self,question="What is the average salary?"):

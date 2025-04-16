@@ -4,7 +4,7 @@ from google.api_core.exceptions import ResourceExhausted
 from tqdm import tqdm
 from langchain.chains import RetrievalQA
 from langchain.prompts import PromptTemplate
-from constants import MODEL_FLASH_2_0,GOOGLE_GEMINI_KEY
+from constants import *
 from langchain_community.vectorstores import FAISS
 from langchain_community.document_loaders import PyPDFLoader
 from langchain_google_genai.chat_models import ChatGoogleGenerativeAI
@@ -66,7 +66,9 @@ Answer:
 
     def _build_qa_chain(self,pdf_path):
         documents = self._load_pdf(pdf_path)
+        logging.info("Pdf Loaded Successfully !")
         retriever = self._get_retriever(documents)
+        logging.info("VectoreStore Created Successfully !")
         self.qa_chain = RetrievalQA.from_chain_type(
             llm=self.llm,
             chain_type="stuff",
@@ -75,69 +77,12 @@ Answer:
             return_source_documents=False,
             verbose=True
         )
+        logging.info("Retrieval Chain Builid Successfully !")
 
     def ask(self, question: str) -> str:
         result = self.qa_chain.invoke({"query": question})
+        logging.info("Finalizing Natural Answer !")
         return result["result"]
-
-    # def prepare(self, topic: str = "overall", num_questions: int = 5) -> pd.DataFrame:
-    #     prompt = f"""
-    #     Generate {num_questions} multiple choice questions from the PDF content.
-    #     Format the output as a JSON list of dictionaries with the following keys:
-    #     - question
-    #     - option1
-    #     - option2
-    #     - option3
-    #     - option4
-    #     - answer (must match one of the options)
-
-    #     Ensure questions are clear and based only on the context provided.
-    #     Topic: {topic}
-    #     Only return JSON — no extra explanation.
-    #     """
-    #     response = self.llm.invoke(prompt)
-        
-    #     try:
-    #         data = response.content.replace('```json','').replace('```','').strip()
-    #         questions_data = json.loads(data)
-    #         df = pd.DataFrame(questions_data)
-    #         return df
-    #     except json.JSONDecodeError:
-    #         print("Failed to parse quiz JSON. Raw response:")
-    #         print(response.content)
-    #         return pd.DataFrame()
-
-    def prepare(self,topic:str,num_questions:int=5)->pd.DataFrame:
-        format_instructions = self.quiz_parser.get_format_instructions()
-        prompt = f"""
-        Generate {num_questions} multiple choice questions from the PDF content.
-
-        Ensure questions are clear and based only on the context provided.
-        Topic: {topic}
-
-        {format_instructions}
-        """
-        response = self.llm.invoke(prompt)
-        formated_response = self.quiz_parser.parse(response.content)
-        df = pd.DataFrame([question.model_dump() for question in formated_response.questions])
-        return df
-
-    def generate_quiz(self,pdf_path):
-        documents = self._load_pdf(pdf_path=pdf_path)
-        for doc in tqdm(documents,desc="Preparing Quiz ",unit='page'):
-            try:
-                df = self.prepare(topic=doc,num_questions=5)
-                self.questions = pd.concat([self.questions,df], ignore_index=True)
-            except ResourceExhausted as e:
-                print("oops resource exhausted ! Please wait 60 seconds ")
-                break
-            except Exception as e:
-                print(e)
-        self.questions.to_csv(f'pdfteacher/quiz/{time.time()}.csv')
-        quiz_file = tempfile.NamedTemporaryFile(delete=False, suffix='.csv', mode='w', encoding='utf-8')
-        self.questions.to_csv(quiz_file.name, index=False)
-        quiz_file.close()
-        return quiz_file.name
 
 if __name__ == "__main__":
     pdf_path = "pdfteacher/assets/pdf/1.pdf"
