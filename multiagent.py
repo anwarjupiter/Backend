@@ -19,6 +19,7 @@ class AgentState(TypedDict):
     result: Optional[str]
     mongo_uri:Optional[str]
     db_name:Optional[str]
+    vectorDB:Optional[str]
 
 class RouteOutput(BaseModel):
     route: Literal["pdf", "csv", "mongo", "random"]
@@ -26,7 +27,7 @@ class RouteOutput(BaseModel):
 #defining tools
 def pdf_tool(state: AgentState) -> AgentState:
     pdfBot = PDFQABot()
-    pdfBot._build_qa_chain(pdf_path=state['file'])
+    pdfBot._build_qa_chain(pdf_path=state['file'],vectorDB=state['vectorDB'])
     answer = pdfBot.ask(question=state['question'])
     return {**state, "result": answer}
 

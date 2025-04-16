@@ -37,7 +37,7 @@ def hello():
     return {"message": "Hello, FastAPI!"}
 
 @app.post("/agent")
-async def ask_to_agent(agent:str = Form(default="any"),question:str=Form(...),file: Optional[UploadFile] = File(default=None),mongo_uri:Optional[str] = Form(default=None),db_name:Optional[str] = Form(default=None)):
+async def ask_to_agent(agent:str = Form(default="any"),question:str=Form(...),file: Optional[UploadFile] = File(default=None),mongo_uri:Optional[str] = Form(default=None),db_name:Optional[str] = Form(default=None),vectorDB:Optional[str] = Form(default=None)):
     try:
         temp_file_path = None
         agentRouter = AgentRouter()
@@ -55,7 +55,7 @@ async def ask_to_agent(agent:str = Form(default="any"),question:str=Form(...),fi
             answer = response['result']
         
         if temp_file_path:
-            response = agent.invoke({"question":question,"file":temp_file_path})
+            response = agent.invoke({"question":question,"file":temp_file_path,"vectorDB":vectorDB})
             answer = response['result']
 
         return JSONResponse(status_code=200,content={"answer":answer})
