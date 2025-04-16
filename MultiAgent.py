@@ -2,7 +2,7 @@ import random
 from constants import *
 from pydantic import BaseModel
 from langchain.chains import LLMChain
-from bundle.PdfTeacher import PDFQABot
+from bundle.Pdfteacher import PDFQABot
 from typing import TypedDict,Optional,Literal
 from langgraph.graph import StateGraph, END
 from bundle.PandasDoctor import PandasDoctor
