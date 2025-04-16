@@ -14,7 +14,7 @@ def run(query,file_path="input/HVAC1.csv"):
         custom_prompt = file.read()
 
     llm = GoogleGenerativeAI(
-        model="gemini-2.0-flash",
+        model=MODEL_FLASH_2_0,
         api_key=GOOGLE_GEMINI_KEY,
         temperature=0,
         max_tokens=500,
