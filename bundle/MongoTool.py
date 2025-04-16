@@ -1,13 +1,10 @@
 from pydantic import BaseModel, Field
-from typing import List, Dict, Any, Optional
-from langchain.agents import initialize_agent, AgentType
-from langchain.tools import BaseTool
+from typing import List, Dict, Any
 from pymongo import MongoClient
 from langchain.output_parsers import PydanticOutputParser
 from langchain_google_genai.chat_models import ChatGoogleGenerativeAI
 from constants import *
 from langchain.prompts import PromptTemplate
-import json
 
 # ----------------------------
 # 1. Structured Output Schema
