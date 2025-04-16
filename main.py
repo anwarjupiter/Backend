@@ -1,4 +1,4 @@
-import tempfile
+import tempfile,logging
 from pathlib import Path
 from typing import Optional
 from fastapi import FastAPI,Request
@@ -38,7 +38,7 @@ def hello():
 async def ask_to_agent(agent:str = Form(default="any"),question:str=Form(...),file: Optional[UploadFile] = File(default=None),mongo_uri:Optional[str] = Form(default=None),db_name:Optional[str] = Form(default=None)):
     try:
         temp_file_path = None
-        agentRouter = AgentRouter(routes=['pdf','csv','mongo','random'])
+        agentRouter = AgentRouter()
         agent = agentRouter.build()
         
         if file:
