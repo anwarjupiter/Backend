@@ -77,6 +77,7 @@ class AgentRouter:
 
             Question: {question}
             File: {file}
+            VectorStore: {vectoreDB}
             Mongo URL: {mongo_uri}
             Databse Name: {dbname}
             """.strip(),
@@ -89,7 +90,9 @@ class AgentRouter:
         file = state.get("file", "None")
         mongo_uri = state.get("mongo_uri","None")
         db_name = state.get("db_name","None")
-        output = self.router_chain.run(question=question, file=file,mongo_uri=mongo_uri,dbname=db_name)
+        vectoreDB = state.get("vectorDB","None")
+
+        output = self.router_chain.run(question=question, file=file,mongo_uri=mongo_uri,dbname=db_name,vectoreDB=vectoreDB)
 
         try:
             parsed = self.route_parser.parse(output)
