@@ -1,5 +1,3 @@
-import time,os,tempfile
-import pandas as pd
 from google.api_core.exceptions import ResourceExhausted
 from tqdm import tqdm
 from langchain.chains import RetrievalQA
@@ -83,14 +81,3 @@ Answer:
         result = self.qa_chain.invoke({"query": question})
         logging.info("Finalizing Natural Answer !")
         return result["result"]
-
-if __name__ == "__main__":
-    pdf_path = "pdfteacher/assets/pdf/1.pdf"
-    bot = PDFQABot()
-    # while True:
-    #     user_input = input("You: ")
-    #     if user_input.lower() in ('exit', 'quit'):
-    #         print("Exiting chatbot. Goodbye!")
-    #         break
-    #     response = bot.ask(user_input)
-    #     print("Bot:\n", response)
