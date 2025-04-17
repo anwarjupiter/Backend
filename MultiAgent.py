@@ -52,7 +52,7 @@ class AgentRouter:
         self.route_parser = PydanticOutputParser(pydantic_object=RouteOutput)
         logging.info("Deciding Model : ")
         self.llm = ChatWatsonx(
-            model_id=MODEL_GRANITE_8B,
+            model_id=IBM_MODEL,
             project_id=WATSONX_PROJECT_ID,
             apikey=WATSONX_API_KEY,
             url=SERVER_URL,
