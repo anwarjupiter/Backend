@@ -8,6 +8,7 @@ from langgraph.graph import StateGraph, END
 from bundle.PandasDoctor import PandasDoctor
 from langchain.prompts import PromptTemplate
 from langchain_ibm.chat_models import ChatWatsonx
+from langchain_google_genai.chat_models import ChatGoogleGenerativeAI
 from bundle.MongoTool import MongoAggregationTool
 from langchain.output_parsers import PydanticOutputParser
 
@@ -57,6 +58,7 @@ class AgentRouter:
             url=SERVER_URL,
             params=WASTSONX_PARAMS
         )
+        #self.llm = ChatGoogleGenerativeAI(model=MODEL_FLASH_2_0,api_key=GOOGLE_GEMINI_KEY,temperature=0)
         self.graph = None
         self.router_chain = None
 

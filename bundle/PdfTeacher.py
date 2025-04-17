@@ -30,13 +30,13 @@ class PDFQABot():
     #     )
     
     def _init_llm(self):
-        genai = ChatGoogleGenerativeAI(
-            model=MODEL_FLASH_2_0,
-            api_key=GOOGLE_GEMINI_KEY,
-            temperature=0,
-            max_tokens=500,
-            top_k=50,
-        )
+        # genai = ChatGoogleGenerativeAI(
+        #     model=MODEL_FLASH_2_0,
+        #     api_key=GOOGLE_GEMINI_KEY,
+        #     temperature=0,
+        #     max_tokens=500,
+        #     top_k=50,
+        # )
         watsonx = ChatWatsonx(
             model_id=MODEL_GRANITE_8B,
             project_id=WATSONX_PROJECT_ID,
