@@ -23,6 +23,7 @@ class MongoAggregationTool:
         self.client = MongoClient(connection_string)
         self.db = self.client[db_name]
         self.mongo_parser = self._init_mongo_parser()
+        logging.info("Model : Gemini Flash")
         self.llm = ChatGoogleGenerativeAI(
             model=MODEL_FLASH_2_0,
             api_key=GOOGLE_GEMINI_KEY,

@@ -23,6 +23,7 @@ class PandasDoctor:
     def __init__(self):
         self.dataset = pd.DataFrame()
         self.python_tool = None
+        logging.info("Model : Gemini Flash")
         self.llm = ChatGoogleGenerativeAI(
             model=MODEL_FLASH_2_0,
             api_key=GOOGLE_GEMINI_KEY,
