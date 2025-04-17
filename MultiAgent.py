@@ -50,7 +50,7 @@ def random_tool(state: AgentState) -> AgentState:
 class AgentRouter:
     def __init__(self):
         self.route_parser = PydanticOutputParser(pydantic_object=RouteOutput)
-        logging.info("Deciding Model : ")
+        logging.info(f"Deciding Model : {IBM_MODEL}")
         self.llm = ChatWatsonx(
             model_id=IBM_MODEL,
             project_id=WATSONX_PROJECT_ID,
