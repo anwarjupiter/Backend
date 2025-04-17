@@ -15,7 +15,7 @@ MODEL_LAMA_70B = "meta-llama/llama-3-1-70b-instruct"
 MODEL_GRANITE_8B_CODE = "ibm/granite-8b-code-instruct"
 MISTRAL_LARGE = "mistralai/mistral-large"
 
-IBM_MODEL = MISTRAL_LARGE
+IBM_MODEL = MODEL_LAMA_70B
 
 WASTSONX_PARAMS = {
     "temperature": 0,

@@ -37,6 +37,7 @@ class PDFQABot():
         #     max_tokens=500,
         #     top_k=50,
         # )
+        logging.info(f"IBM MODEL : {IBM_MODEL}")
         watsonx = ChatWatsonx(
             model_id=IBM_MODEL,
             project_id=WATSONX_PROJECT_ID,

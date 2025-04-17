@@ -3,6 +3,7 @@ from typing import List, Dict, Any
 from pymongo import MongoClient
 from langchain.output_parsers import PydanticOutputParser
 from langchain_google_genai.chat_models import ChatGoogleGenerativeAI
+from langchain_ibm.chat_models import ChatWatsonx
 from constants import *
 from langchain.prompts import PromptTemplate
 
@@ -23,12 +24,20 @@ class MongoAggregationTool:
         self.client = MongoClient(connection_string)
         self.db = self.client[db_name]
         self.mongo_parser = self._init_mongo_parser()
-        self.llm = ChatGoogleGenerativeAI(
-            model=MODEL_FLASH_2_0,
-            api_key=GOOGLE_GEMINI_KEY,
-            temperature=0,
-            max_tokens=1000,
-            top_k=50,
+        # self.llm = ChatGoogleGenerativeAI(
+        #     model=MODEL_FLASH_2_0,
+        #     api_key=GOOGLE_GEMINI_KEY,
+        #     temperature=0,
+        #     max_tokens=1000,
+        #     top_k=50,
+        # )
+        logging.info(f"IBM MODEL : {IBM_MODEL}")
+        self.llm = ChatWatsonx(
+            model_id=IBM_MODEL,
+            project_id=WATSONX_PROJECT_ID,
+            apikey=WATSONX_API_KEY,
+            url=SERVER_URL,
+            params=WASTSONX_PARAMS
         )
 
     def _init_mongo_parser(self):
@@ -173,14 +182,6 @@ Question: {question}
         return self._generate_and_run(query)
 
 if __name__ == "__main__":
-
-    llm = ChatGoogleGenerativeAI(
-        model=MODEL_FLASH_2_0,
-        api_key=GOOGLE_GEMINI_KEY,
-        temperature=0,
-        max_tokens=1000,
-        top_k=50,
-    )
 
     mongoBot = MongoAggregationTool(connection_string=MONGO_URL,db_name="sample_mflix")
     
