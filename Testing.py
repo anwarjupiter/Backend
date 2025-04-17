@@ -9,7 +9,7 @@ logging.basicConfig(
     format="%(asctime)s - %(levelname)s - %(message)s",
     handlers=[
         logging.StreamHandler(),  # logs to console
-        logging.FileHandler("logs/llama-3-1-70b-instruct.log", mode="a")  # logs to file
+        logging.FileHandler(f"logs/granite-3-2b-instruct.log", mode="a")  # logs to file
     ]
 )
 
@@ -62,7 +62,7 @@ async def main():
             method="post",
             question="What is the minimum road width of cottage industries?",
             file=files,
-            vectorDB="ibm"
+            vectorDB="google"
         )
         logging.info(response.text)
 
@@ -92,7 +92,7 @@ async def main():
             method="post",
             question="What is the requirement of Ramp like gradient, width etc?",
             file=files,
-            vectorDB="ibm"
+            vectorDB="google"
         )
         logging.info(response.text)
 
@@ -103,7 +103,7 @@ async def main():
         mongo_uri="mongodb+srv://anwarmydheenk:xcwSgYCDarOKZzrq@cluster0.3t32wd8.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0",
         db_name="sample_analytics"
     )
-    logging.debug(response.text)
+    logging.info(response.text)
 
     test8 = AsyncAPITester(url="http://127.0.0.1:8000/agent")
     response = await test8.inject(
@@ -131,7 +131,7 @@ async def main():
             method="post",
             question="What is the maximum permissible FSI for IT Building in City area ?",
             file=files,
-            vectorDB="ibm"
+            vectorDB="google"
         )
         logging.info(response.text)
 

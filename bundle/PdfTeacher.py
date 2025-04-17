@@ -30,22 +30,22 @@ class PDFQABot():
     #     )
     
     def _init_llm(self):
-        # genai = ChatGoogleGenerativeAI(
-        #     model=MODEL_FLASH_2_0,
-        #     api_key=GOOGLE_GEMINI_KEY,
-        #     temperature=0,
-        #     max_tokens=500,
-        #     top_k=50,
-        # )
-        logging.info(f"IBM MODEL : {IBM_MODEL}")
-        watsonx = ChatWatsonx(
-            model_id=IBM_MODEL,
-            project_id=WATSONX_PROJECT_ID,
-            apikey=WATSONX_API_KEY,
-            url=SERVER_URL,
-            params=WASTSONX_PARAMS
+        genai = ChatGoogleGenerativeAI(
+            model=MODEL_FLASH_2_0,
+            api_key=GOOGLE_GEMINI_KEY,
+            temperature=0,
+            max_tokens=500,
+            top_k=50,
         )
-        return watsonx
+        # logging.info(f"IBM MODEL : {IBM_MODEL}")
+        # watsonx = ChatWatsonx(
+        #     model_id=IBM_MODEL,
+        #     project_id=WATSONX_PROJECT_ID,
+        #     apikey=WATSONX_API_KEY,
+        #     url=SERVER_URL,
+        #     params=WASTSONX_PARAMS
+        # )
+        return genai
 
     def _load_pdf(self,pdf_path):
         loader = PyPDFLoader(file_path=pdf_path, extraction_mode="plain")
@@ -55,16 +55,16 @@ class PDFQABot():
         return docs
 
     def _get_retriever(self, documents,vectorDB):
-        # embeddings = GoogleGenerativeAIEmbeddings(
-        #     model="models/embedding-001",
-        #     google_api_key=GOOGLE_GEMINI_KEY
-        # )
-        embeddings = WatsonxEmbeddings(
-            model_id=IBM_SLATE_125M_ENGLISH_RTRVR,
-            apikey=WATSONX_API_KEY,
-            project_id=WATSONX_PROJECT_ID,
-            url=SERVER_URL
+        embeddings = GoogleGenerativeAIEmbeddings(
+            model="models/embedding-001",
+            google_api_key=GOOGLE_GEMINI_KEY
         )
+        # embeddings = WatsonxEmbeddings(
+        #     model_id=IBM_SLATE_125M_ENGLISH_RTRVR,
+        #     apikey=WATSONX_API_KEY,
+        #     project_id=WATSONX_PROJECT_ID,
+        #     url=SERVER_URL
+        # )
         if os.path.exists(f'store/{vectorDB}'):
             vectorstore = FAISS.load_local(f'store/{vectorDB}',embeddings=embeddings,allow_dangerous_deserialization=True)
             logging.info("VectorStore Loaded Successfully")

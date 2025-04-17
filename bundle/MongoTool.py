@@ -24,21 +24,21 @@ class MongoAggregationTool:
         self.client = MongoClient(connection_string)
         self.db = self.client[db_name]
         self.mongo_parser = self._init_mongo_parser()
-        # self.llm = ChatGoogleGenerativeAI(
-        #     model=MODEL_FLASH_2_0,
-        #     api_key=GOOGLE_GEMINI_KEY,
-        #     temperature=0,
-        #     max_tokens=1000,
-        #     top_k=50,
-        # )
-        logging.info(f"IBM MODEL : {IBM_MODEL}")
-        self.llm = ChatWatsonx(
-            model_id=IBM_MODEL,
-            project_id=WATSONX_PROJECT_ID,
-            apikey=WATSONX_API_KEY,
-            url=SERVER_URL,
-            params=WASTSONX_PARAMS
+        self.llm = ChatGoogleGenerativeAI(
+            model=MODEL_FLASH_2_0,
+            api_key=GOOGLE_GEMINI_KEY,
+            temperature=0,
+            max_tokens=1000,
+            top_k=50,
         )
+        # logging.info(f"IBM MODEL : {IBM_MODEL}")
+        # self.llm = ChatWatsonx(
+        #     model_id=IBM_MODEL,
+        #     project_id=WATSONX_PROJECT_ID,
+        #     apikey=WATSONX_API_KEY,
+        #     url=SERVER_URL,
+        #     params=WASTSONX_PARAMS
+        # )
 
     def _init_mongo_parser(self):
         return PydanticOutputParser(pydantic_object=MongoActionInput)
