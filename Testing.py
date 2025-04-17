@@ -9,7 +9,7 @@ logging.basicConfig(
     format="%(asctime)s - %(levelname)s - %(message)s",
     handlers=[
         logging.StreamHandler(),  # logs to console
-        logging.FileHandler("ibm.log", mode="a")  # logs to file
+        logging.FileHandler("granite-3-3-8b-instruct.log", mode="a")  # logs to file
     ]
 )
 

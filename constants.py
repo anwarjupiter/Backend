@@ -10,7 +10,11 @@ WATSONX_API_KEY = os.getenv("WATSONX_API_KEY")
 
 # WatsonX model constants
 MODEL_GRANITE_13B = "ibm/granite-13b-instruct-v2"
-MODEL_GRANITE_13B = "ibm/granite-3-8b-instruct"
+MODEL_GRANITE_8B = "ibm/granite-3-8b-instruct"
+MODEL_LAMA_70B = "meta-llama/llama-3-1-70b-instruct"
+MODEL_GRANITE_8B_CODE = "ibm/granite-8b-code-instruct"
+
+IBM_MODEL = "mistralai/mistral-large"
 WASTSONX_PARAMS = {
     "temperature": 0,
     "max_new_tokens": 500,
