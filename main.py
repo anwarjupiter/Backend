@@ -50,14 +50,17 @@ async def ask_to_agent(agent:str = Form(default="any"),question:str=Form(...),fi
             logging.info(f"File Uploaded Success !")
 
         if mongo_uri and db_name:
+            logging.info("Agent Invoked !")
             response = agent.invoke({"question": question,"mongo_uri":mongo_uri, "db_name":db_name})
             answer = response['result']
         
         if temp_file_path:
+            logging.info("Agent Invoked !")
             response = agent.invoke({"question":question,"file":temp_file_path,"vectorDB":vectorDB})
             answer = response['result']
 
         if not temp_file_path and not mongo_uri and not db_name:
+            logging.info("Agent Invoked !")
             response = agent.invoke({"question":question})
             answer = response['result']
 
