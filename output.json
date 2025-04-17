@@ -1,0 +1,84 @@
+{
+  "Season": "SS25",
+  "Plan": "BABY BOY",
+  "Pack Created": "25/03/2024",
+  "Division": "007",
+  "Style No.": "52J4100",
+  "Owner": "MARTA L\u00d3PEZ HERRERO",
+  "UNECO": "002",
+  "Type": "HOODIE",
+  "Collection": null,
+  "Marca": "BABY",
+  "Marketing Name": null,
+  "Supplier": null,
+  "Product Description": null,
+  "Colorway A": "500 Verde",
+  "Colorway B": "720 Tostado claro (felpa)",
+  "Colorway C": "471 Indigo claro",
+  "Supplier Instructions": "SUPPLIER HAS TO SEND TOGETHER WITH THE FIRST \nIF THERE IS A SWATCH SENT         SAMPLE THE ORIGINAL GARMENT SENT.       \nFOR THE COLOR, FOLLOW IT      THE FIRST SAMPLE HAS TO BE DONE IN THE RIGHT\n                                      QUALITY AND IN A COLOUR AS CLOSE AS POSSIBLE\n                                           TO THE GARMENT MARKED IN RED.",
+  "Description": "GARMENT WASH / SILICONE FINISHING",
+  "Details of Design": "Inner printed main label Cover collar seam DTM\n                              over self fabric piece  self fabric\n                                                           SIZE 4 HAS NO\n                                                         SHOULDER OPENING.\n                                                       Shoulder opening with placket\n    2x1 cotton rib binding collar\n                                                       DTM self fabric, 2 metallic\n    14 mm width with one                                                          \n                                                       non visible silver snaps   \n    stitch at the edge on front\n             Rib 2x1 and\n           overlock stitches",
+  "Instructions": "THREAD: MATCHING COLOR WITH SHELL FABRIC",
+  "Comments": null,
+  "Main fabric quality": "- COMPOSITION: 100% BCI cotton\n    - QUALITY: French terry / Low Shrinkage Fabric LSF 3END / 280 gsm",
+  "Main fabric color": null,
+  "Trimmings": [
+    {
+      "Type": "SNAP",
+      "Quality": "Silver"
+    },
+    {
+      "Type": "RIB",
+      "Composition": "97% Cotton / 3% Elastane",
+      "Quality": "2x1"
+    },
+    {
+      "Type": "CORD",
+      "Composition": "100% Cotton",
+      "Size": "4mm diameter"
+    },
+    {
+      "Type": "WOVEN LABEL",
+      "Quality": "canvas",
+      "Artwork": null,
+      "Matching": "MATCHING TO SHELL COLOR OPTION B\n         MATCHING TO SHELL COLOR OPTION A\n          14-0758 TPG (2.175)\n          11-4801 TPG (1.001)"
+    }
+  ],
+  "Print / graphic": {
+    "Option": "A",
+    "Colors": "12-4300 tpg 18-4005 tpg 17-1540 tpg\n                                            (1.009) (1.042)  (1.084)",
+    "Sizes": "Sizes for 6m to 12m: 10,5 cm\n         Sizes for 18m to 24m: 13 cm\n         Sizes for 3y to 4y: 15,5 cm",
+    "Description": "water print\npatch: inside out french terry"
+  },
+  "Labels": [
+    {
+      "Product": "REF: BABY HTO1",
+      "Size": "Measurements: 53 x 54 mm",
+      "Requirement": "REQUIRED",
+      "Colour": "White color",
+      "Description": "BRAND HANG TAG + FASTENER REQUIRED\nBRAND HANG TAG FASTENER",
+      "Remarks": null,
+      "Image": null
+    },
+    {
+      "Product": "REF: BABY-QHTO1-OS BCI",
+      "Size": "Measurements: 53 x 54 mm",
+      "Requirement": "ONLY IF REQUESTED",
+      "Description": "QUALITY HANG TAG\n*Many options and measures available. Buyer will soecify which one is needed.\n**The buyer or designer will provide the specific one, according to the product characteristics.",
+      "Remarks": null,
+      "Colour": null,
+      "Image": null
+    },
+    {
+      "Product": "REF: KIDS RFID 2",
+      "Size": "Measurements: 35 x 48 mm",
+      "Requirement": "REQUIRED",
+      "Description": "PRICE AND BARCODE ADHESIVE WITH RFID\n*Variable information specific for each garment.\nWhite background.\nPrint color: Black.",
+      "Remarks": "PRICE ADHESIVE PLACEMENT:\nPlace the adhsive over the corner marks on back side of BRAND HANG TAG as shown:",
+      "Colour": "White background.\nPrint color: Black.",
+      "Image": null
+    }
+  ],
+  "Image OCR": "water print\n\n18-4005 tpg\n(1.042)\n\n12-4300 tpg 17-1540 tpg\n\npatch: inside out french terry (1.009) (1.084)\n\n500 Verde",
+  "Page": null
+}
