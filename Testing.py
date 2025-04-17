@@ -9,7 +9,7 @@ logging.basicConfig(
     format="%(asctime)s - %(levelname)s - %(message)s",
     handlers=[
         logging.StreamHandler(),  # logs to console
-        logging.FileHandler(f"prod/ibm.log", mode="a")  # logs to file
+        logging.FileHandler(f"prod/gemini.log", mode="a")  # logs to file
     ]
 )
 
