@@ -9,9 +9,20 @@ SERVER_URL = os.getenv("SERVER_URL")
 WATSONX_PROJECT_ID = os.getenv("WATSONX_PROJECT_ID")
 WATSONX_API_KEY = os.getenv("WATSONX_API_KEY")
 
-# WatsonX model constants
-MODEL_GRANITE_13B = "ibm/granite-13b-instruct-v2"
-MODEL_GRANITE_8B = "ibm/granite-3-8b-instruct"
+SUPPORTED_IBM_MODELS = [
+    'ibm/granite-3-2b-instruct', 
+    'ibm/granite-3-8b-instruct', 
+    'ibm/granite-guardian-3-2b', 
+    'ibm/granite-guardian-3-8b', 
+    'meta-llama/llama-3-1-70b-instruct',
+    'meta-llama/llama-3-2-11b-vision-instruct',
+    'meta-llama/llama-3-2-90b-vision-instruct', 
+    'meta-llama/llama-guard-3-11b-vision', 
+    'mistralai/mistral-large'
+]
+
+IBM_MODEL = SUPPORTED_IBM_MODELS[0]
+
 WASTSONX_PARAMS = {
     "temperature": 0,
     "max_new_tokens": 500,
