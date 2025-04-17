@@ -23,7 +23,7 @@ class RouteOutput(BaseModel):
 
 # --- LLM Router Setup ---
 llm = ChatWatsonx(
-    model_id=MODEL_GRANITE_13B_CHAT_V2,
+    model_id=IBM_MODEL,
     project_id=WATSONX_PROJECT_ID,
     apikey=WATSONX_API_KEY,
     url=SERVER_URL,
