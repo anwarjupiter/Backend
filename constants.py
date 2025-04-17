@@ -1,8 +1,6 @@
 import os,logging,warnings
 from dotenv import load_dotenv
 
-MODEL_GRANITE_13B = "ibm/granite-13b-sft"
-
 warnings.filterwarnings("ignore")
 
 load_dotenv()
