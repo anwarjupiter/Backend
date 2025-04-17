@@ -37,7 +37,7 @@ tools = [
 ]
 
 llm = WatsonxLLM(
-        model_id=MODEL_GRANITE_8B,
+        model_id=MODEL_GRANITE_13B,
         project_id=WATSONX_PROJECT_ID,
         apikey=WATSONX_API_KEY,
         url=SERVER_URL,

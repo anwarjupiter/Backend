@@ -52,7 +52,7 @@ class AgentRouter:
     def __init__(self):
         self.route_parser = PydanticOutputParser(pydantic_object=RouteOutput)
         self.llm = ChatWatsonx(
-            model_id=MODEL_GRANITE_8B,
+            model_id=MODEL_GRANITE_13B,
             project_id=WATSONX_PROJECT_ID,
             apikey=WATSONX_API_KEY,
             url=SERVER_URL,

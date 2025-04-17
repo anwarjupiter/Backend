@@ -10,7 +10,7 @@ from langchain_experimental.agents import create_pandas_dataframe_agent
 def run1(question):
     df = pd.read_csv("input/civil.csv")
     model = ChatWatsonx(
-        model_id=MODEL_GRANITE_8B,
+        model_id=MODEL_GRANITE_13B,
         project_id=WATSONX_PROJECT_ID,
         apikey=WATSONX_API_KEY,
         url=SERVER_URL,
@@ -23,7 +23,7 @@ def run1(question):
 def run(question):
     df = pd.read_csv("input/civil.csv")
     llm = ChatWatsonx(
-        model_id=MODEL_GRANITE_8B,
+        model_id=MODEL_GRANITE_13B,
         project_id=WATSONX_PROJECT_ID,
         apikey=WATSONX_API_KEY,
         url=SERVER_URL,
