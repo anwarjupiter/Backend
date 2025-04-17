@@ -9,7 +9,7 @@ logging.basicConfig(
     format="%(asctime)s - %(levelname)s - %(message)s",
     handlers=[
         logging.StreamHandler(),  # logs to console
-        logging.FileHandler(f"logs/granite-3-2b-instruct.log", mode="a")  # logs to file
+        logging.FileHandler(f"logs/gemini-flash.log", mode="a")  # logs to file
     ]
 )
 

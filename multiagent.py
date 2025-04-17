@@ -51,15 +51,16 @@ def random_tool(state: AgentState) -> AgentState:
 class AgentRouter:
     def __init__(self):
         self.route_parser = PydanticOutputParser(pydantic_object=RouteOutput)
-        self.llm = ChatWatsonx(
-            model_id=IBM_MODEL,
-            project_id=WATSONX_PROJECT_ID,
-            apikey=WATSONX_API_KEY,
-            url=SERVER_URL,
-            params=WASTSONX_PARAMS
-        )
-        #self.llm = ChatGoogleGenerativeAI(model=MODEL_FLASH_2_0,api_key=GOOGLE_GEMINI_KEY,temperature=0)
-        logging.info(f"IBM MODEL : {IBM_MODEL}")
+        # logging.info(f"IBM MODEL : {IBM_MODEL}")
+        # self.llm = ChatWatsonx(
+        #     model_id=IBM_MODEL,
+        #     project_id=WATSONX_PROJECT_ID,
+        #     apikey=WATSONX_API_KEY,
+        #     url=SERVER_URL,
+        #     params=WASTSONX_PARAMS
+        # )
+        logging.info("GEMINI FLASH")
+        self.llm = ChatGoogleGenerativeAI(model=MODEL_FLASH_2_0,api_key=GOOGLE_GEMINI_KEY,temperature=0)
         self.graph = None
         self.router_chain = None
 
