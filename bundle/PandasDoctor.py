@@ -1,6 +1,7 @@
 from typing_extensions import TypedDict, Annotated
 from langchain_google_genai.chat_models import ChatGoogleGenerativeAI
 from langchain_experimental.tools.python.tool import PythonAstREPLTool
+from langchain_ibm.chat_models import ChatWatsonx
 from langchain import hub
 import pandas as pd
 from constants import *
@@ -23,12 +24,20 @@ class PandasDoctor:
     def __init__(self):
         self.dataset = pd.DataFrame()
         self.python_tool = None
-        self.llm = ChatGoogleGenerativeAI(
-            model=MODEL_FLASH_2_0,
-            api_key=GOOGLE_GEMINI_KEY,
-            temperature=0,
-            max_tokens=1000,
-            top_k=100,
+        # self.llm = ChatGoogleGenerativeAI(
+        #     model=MODEL_FLASH_2_0,
+        #     api_key=GOOGLE_GEMINI_KEY,
+        #     temperature=0,
+        #     max_tokens=1000,
+        #     top_k=100,
+        # )
+        logging.info(f"IBM MODEL : {IBM_MODEL}")
+        self.llm = ChatWatsonx(
+            model_id=IBM_MODEL,
+            project_id=WATSONX_PROJECT_ID,
+            apikey=WATSONX_API_KEY,
+            url=SERVER_URL,
+            params=WASTSONX_PARAMS
         )
 
     def _load_dataset(self,path):

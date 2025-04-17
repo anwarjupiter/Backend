@@ -4,6 +4,7 @@ sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 from constants import *
 from langchain_experimental.agents import create_pandas_dataframe_agent
 from langchain_google_genai import GoogleGenerativeAI
+from langchain_ibm import WatsonxLLM
 import pandas as pd
 
 def run(query,file_path="input/live.csv"):
@@ -92,12 +93,21 @@ def run(query,file_path="input/live.csv"):
     {agent_scratchpad}
     """
 
-    llm = GoogleGenerativeAI(
-        model="gemini-2.0-flash",
-        api_key=GOOGLE_GEMINI_KEY,
-        temperature=0,
-        max_tokens=500,
-        top_k=10
+    # llm = GoogleGenerativeAI(
+    #     model="gemini-2.0-flash",
+    #     api_key=GOOGLE_GEMINI_KEY,
+    #     temperature=0,
+    #     max_tokens=500,
+    #     top_k=10
+    # )
+    
+    logging.info(f"IBM MODEL : {IBM_MODEL}")
+    llm = WatsonxLLM(
+        model_id=IBM_MODEL,
+        project_id=WATSONX_PROJECT_ID,
+        apikey=WATSONX_API_KEY,
+        url=SERVER_URL,
+        params=WASTSONX_PARAMS
     )
 
     # Create a custom agent
