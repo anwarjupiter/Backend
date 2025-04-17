@@ -9,3 +9,6 @@ backups/
 testANW/
 log.txt
 *.pyc
+PdfExtract/images/
+PdfExtract/output/
+PdfExtract/deepscan/

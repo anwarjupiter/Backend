@@ -18,3 +18,7 @@ uvicorn
 python-multipart
 pypdf
 pymupdf
+pytesseract
+pillow
+cv2
+openpyxl
