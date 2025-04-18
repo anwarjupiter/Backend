@@ -3,6 +3,7 @@ from langchain_core.tools import tool
 from bundle.PdfTeacher import PDFQABot
 from bundle.PandasDoctor import PandasDoctor
 from bundle.MongoTool import MongoAggregationTool
+from ED import EDAgent
 
 
 @tool
@@ -106,3 +107,31 @@ def uruttu():
     """Generates an random number between 1 and 6.
     """
     return random.randint(1,6)
+
+@tool
+def ed_tool(question:str):
+    api_metadata = [
+        {
+            "name": "Generate Random Number",
+            "description": "Generates a random number between a start and end value.",
+            "body":{
+                "start":"number",
+                "end":"number"
+            },
+            "default":{
+                "start":0,
+                "end":5
+            },
+            "url": "http://192.168.10.124:3500/edchatbot/generaterandom",
+            "method": "POST"
+        },
+        {
+            "name": "Get Panel Properties",
+            "description": "Return all panel properties",
+            "url": "http://192.168.10.124:3500/edchatbot/getpanelproperties",
+            "method": "GET"
+        }
+    ]
+    ed_agent = EDAgent(routes=api_metadata)
+    agent = ed_agent.build()
+    return agent.invoke(input=question)

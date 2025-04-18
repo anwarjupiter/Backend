@@ -18,7 +18,12 @@ class ValidatedAPICall(BaseModel):
     body: Optional[Dict] = {}
 
 class EDAgent:
-    def __init__(self,routes,llm):
+    def __init__(self,routes,llm=ChatGoogleGenerativeAI(
+        model=MODEL_FLASH_2_0,
+        api_key=GOOGLE_GEMINI_KEY,
+        temperature=0,
+        convert_system_message_to_human=True
+    )):
         self.routes = routes
         self.llm = llm
         self.valid_methods = {"GET", "POST"}
