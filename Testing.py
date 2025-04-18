@@ -52,7 +52,7 @@ async def main():
     logging.info(response.text)
 
     test2 = AsyncAPITester(url="http://127.0.0.1:8000/agent")
-    response = await test2.inject(method="post", question="Give me a random number")
+    response = await test2.inject(method="post", question="Give me a Joke")
     logging.info(response.text)
 
     test3 = AsyncAPITester(url="http://127.0.0.1:8000/agent")
@@ -69,7 +69,7 @@ async def main():
     test4 = AsyncAPITester(url="http://127.0.0.1:8000/agent")
     response = await test4.inject(
         method="post",
-        question="How many customers are present in the dataset ?",
+        question="How many customers are available in the database ?",
         mongo_uri="mongodb+srv://anwarmydheenk:xcwSgYCDarOKZzrq@cluster0.3t32wd8.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0",
         db_name="sample_analytics"
     )
