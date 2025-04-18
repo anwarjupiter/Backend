@@ -101,4 +101,8 @@ def get_quote(topic: str = "life", author: str = None) -> str:
         return f"{quote} - {author}"
     return quote
 
-tools = [get_joke, get_weather, get_quote,pdf_tool]
+@tool
+def uruttu():
+    """Generates an random number between 1 and 6.
+    """
+    return random.randint(1,6)

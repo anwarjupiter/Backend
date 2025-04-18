@@ -84,6 +84,6 @@ Your goal is to be informative, helpful, and to fulfill the user's request in th
         return result["messages"][-1].content
 
 if __name__ == "__main__":
-    agent = AgentRouter(tools=[mongo_tool,pdf_tool,csv_tool])
-    response = agent.run(question="Lookup the data and give statistics",file="input/civil.csv")
-    print(response.content)
+    agent = AgentRouter(tools=[mongo_tool,pdf_tool,csv_tool,uruttu,get_joke])
+    response = agent.run(question="Roll a joke")
+    print(response)
