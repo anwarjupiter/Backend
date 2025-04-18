@@ -110,6 +110,7 @@ def uruttu():
 
 @tool
 def ed_tool(question:str):
+    """Asking Question with @edbot it will return an valid answer"""
     api_metadata = [
         {
             "name": "Generate Random Number",

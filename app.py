@@ -38,7 +38,7 @@ async def ask_to_agent(
             context['mongo_uri'] = mongo_uri
             context['db_name'] = db_name
         
-        agent = AgentRouter(tools=[mongo_tool,pdf_tool,csv_tool,get_joke])
+        agent = AgentRouter(tools=[mongo_tool,pdf_tool,csv_tool,get_joke,ed_tool])
         response = agent.run(question=question,kwargs=context)
 
         return JSONResponse(status_code=200, content={"answer": str(response)})
