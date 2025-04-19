@@ -1,11 +1,10 @@
 import requests
 from langchain_core.tools import StructuredTool
-from pydantic import BaseModel,create_model
 from typing import Dict, Any
 from constants import *
 from langchain.agents import initialize_agent, AgentType
-from typing import Any, Dict, List, Union
-from pydantic import BaseModel, create_model
+from typing import Any, Dict, List
+from pydantic import create_model
 from langchain_google_genai import ChatGoogleGenerativeAI
 
 class APIAgent:
