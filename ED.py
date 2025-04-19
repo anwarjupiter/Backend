@@ -18,12 +18,13 @@ class ValidatedAPICall(BaseModel):
     body: Optional[Dict] = {}
 
 class EDAgent:
-    def __init__(self,routes,llm=ChatGoogleGenerativeAI(
+    def __init__(self,routes:list,llm=ChatGoogleGenerativeAI(
         model=MODEL_FLASH_2_0,
         api_key=GOOGLE_GEMINI_KEY,
         temperature=0,
         convert_system_message_to_human=True
     )):
+        logging.info("Routes recieved !")
         self.routes = routes
         self.llm = llm
         self.valid_methods = {"GET", "POST"}
@@ -63,12 +64,12 @@ Only include keys required by the API. If no input needed, leave body null.
 """)
 
         prompt_filled = prompt.format_messages(
-            api_list=json.dumps(api_metadata, indent=2),
+            api_list=json.dumps(self.routes, indent=2),
             query=query,
             valid_request=self.response_parser.get_format_instructions()
         )
 
-        response = llm.invoke(prompt_filled)
+        response = self.llm.invoke(prompt_filled)
         
         try:
             parsed = self.response_parser.parse(response.content)
@@ -123,6 +124,6 @@ if __name__ == "__main__":
 
     ed_agent = EDAgent(routes=api_metadata,llm=llm)
     agent = ed_agent.build()
-    response = agent.invoke(input="What are the properties of panel ?")
+    response = agent.invoke(input="What are the properties of Panel ?")
     print(response['output'])
     

@@ -4,7 +4,7 @@ from bundle.PdfTeacher import PDFQABot
 from bundle.PandasDoctor import PandasDoctor
 from bundle.MongoTool import MongoAggregationTool
 from ED import EDAgent
-
+import json
 
 @tool
 def pdf_tool(file: str, vectorDB: str, question: str) -> str:
@@ -110,14 +110,17 @@ def uruttu():
 
 @tool
 def ed_tool(question:str):
-    """Asking Question with @edbot it will return an valid answer"""
+    """Asking Question with @edbot it will return an valid answer.
+    Args:
+        question: The user's question about the given data.
+    """
     api_metadata = [
         {
             "name": "Generate Random Number",
             "description": "Generates a random number between a start and end value.",
             "body":{
                 "start":"number",
-                "end":"number"
+                "end":"number"    
             },
             "default":{
                 "start":0,
@@ -135,4 +138,5 @@ def ed_tool(question:str):
     ]
     ed_agent = EDAgent(routes=api_metadata)
     agent = ed_agent.build()
-    return agent.invoke(input=question)
+    answer =  agent.invoke(input=question)['output']
+    return answer

@@ -5,6 +5,7 @@ from langchain_google_genai import ChatGoogleGenerativeAI
 from typing import TypedDict, Annotated
 from constants import *
 from CustomTools import *
+import json
 
 # --- Router Node ---
 class GraphState(TypedDict):
@@ -78,12 +79,33 @@ Based on the user's request and any provided context, determine the most effecti
 If a tool is selected, ensure the provided arguments are relevant and necessary for the tool to function correctly. If the user's request is a general question that doesn't require a specific tool, provide the best possible answer based on your knowledge.
 
 Your goal is to be informative, helpful, and to fulfill the user's request in the most efficient and effective manner."""
-        # print(user_prompt)
         inputs = {"messages": [{"role": "user", "content": user_prompt}]}
         result = self.graph.invoke(inputs)
         return result["messages"][-1].content
 
-if __name__ == "__main__":
-    agent = AgentRouter(tools=[mongo_tool,pdf_tool,csv_tool,uruttu,get_joke])
-    response = agent.run(question="Roll a joke")
-    print(response)
+# if __name__ == "__main__":
+#     api_metadata =json.dumps([
+#         {
+#             "name": "Generate Random Number",
+#             "description": "Generates a random number between a start and end value.",
+#             "body":{
+#                 "start":"number",
+#                 "end":"number"
+#             },
+#             "default":{
+#                 "start":0,
+#                 "end":5
+#             },
+#             "url": "http://192.168.10.124:3500/edchatbot/generaterandom",
+#             "method": "POST"
+#         },
+#         {
+#             "name": "Get Panel Properties",
+#             "description": "Return all panel properties",
+#             "url": "http://192.168.10.124:3500/edchatbot/getpanelproperties",
+#             "method": "GET"
+#         }
+#     ])
+#     agent = AgentRouter(tools=[mongo_tool,pdf_tool,csv_tool,uruttu,get_joke,ed_tool])
+#     response = agent.run(question="@ed_bot What are the properties of a Panel ?",kwargs=api_metadata)
+#     print(response)

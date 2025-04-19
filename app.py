@@ -2,7 +2,7 @@ from fastapi import FastAPI, Form, UploadFile, File
 from fastapi.responses import JSONResponse
 from pathlib import Path
 import tempfile
-import logging
+import logging,json
 from typing import Optional
 from AgentCall import AgentRouter
 from CustomTools import *
@@ -37,6 +37,29 @@ async def ask_to_agent(
         if mongo_uri and db_name:
             context['mongo_uri'] = mongo_uri
             context['db_name'] = db_name
+        
+        context['api_metadata'] = json.dumps([
+            {
+                "name": "Generate Random Number",
+                "description": "Generates a random number between a start and end value.",
+                "body":{
+                    "start":"number",
+                    "end":"number"
+                },
+                "default":{
+                    "start":0,
+                    "end":5
+                },
+                "url": "http://192.168.10.124:3500/edchatbot/generaterandom",
+                "method": "POST"
+            },
+            {
+                "name": "Get Panel Properties",
+                "description": "Return all panel properties",
+                "url": "http://192.168.10.124:3500/edchatbot/getpanelproperties",
+                "method": "GET"
+            }
+        ])
         
         agent = AgentRouter(tools=[mongo_tool,pdf_tool,csv_tool,get_joke,ed_tool])
         response = agent.run(question=question,kwargs=context)
