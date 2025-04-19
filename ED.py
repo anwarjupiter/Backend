@@ -37,7 +37,7 @@ class EDAgent:
 
     def dynamic_api_call(self,url: str, method: str = "POST", body: Dict = {}, headers: Dict = None) -> str:
         try:
-            with httpx.Client() as client:
+            with httpx.Client(timeout=300) as client:
                 if method == "GET" and body:
                     response = client.request(method=method, url=url, params=body, headers=headers)
                 else:
