@@ -4,6 +4,8 @@ from pydantic import BaseModel,create_model
 from typing import Dict, Any
 from constants import *
 from langchain.agents import initialize_agent, AgentType
+from typing import Any, Dict, List, Union
+from pydantic import BaseModel, create_model
 from langchain_google_genai import ChatGoogleGenerativeAI
 
 class APIAgent:
@@ -24,9 +26,14 @@ class APIAgent:
   
         InputModel = create_model(
             f"{name}_input",
-            **{k: (int if v == "number" else str, default_values.get(k, ...)) for k, v in body_schema.items()}
+            **{
+                key: (
+                    self.map_json_type(value),
+                    default_values.get(key, ...)
+                )
+                for key, value in body_schema.items()
+            }
         )
-
         def tool_func(**kwargs):
             if method == "POST":
                 response = requests.post(url, json=kwargs)
@@ -40,6 +47,21 @@ class APIAgent:
             func=tool_func,
             args_schema=InputModel,
         )
+
+    def map_json_type(self,json_type: str):
+        """
+        Maps JSON string type to Python type.
+        Extend as needed.
+        """
+        type_map = {
+            "number": int,
+            "string": str,
+            "boolean": bool,
+            "Array Of Objects": List[Dict[str, Any]],
+            "array": list,
+            "object": dict,
+        }
+        return type_map.get(json_type, Any)
 
     def build_tools(self):
         self.tools = [self.create_tool_from_api(api) for api in self.routes]
