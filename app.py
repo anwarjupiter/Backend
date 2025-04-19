@@ -98,7 +98,7 @@ async def ask_to_ed(question:str = Form(...)):
         ]
         agent = EDAgent(routes=api_metadata)
         edBot = agent.build()
-        answer = edBot.invoke(input=question)
+        answer = edBot.invoke(input=question)['output']
         return JSONResponse(status_code=200,content={"answer":answer})
     except Exception as e:
         logging.error(str(e))
