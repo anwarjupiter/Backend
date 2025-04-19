@@ -91,39 +91,39 @@ Only include keys required by the API. If no input needed, leave body null.
             verbose=False
         )
 
-if __name__ == "__main__":
-    api_metadata = [
-        {
-            "name": "Generate Random Number",
-            "description": "Generates a random number between a start and end value.",
-            "body":{
-                "start":"number",
-                "end":"number"
-            },
-            "default":{
-                "start":0,
-                "end":5
-            },
-            "url": "http://192.168.10.124:3500/edchatbot/generaterandom",
-            "method": "POST"
-        },
-        {
-            "name": "Get Panel Properties",
-            "description": "Return all panel properties",
-            "url": "http://192.168.10.124:3500/edchatbot/getpanelproperties",
-            "method": "GET"
-        }
-    ]
+# if __name__ == "__main__":
+#     api_metadata = [
+#         {
+#             "name": "Generate Random Number",
+#             "description": "Generates a random number between a start and end value.",
+#             "body":{
+#                 "start":"number",
+#                 "end":"number"
+#             },
+#             "default":{
+#                 "start":0,
+#                 "end":5
+#             },
+#             "url": "http://192.168.10.124:3500/edchatbot/generaterandom",
+#             "method": "POST"
+#         },
+#         {
+#             "name": "Get Panel Properties",
+#             "description": "Return all panel properties",
+#             "url": "http://192.168.10.124:3500/edchatbot/getpanelproperties",
+#             "method": "GET"
+#         }
+#     ]
 
-    llm = ChatGoogleGenerativeAI(
-        model=MODEL_FLASH_2_0,
-        api_key=GOOGLE_GEMINI_KEY,
-        temperature=0,
-        convert_system_message_to_human=True
-    )
+#     llm = ChatGoogleGenerativeAI(
+#         model=MODEL_FLASH_2_0,
+#         api_key=GOOGLE_GEMINI_KEY,
+#         temperature=0,
+#         convert_system_message_to_human=True
+#     )
 
-    ed_agent = EDAgent(routes=api_metadata,llm=llm)
-    agent = ed_agent.build()
-    response = agent.invoke(input="What are the properties of Panel ?")
-    print(response['output'])
+#     ed_agent = EDAgent(routes=api_metadata,llm=llm)
+#     agent = ed_agent.build()
+#     response = agent.invoke(input="What are the properties of Panel ?")
+#     print(response['output'])
     
